@@ -1,0 +1,1 @@
+{"Version":3,"FileReferences":{"Moc":"泉此方.moc3","Textures":["泉此方.2048/texture_00.png"],"Physics":"泉此方.physics3.json","DisplayInfo":"泉此方.cdi3.json"},"Groups":[{"Target":"Parameter","Name":"LipSync","Ids":[]},{"Target":"Parameter","Name":"EyeBlink","Ids":["ParamEyeLOpen","ParamEyeROpen"]}]}
