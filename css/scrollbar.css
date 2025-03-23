@@ -1,0 +1,17 @@
+
+/* 滚动条 */
+::-webkit-scrollbar-thumb {
+    background-color: #190068;
+    background-image: -webkit-linear-gradient(30deg,rgba(255,255,255,.4) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,transparent 75%,transparent);
+    border-radius: 3em;
+}
+::-webkit-scrollbar-track {
+    background-color: #cafff7;
+    border-radius: 3em;
+}
+::-webkit-scrollbar {
+    width: 8px;
+    height: 15px;
+}
+
+
