@@ -1,0 +1,849 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机组成 | 机煲的小窝</title><meta name="author" content="Sixiang Wang,2562187628@qq.com"><meta name="copyright" content="Sixiang Wang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="计组期末考前为了防止自己刚复习完就忘光总结的资料,我菜,仅供参考">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机组成">
+<meta property="og:url" content="https://blog.unfinished.top/2024/01/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/index.html">
+<meta property="og:site_name" content="机煲的小窝">
+<meta property="og:description" content="计组期末考前为了防止自己刚复习完就忘光总结的资料,我菜,仅供参考">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.unfinished.top/img/cover/cover1.jpg">
+<meta property="article:published_time" content="2024-01-08T10:16:31.000Z">
+<meta property="article:modified_time" content="2025-03-30T06:09:06.876Z">
+<meta property="article:author" content="Sixiang Wang">
+<meta property="article:tag" content="大学">
+<meta property="article:tag" content="总结">
+<meta property="article:tag" content="计组">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.unfinished.top/img/cover/cover1.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "计算机组成",
+  "url": "https://blog.unfinished.top/2024/01/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/",
+  "image": "https://blog.unfinished.top/img/cover/cover1.jpg",
+  "datePublished": "2024-01-08T10:16:31.000Z",
+  "dateModified": "2025-03-30T06:09:06.876Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sixiang Wang",
+      "url": "https://github.com/Sixiang-Wang"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.unfinished.top/2024/01/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: Sixiang Wang","link":"链接: ","source":"来源: 机煲的小窝","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"linear-gradient(to top right, #0000FF, #800080)","bgDark":"#1f1f1f","position":"bottom-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '计算机组成',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/readPercent.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/waveDivider.css"><link rel="stylesheet" href="/css/scrollbar.css"><link rel="stylesheet" href="/css/windmill.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  const loadingTimeout = setTimeout(preloader.endLoading, 2000);
+
+  // 如果页面在 3 秒内加载完成，清除超时并结束加载状态
+  window.addEventListener('load', () => {
+    clearTimeout(loadingTimeout);
+    preloader.endLoading();
+  });
+
+  //window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/img/background_new.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Ritsu.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 网站推荐</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/cover/cover1.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/robot.png" alt="Logo"><span class="site-name">机煲的小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">计算机组成</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 网站推荐</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">计算机组成</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-08T10:16:31.000Z" title="发表于 2024-01-08 18:16:31">2024-01-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-30T06:09:06.876Z" title="更新于 2025-03-30 14:09:06">2025-03-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/">大学课程期末复习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">7.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>23分钟</span></span><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>-1 蛤？</h1>
+<p>1个字节（byte）= 8位（bit）</p>
+<p>32位系统中，1 字 = 4 字节；64位，1 字 = 8 字节</p>
+<p>在 MIPS 指令集中可以用来实现跳转到 4GB 空间内任意地址的指令是 <strong>jr</strong></p>
+<p>j：可跳转226+2=228个地址单元，即228+3bits = 256 MB</p>
+<p>beq：256 KB</p>
+<h1>0 绪论</h1>
+<h3 id="冯诺依曼架构">冯诺依曼架构</h3>
+<p>计算机应由运算器、控制器、存储器、输入设备和输出设备五个基本部件组成。</p>
+<p>存储器不仅能存放数据，而且也能存放指令，形式上两者没有区别，但计算机应能区分数据还是指令；控制器应能自动取出指令来执行；运算器应能进行加/减/乘/除四种基本算术运算，并且也能进行一些逻辑运算和附加运算；操作人员可以通过输入设备、输出设备和主机进行通信。</p>
+<h3 id="抽象">抽象</h3>
+<p>文件是对 I/0 设备的抽象</p>
+<p>虚拟内存是对程序存储器的抽象</p>
+<p>进程是对一个正在运行的程序的抽象：是在给定数据集上的一次程序执行</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1703731953839.png" alt="1703731953839"></p>
+<h3 id="并发并行">并发并行</h3>
+<p>并发:  逻辑上的并行，物理上交替执行（使系统能够同时处理多个任务）</p>
+<p>并行:  物理上的并行（使系统真正地运行更快）</p>
+<h1>1 数制与运算</h1>
+<h2 id="进制">进制</h2>
+<h3 id="进制转换">进制转换</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1703732717527.png" alt="1703732717527"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1703732759516.png" alt="1703732759516"></p>
+<h3 id="补码">补码</h3>
+<p>补码取反加一 0011 → 1101  (3 → -3)     取反加一和减一取反效果一样</p>
+<p>反码只取反，原码只改符号位</p>
+<h3 id="补码运算">补码运算</h3>
+<p>[X+Y]补= [X]补+ [Y]补，[X-Y]补=[X]补+[-Y]补</p>
+<p>3+4 = 7  0011+0100 = 0111</p>
+<p>3-4 = -1  0011+1100 = 1111</p>
+<h3 id="浮点数表示">浮点数表示</h3>
+<p>阶码：01000    尾数：0.10110010001</p>
+<p>178.125 =  10110010.001 = 0.10110010001 * （2^01000）</p>
+<h3 id="浮点数规格化">浮点数规格化</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704519002020.png" alt="1704519002020"></p>
+<p>数符 S： 1位，0表示正数，1表示负数</p>
+<p>阶码 E：用移码表示，n 位阶码偏移量为 2n-1-1</p>
+<p>如8位阶码偏移量为 7FH（即127）， 11位阶码偏移量3FFH（即1023）</p>
+<p>尾数 M： 尾数必须规格化成小数点左侧一定为1，并且小数点前面这个1作为隐含位被省略。这样单精度浮点数尾数实际上为24位</p>
+<p><strong><u>计算： 1.m * 2^(E-127)  如果是双精度，是E-1023</u></strong></p>
+<p><strong><u>E一定要先减</u></strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106140221740.png" alt="image-20240106140221740" style="zoom: 50%;" /><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106140645838.png" alt="image-20240106140645838" style="zoom: 50%;" /></p>
+<p>2的-126 ~ 127次方</p>
+<h3 id="大端小端">大端小端</h3>
+<p><strong>大端存储模式</strong>：数据的低位保存在内存中的高地址中，数据的高位保存在内存中的低地址中；<br>
+<strong>小端存储模式</strong>：数据的低位保存在内存中的低地址中，数据的高位保存在内存中的高地址中；</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img-blog.csdnimg.cn/20200525162747150.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mzg4NjU5Mg==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述" style="zoom:67%;" />
+<h3 id="各种编码表示10进制">各种编码表示10进制</h3>
+<p>8421：正常，0＝0000 1＝0001 2＝0010 3＝0011 4＝0100 … 9＝1001</p>
+<p>5421：… 3＝0011 4＝0100 5＝1000 … 9＝1100 ; 而0101是禁止码</p>
+<p>2421：… 4＝0100  5＝1011  6＝1100  7＝1101  8＝1110  9＝1111</p>
+<p>余3：每个字符编码比相应的8421码多3，0＝0011 1＝0100 2＝0101 3＝0110 … 9＝1100</p>
+<p>不是重点，但是挺逆天的</p>
+<h2 id="逻辑代数">逻辑代数</h2>
+<p>按位或：“|”</p>
+<p>按位与：“&amp;”</p>
+<p>按位取反：“~”（单目运算）</p>
+<p>按位异或：“^”</p>
+<p>左移：高位移出，低位补0。可能溢出！</p>
+<p>右移：低位移出，高位补符，可能发生有效数据丢失。</p>
+<p>与：F = A·B ，F=AB   或者    F = A∧B</p>
+<p>或：F = A + B    或者  F = A ∨ B</p>
+<p>异或F=A 圆中间一个十字B</p>
+<p>同或F = A⊙ B</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704522811761.png" alt="1704522811761" style="zoom: 50%;" /><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704524870583.png" alt="1704524870583"></p>
+<p>对偶定理：将原函数F中的全部 “•” 换成 “+”，“+” 换成 “•”，“0”换成 “1”，“1” 换成 “0”，所得的新函数就是原函数的对偶式，记作F’或F*</p>
+<p>由n个变量组成的 “与” 项中，每个变量以原变量或反变量的形式出现且仅出现一次，则这个与项称为最小项</p>
+<p>n个变量有2^n个最小项</p>
+<p>全部由最小项构成的与或式，也称标准与或式</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704523166223.png" alt="1704523166223" style="zoom:50%;" />
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704523282308.png" alt="1704523282308" style="zoom:50%;" />
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704523306716.png" alt="1704523306716" style="zoom:45%;" />
+<h3 id="简化公式">简化公式</h3>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704523501199.png" alt="1704523501199" style="zoom:50%;" />
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704523947036.png" alt="1704523947036" style="zoom:50%;" />吸收率1</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704523908797.png" alt="1704523908797" style="zoom:50%;" />吸收率2</p>
+<h1>2 数字逻辑</h1>
+<h2 id="组合逻辑">组合逻辑</h2>
+<p>从结构看，组合逻辑电路由门电路构成，不含   反馈电路       ，也不含   存储电路      ，信号从输入开始单向传输到输出。对于组合逻辑电路，任何时刻电路的输出仅由当时的  输入信号       决定</p>
+<h3 id="半加器">半加器</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106150537827.png" alt="image-20240106150537827" style="zoom:50%;" /><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106150548415.png" alt="image-20240106150548415" style="zoom:50%;" /></p>
+<h3 id="全加器">全加器</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106150930863.png" alt="image-20240106150930863" style="zoom: 50%;" /><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106151004002.png" alt="image-20240106151004002" style="zoom: 50%;" /></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106150945894.png" alt="image-20240106150945894" style="zoom: 80%;" />
+<h4 id="溢出">溢出</h4>
+<p>“00”表示正，“11”表示负，如果运算结果符号位出现“01”（正溢）或“10” （负溢）都表示出现溢出</p>
+<p>6 = 0110   7 = 0111   6+7 = 01101，正溢出</p>
+<p>-6=1010     -7=1001  -6-7 = 10011，负溢出</p>
+<p>-3 = 1101    -3-3 = 11010  负数不溢出</p>
+<h3 id="数值比较器">数值比较器</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106155205001.png" alt="image-20240106155205001" style="zoom:50%;" /><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106155231376.png" alt="image-20240106155231376" style="zoom:50%;" /></p>
+<h3 id="ALU">ALU</h3>
+<p>操作数，选择数</p>
+<h3 id="编码器">编码器</h3>
+<p>某一个输入端的信号变换成相应的一组二进制代码输出的过程叫做   编码</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106160236976.png" alt="image-20240106160236976" style="zoom:50%;" />
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704528511028.png" alt="1704528511028" style="zoom: 50%;" />74147优先编码器（谁优先输出谁）</p>
+<h3 id="译码器">译码器</h3>
+<p>将二进制代码所表示的信息翻译成对应高低电平信号输出的过程称为译码</p>
+<p>3线-8线译码器（74138）</p>
+<p>3个输入：A2，A1，A0；000~111共8种输入组合。</p>
+<p>8个输出：Y7~Y0，<strong>低电平</strong>输出有效；任何时刻最多只有一个输出有效。当输入为000时，Y0输出有效；当输入为001时，Y1输出有效。</p>
+<p>3个使能控制：S0，S1，S2 为使能输入，仅当它们分别为1、0、0时，译码器才正常译码；否则禁止工作。</p>
+<h3 id="多路选择器">多路选择器</h3>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106162146201.png" alt="image-20240106162146201" style="zoom:50%;" />
+<p>若D7-D0  = 10100101</p>
+<p>Y = m7+m5+m2+m0</p>
+<h3 id="竞争冒险">竞争冒险</h3>
+<h4 id="竞争">竞争</h4>
+<p>某个输入变量通过两条或两条以上的途径传到输出端，由于每条途径延迟时间不同，到达输出门的时间就有先有后</p>
+<h4 id="冒险">冒险</h4>
+<p>门电路因输入端的竞争而导致输出端产生不正常的尖峰干扰脉冲信号（毛刺）的现象</p>
+<p>A+ !A 存在0冒险          A ·!A存在1冒险</p>
+<h4 id="卡诺图法判断">卡诺图法判断</h4>
+<p>在逻辑函数的卡诺图中，函数的每个与项对应卡诺图上的一个卡诺圈，若两个卡诺圈相切，相切处将存在冒险。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704530434352.png" alt="1704530434352" style="zoom:50%;" /><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704530834543.png" alt="1704530834543" style="zoom: 67%;" /></p>
+<p>增加冗余项。</p>
+<p>L=AC+ ̅AB，当B=C=1时， L=A+ ̅A，存在冒险。增加冗余项 L=AC+  ̅AB+BC，逻辑函数功能不变，冒险消除。</p>
+<h2 id="时序逻辑">时序逻辑</h2>
+<h3 id="锁存器和触发器">锁存器和触发器</h3>
+<p>锁存器是电位（电平）触发的，只有在时钟CP有效电平（高电平CP=1或者低电平CP＝0）期间，触发器的状态才有可能发生变化。</p>
+<p>触发器的状态变化只发生在时钟CP的有效沿（上升沿或者下降沿）期间，CP＝1、CP=0时触发器的状态不会发生变化</p>
+<p>D锁存：CP=0保持；CP=1置为D的值</p>
+<h4 id="D触发器">D触发器</h4>
+<p>D触发由2个D锁存组成；CP从0到1触发</p>
+<p>加使能EN：EN=1正常，EN=0一直保持</p>
+<h4 id="JK触发器">JK触发器</h4>
+<p>J0K0，输出不变； J0K1，输出为0； J1K0，输出为1；J1K1，输出反转</p>
+<h3 id="状态机">状态机</h3>
+<h4 id="Moore">Moore</h4>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704532315803.png" alt="1704532315803" style="zoom:50%;" /><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704535620164.png" alt="1704535620164" style="zoom:50%;" /></p>
+<p>输出信号仅与当前状态有关</p>
+<h4 id="Mealy">Mealy</h4>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106171247758.png" alt="image-20240106171247758" style="zoom:50%;" /><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704535645537.png" alt="1704535645537" style="zoom:50%;" /></p>
+<p>输出信号与当前状态及输入信号有关</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704535954265.png" alt="1704535954265" style="zoom:33%;" /><strong>状态转移表长这样</strong></p>
+<h3 id="移位寄存器">移位寄存器</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704537187152.png" alt="1704537187152" style="zoom:50%;" /><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106183331197.png" alt="image-20240106183331197" style="zoom:67%;" /></p>
+<p>脉冲一次移位一次</p>
+<h3 id="计数器">计数器</h3>
+<h4 id="同步">同步</h4>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106184440187.png" alt="image-20240106184440187" style="zoom:50%;" />同步计数器</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106184621964.png" alt="image-20240106184621964" style="zoom:50%;" />
+<h4 id="异步">异步</h4>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106184719666.png" alt="image-20240106184719666" style="zoom:50%;" />
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106184645318.png" alt="image-20240106184645318" style="zoom:50%;" />
+<h3 id="时钟同步？">时钟同步？</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704538203568.png" alt="1704538203568"></p>
+<p>Tccq：触发器时钟到Q的最小延迟</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704539135847.png" alt="1704539135847" style="zoom: 50%;" />
+<p>Tcd：组合逻辑的延迟</p>
+<h1>3 汇编</h1>
+<h2 id="寻址">寻址</h2>
+<p><strong>立即寻址</strong></p>
+<p>操作数直接在指令代码中给出。addi $s1, $s2, 100</p>
+<p><strong>寄存器直接寻址</strong></p>
+<p>操作数在寄存器中，指令地址字段给出寄存器的地址  add <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mn>1</mn><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">s1,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">s</span><span class="mord">1</span><span class="mpunct">,</span></span></span></span>s2,$s3</p>
+<p><strong>寄存器间接寻址</strong></p>
+<p>操作数在存储器中，指令地址字段中给出的寄存器的内容是操作数在存储器中的地址 lw  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">s1, 0(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">s</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mopen">(</span></span></span></span>s2)</p>
+<p><strong>基址寻址</strong></p>
+<p>操作数在存储器中，指令地址字段给出一基址寄存器和一形式地址，基址寄存器的内容与形式地址之和是操作数的内存地址 lw  <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi><mn>1</mn><mo separator="true">,</mo><mo>∗</mo><mo>∗</mo><mo>∗</mo><mn>100</mn><mo>∗</mo><mo>∗</mo><mo>∗</mo><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">s1,***100***(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">s</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">∗</span><span class="mord">1</span><span class="mord">0</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.46528em;vertical-align:0em;"></span><span class="mord">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span></span></span></span>s2)</p>
+<p><strong>变址寻址</strong></p>
+<p>操作数在存储器中，指令地址字段给出一变址寄存器和一形式地址，变址寄存器的内容与形式地址之和是操作数的内存地址 lb <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mn>1</mn><mo separator="true">,</mo><mi>s</mi><mi>t</mi><mi>r</mi><mi>i</mi><mi>n</mi><mi>g</mi><mo stretchy="false">(</mo></mrow><annotation encoding="application/x-tex">t1, string(</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">t</span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">s</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">i</span><span class="mord mathnormal">n</span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mopen">(</span></span></span></span>t0)</p>
+<p><strong>相对寻址</strong></p>
+<p>基址寻址的特例，由程序计数器PC作为基址寄存器，指令中给出的形式地址作为位移量，二者之和是操作数的内存地址。beq  $s1, $s2,  100</p>
+<p><strong>堆栈寻址</strong></p>
+<p>压栈SP -= 4；出栈SP += 4；</p>
+<h2 id="指令">指令</h2>
+<h3 id="指令类型-R-I-J">指令类型 R/I/J</h3>
+<p>R：两个寄存器运算，结果存到第三个</p>
+<p>I：有1个符号立即数</p>
+<p>J：跳转，26位跳转地址</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106192507043.png" alt="image-20240106192507043" style="zoom: 50%;" />
+<h3 id="指令格式">指令格式</h3>
+<h4 id="R-Type">R-Type</h4>
+<p>OP永为000000</p>
+<p>add：</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106192749894.png" alt="image-20240106192749894" style="zoom: 50%;" />
+<p><strong>逻辑左移sll</strong> <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>t</mi><mn>1</mn><mo separator="true">,</mo></mrow><annotation encoding="application/x-tex">t1,</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">t</span><span class="mord">1</span><span class="mpunct">,</span></span></span></span>t2,10也是R型，10存在Shamt里；sllv $t1, $t2, $t3</p>
+<p>jr $t1  # PC = $t1</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106193339782.png" alt="image-20240106193339782" style="zoom:50%;" />
+<h4 id="I-Type">I-Type</h4>
+<p>rt ← rs + immediate</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106195235935.png" alt="image-20240106195235935" style="zoom:50%;" />
+<p>rt ← memory[base + offest]</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106195301150.png" alt="image-20240106195301150" style="zoom:50%;" />
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106195442117.png" alt="image-20240106195442117" style="zoom:50%;" />
+<p>if (rs = rt) then PC ← PC + sign_extend</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106195502445.png" alt="image-20240106195502445" style="zoom:50%;" />
+<h4 id="J-Type">J-Type</h4>
+<p>j直接跳转</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106195551348.png" alt="image-20240106195551348" style="zoom:50%;" />
+<p>jal 指令的意思是跳转到对应标签的位置，并将当前执行的指令位置存储在 $ra 寄存器中。</p>
+<h3 id="各种指令">各种指令</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">赋值 </span><br><span class="line">li $t1, 100  ori $t1, 100</span><br><span class="line"></span><br><span class="line">传值</span><br><span class="line">move $t1, $t2</span><br><span class="line"></span><br><span class="line">add $t1, $t2, $t3 加</span><br><span class="line">mul $t1, $t2, $t3 乘</span><br><span class="line">除法</span><br><span class="line">div $t1, $t2 # 计算 5 / 2，其中商存放在 lo 寄存器，而余数存放在 hi 寄存器</span><br><span class="line">mfhi $t3 # 将 hi 寄存器中的值取出放到 t3 寄存器（余数，值为 1）</span><br><span class="line">mflo $t4 # 将 lo 寄存器中的值取出放到 t4 寄存器（商，值为 2）</span><br><span class="line"></span><br><span class="line">跳转</span><br><span class="line">ble $t1, 5, label</span><br><span class="line">j label</span><br><span class="line"></span><br><span class="line">跳转到函数</span><br><span class="line">jal 指令的意思是跳转到对应标签的位置，并将当前执行的指令位置存储在 $ra 寄存器中。</span><br><span class="line">jr $ra 函数结束后返回！很重要</span><br><span class="line"></span><br><span class="line">数组</span><br><span class="line">.data</span><br><span class="line">array: .space 400</span><br><span class="line">la $t1, array</span><br><span class="line">lw $t2, 0($t1)</span><br><span class="line">sw $t2, array($t3)</span><br><span class="line">字符串不用lw和sw</span><br><span class="line">lb $a0, 0($t0)</span><br><span class="line">sb $a0, 0($t0)</span><br></pre></td></tr></table></figure>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106201044299.png" alt="image-20240106201044299" style="zoom: 45%;" />
+<h1>4 MIPS处理器</h1>
+<h2 id="MIPS模型机">MIPS模型机</h2>
+<p>寄存器，32位虚拟地址</p>
+<p>组合部件ALU（逻辑运算）、MUX（多路选择器）Signext（符号扩展）</p>
+<p>寄存器堆：两个32位数据输出端口，一个32位数据输入端口，三个5位寄存器地址输入端口</p>
+<p>边沿触发的时钟同步方法</p>
+<h2 id="单周期处理器">单周期处理器</h2>
+<p>哈佛体系结构：使用指令存储区（IM）和数据存储区（DM）分别保存指令和数据</p>
+<p>取指令</p>
+<p>32位Instruction = IM[PC]，PC+4，</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106210307704.png" alt="image-20240106210307704" style="zoom:50%;" />
+<p>R型如add</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106211146176.png" alt="image-20240106211146176" style="zoom:50%;" />
+<p>lw</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106211330560.png" alt="image-20240106211330560"></p>
+<p>sw</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106211413808.png" alt="image-20240106211413808"></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704546944945.png" alt="1704546944945"></p>
+<p>寄存器堆写入端地址选择MUX，选择控制信号 RegDst</p>
+<p>ALU输入端B数据源选择MUX，选择控制信号 ALUSrc</p>
+<p>寄存器堆写入端数据源选择MUX，选择控制信号 MemtoReg</p>
+<p>beq</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106212423830.png" alt="image-20240106212423830" style="zoom:50%;" />
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704547957248.png" alt="1704547957248" style="zoom:67%;" />
+<p>PC输入端数据源选择MUX，选择控制信号 PCSrc</p>
+<h3 id="控制信号">控制信号</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704548014476.png" alt="1704548014476"></p>
+<p>Op：控制7个控制信号</p>
+<p>Func：仅用于R型，控制ALUop</p>
+<p><strong>RegDst</strong></p>
+<p>R型指令：RegDst=1，选择Rd</p>
+<p>Lw指令： RegDst=0，选择Rt</p>
+<p>其他指令：不关心</p>
+<p><strong>ALUScr</strong></p>
+<p>R型指令：ALUSrc=0，选择寄存器堆的 Read data2 输出</p>
+<p>Lw Sw指令： ALUSrc=1，选择Signext的输出</p>
+<p>Beq指令（减法运算）： ALUSrc=0，选择 Read data2 输出</p>
+<p><strong>MemtoReg</strong></p>
+<p>R型指令：MemtoReg=0，选择 ALU 输出</p>
+<p>Lw指令： MemtoReg=1，选择数据存储器DM输出</p>
+<p>其他指令： 不关心</p>
+<p><strong>Branch</strong></p>
+<p>Beq指令：Branch=1，此时若Zero=1，PC输入选择加法器Nadd输出（分支指令目的地址），否则选择加法器Add输出（PC+4）</p>
+<p>其他指令：Branch=0，PC输入选择加法器Add输出（PC+4）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106215650460.png" alt="image-20240106215650460"></p>
+<h4 id="ALU控制信号">ALU控制信号</h4>
+<p>ALUOP：10,00,01,分3种情况，10再看FUNC字段，00做一个加法，01做一个减法</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704549610485.png" alt="1704549610485"></p>
+<h3 id="单周期过程">单周期过程</h3>
+<p>R 取值-读寄存器-ALU运算-写寄存器</p>
+<p>lw 取值-读寄存器-ALU运算-读数据-写寄存器</p>
+<h2 id="多周期流水线">多周期流水线</h2>
+<h3 id="五个阶段">五个阶段</h3>
+<ol>
+<li>
+<p>取指-IF: 取指, PC自增</p>
+</li>
+<li>
+<p>译码和读寄存器-ID:译码, 读寄存器</p>
+</li>
+<li>
+<p>执行-EX: 执行(ALU)  Lw/Sw指令:  计算内存指针  其他指令:  执行其他算术和逻辑运算</p>
+</li>
+<li>
+<p>访存-Mem:   Lw:  从内存读数据到CPU寄存器  Sw:  把寄存器的值写到内存中</p>
+</li>
+<li>
+<p>回写-WB: 把数据写回到寄存器中</p>
+</li>
+</ol>
+<p>当时钟上升沿到来时，组合逻辑计算结果写入后级寄存器</p>
+<h3 id="线路">线路</h3>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106230648625.png" alt="image-20240106230648625" style="zoom:50%;" />
+<p>增加新MUX</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704551192433.png" alt="1704551192433"></p>
+<h2 id="指令相关">指令相关</h2>
+<p><strong>针对寄存器</strong></p>
+<p>读后写，写后读，写后写</p>
+<h3 id="指令冲突">指令冲突</h3>
+<p>只有写后读会有指令冲突</p>
+<h2 id="流水线冒险">流水线冒险</h2>
+<p>结构冒险：资源竞争，要使用的部件正在忙</p>
+<p>数据冒险：指令执行所需的数据暂时不可用而造成的指令执行的停顿</p>
+<p>控制冒险：也称为分支冒险，必须根据前一条指令的执行结果才能确定下一条真正要执行的指令地址</p>
+<h2 id=""></h2>
+<h3 id="结构冒险">结构冒险</h3>
+<p>内存：流水线的数据通路需要将指令和数据分别存储</p>
+<p>寄存器：将寄存器组的使用权限分为两部分，一个时钟周期内前半个时钟周期进行写操作，后半个时钟周期进行读操作</p>
+<p>在同一个时钟周期，可以同时进行读寄存器和写寄存器的操作</p>
+<h3 id="数据冒险">数据冒险</h3>
+<h4 id="旁发">旁发</h4>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704553400856.png" alt="1704553400856" style="zoom:50%;" />
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106223518442.png" alt="image-20240106223518442"></p>
+<h4 id="阻塞">阻塞</h4>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106230913999.png" alt="image-20240106230913999" style="zoom:50%;" />阻塞+旁发</p>
+<p>阻塞等同插入nop指令</p>
+<p>条件：IF/ID的前序是lw指令，并且lw的rt寄存器与IF/ID的rs或rt相同</p>
+<ul>
+<li>冻结IF/ID：sub继续被保存（用寄存器的使能）</li>
+<li>清除ID/EX：指令全为0，等价于插入NOP（用寄存器的CLR清除）</li>
+<li>冻结PC：防止PC继续计数，PC保持不变</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sub $t2,$t1,$t3</span><br><span class="line">add $t3,$t1,$t2</span><br><span class="line">从EX/MEM转发到ID/EX后面</span><br></pre></td></tr></table></figure>
+<p>如果有转发电路，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lw $t2, 4($t0)</span><br><span class="line">add $t3, $t1, $t2</span><br></pre></td></tr></table></figure>
+<p>需要插入几个NOP指令？<strong><u>1个</u></strong></p>
+<h4 id="有转发的完整流水线">有转发的完整流水线</h4>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240106235643532.png" alt="image-20240106235643532" style="zoom:50%;" />
+<h3 id="控制冒险">控制冒险</h3>
+<p>阻塞或者赌博不跳转</p>
+<p>还可以在ID前放置比较器</p>
+<h3 id="计算机性能">计算机性能</h3>
+<p>响应时间：从提交作业到完成作业所花费的时间</p>
+<p>吞吐量：一定时间间隔内完成的作业数</p>
+<h1>5 主存</h1>
+<h2 id="工作原理">工作原理</h2>
+<h3 id="RAM">RAM</h3>
+<p><strong>随机存取存储器</strong>（RAM）</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704595506938.png" alt="1704595506938">（T是MOS管)</p>
+<p>读出：D 线先预充电到 Vpre=2.5V，然后字选线高电平，T导通</p>
+<p>若电路保存 信息1，Vcs=3.5V，电流方向从单元电路内部向外</p>
+<p>若电路保存信息 0，Vcs=0.0V，电流方向从外向单元电路内部</p>
+<p>写入操作：D 线加高电平（1，3.5V）或低电平（0，0V），字选择线置高电平，T导通；</p>
+<p>写1时，D线高电平，对Cs充电；</p>
+<p>写0时，D线低电平，Cs放电；</p>
+<h3 id="ROM">ROM</h3>
+<p><strong>只读存储器</strong>（ROM）</p>
+<p>PROM</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107105109481.png" alt="image-20240107105109481" style="zoom:25%;" />出场时为1，当写入0烧毁熔丝，不可恢复</p>
+<p>紫外线擦除可编程的EPROM、电擦除可编程的EEPROM单元电路可以恢复</p>
+<h2 id="内部结构">内部结构</h2>
+<p>芯片容量：2^n * m</p>
+<p>地址线：n位</p>
+<p>数据线：m位</p>
+<p><strong><u><em>这里就是n个字单元，每个字单元m位，很重要</em></u></strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704596437871.png" alt="1704596437871" style="zoom:50%;" />1024×2</p>
+<p><strong>二维地址结构</strong>：</p>
+<p>4096 × 4，4096×4 = 2^14</p>
+<p>存储：2^7 * （2^5*2^2）；一行4个单元一组为一个字，一行32个字</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704596831316.png" alt="1704596831316" style="zoom: 67%;" />妙哇</p>
+<h2 id="存储器扩展">存储器扩展</h2>
+<h3 id="位扩展">位扩展</h3>
+<p><strong>1K * 4 扩展为 1K * 8</strong>：</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107111224018.png" alt="image-20240107111224018" style="zoom: 50%;" />
+<h3 id="字扩展">字扩展</h3>
+<p><strong>1K * 8 扩展为 4K * 8</strong>：</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107111347911.png" alt="image-20240107111347911" style="zoom:50%;" />
+<h3 id="混合扩展">混合扩展</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107111642531.png" alt="image-20240107111642531" style="zoom:50%;" />4Kx4扩展16Kx8</p>
+<h3 id="ROM、RAM扩展">ROM、RAM扩展</h3>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704598394078.png" alt="1704598394078" style="zoom: 67%;" />
+<p><strong>符号表示</strong></p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107113056551.png" alt="image-20240107113056551" style="zoom:33%;" />符号表示</p>
+<p>读单元地址：Address；读控制信号：MemRead；读出数据：Readdata</p>
+<p>写单元地址：Address；写控制信号：MemWrite；写入数据：Writedata</p>
+<h3 id="DRAM刷新方式">DRAM刷新方式</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704598538571.png" alt="1704598538571" style="zoom:50%;" />D线上加感应放大器</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107113613672.png" alt="image-20240107113613672" style="zoom: 33%;" />读1时D线电压</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107113638223.png" alt="image-20240107113638223" style="zoom:33%;" />读0时D线电压</p>
+<p>传感放大器会刷新Cs，让Cs保持原来状态而不是被破坏</p>
+<p><strong>分散刷新</strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107114121678.png" alt="image-20240107114121678" style="zoom: 50%;" />
+<p>一个存储周期分为两段: 前一段用于正常读写，后一段用于刷新操作</p>
+<p>分散刷新间隔 = 刷新行数×存储周期 = 刷新周期</p>
+<p><strong>集中刷新</strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107114139422.png" alt="image-20240107114139422" style="zoom:50%;" />
+<p>集中刷新间隔 = 刷新周期</p>
+<p><strong>异步刷新（最常用）</strong></p>
+<p>一个刷新周期内将存储芯片内的所有行刷新一遍，且只刷新一遍</p>
+<p>以128行为例，在2ms时间内必须轮流对每一行刷新一次，即每隔2ms/128=15.5μs刷新一行。这时假定读/写与刷新操作时间都为0.5μs，则可用前15μs进行正常读/写操作，最后0.5μs完成刷新操作</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107114026887.png" alt="image-20240107114026887" style="zoom: 50%;" />
+<p>异步刷新间隔 = 刷新周期</p>
+<h1>6 高速缓存</h1>
+<p>数据块（block）：Cache与主存的基本划分单位，也是主存与Cache一次交换数据的最小单位，由多个字节（字）组成，取决与主存一次读写操作所能完成的数据字节数。也表明主存于Cache之间局部总线的宽度。</p>
+<p>标记（tag）：Cache每一数据块有一个标记字段，用来保存该数据块对应的主存数据块的地址信息。</p>
+<p>有效位（valid bit）：Cache中每一Block有一个有效位，用于指示相应数据块中是否包含有效数据。</p>
+<p>行（line )：Cache中 一个block及其 tag、valid bit构成1行。</p>
+<p>组（set）：若干块(Block)构成一个组，地址比较一般能在组内各块间同时进行。</p>
+<p>路（way）：Cache相关联的等级，每一路具有独立的地址比较机构，各路地址比较能同时进行（一般与组结合），路数即指一组内的块数。</p>
+<p>命中率（hit rate）：目标数据在Cache中的存储访问的比例。</p>
+<p>缺失率（miss rate）：目标数据不在Cache中的存储访问的比例。</p>
+<hr>
+<p>分S组，每组E行(Block, 数据块)，每数据块包含B个字节</p>
+<p>Cache的容量：N *（ B * 8+tag位+1(valid)）bits</p>
+<h2 id="映射">映射</h2>
+<h3 id="全相联">全相联</h3>
+<p>主存中的某一Block可以映射到Cache中的任意一Blcok</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107125035390.png" alt="image-20240107125035390" style="zoom:50%;" />
+<p>主存地址格式：</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107125050698.png" alt="image-20240107125050698" style="zoom:50%;" />
+<p>CPU找Cache中地址时，与所有Tag进行比较</p>
+<p>灵活，成本高</p>
+<h3 id="直接映射">直接映射</h3>
+<p>主存中的某一块 J 映射到Cache中的固定块 K， K ＝ J Mod C， 其中C是Cache包含的块数</p>
+<p>相当于<strong>一路组相连</strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107125655315.png" alt="image-20240107125655315" style="zoom:50%;" />
+<p>主存地址格式</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107125720669.png" alt="image-20240107125720669" style="zoom:50%;" />
+<p>区内索引数量 = Cache行数</p>
+<p>Cache如果有16行 = Index有4位</p>
+<p>区数量为主存行数/一个区内数量</p>
+<p><strong>例：主存容量1M字节，Cache容量4k字节，Block大小256 Bytes</strong></p>
+<p>Cache: 2^12 ÷ 2^8 = 2^4 Blocks，Index应该为4位</p>
+<p>主存: 2^12 Blocks，每个区2^4Blocks , 分成2^8个区</p>
+<p>主存地址：20位，其中高 8 位区地址，中间4位为区内块地址，低8位为块内地址。</p>
+<h3 id="组相联">组相联</h3>
+<p>主存和Cache 都分成 K 组，其中Cache每组包含 L 块数据（Nc= K * L），主存每组包含M块数据；主存的块 J 以下列原则映射到 Cache 的组 I 中的任何一块（Nm= K * M） 。             I =  J  mod K  （0 ≤ I ≤ K）</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107133841909.png" alt="image-20240107133841909" style="zoom:50%;" />
+<p>主存地址格式</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107133833645.png" alt="image-20240107133833645" style="zoom:50%;" />
+<p>Cache：valid，Tag，Data</p>
+<p>在组相连中，如果只有一组，则变成了全相联了。</p>
+<p>如果组相联中每组只有一个数据块，则组相联就变成直接相联了。</p>
+<h2 id="替换策略">替换策略</h2>
+<p><strong>缺失处理方式</strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107140809736.png" alt="image-20240107140809736" style="zoom:50%;" />
+<h3 id="替换方式">替换方式</h3>
+<p>FIFO：最先装入数据的块被替换</p>
+<p>LRU：最近最少使用法</p>
+<p>访问命中时，所有块的计数值与命中块的计数值进行比较：如果某块计数值小于命中块的计数值， 则该块的计数值加 1；如果该块的计数值大于命中块的计数值，则数值不变。最后将命中块的计数器清为0。</p>
+<p>访问未命中，需要替换时，则选择计数值最大的块被替换（若最大值并列，随机选择一个）。被替换块的计数器清0，而其它的计数器则加1</p>
+<h2 id="性能分析">性能分析</h2>
+<p>一般情况增加路数提高命中率，降低时间；</p>
+<p>随着块大小增加，缺失率先降低后增加；</p>
+<p>Cache所需总存储容量=（tag位+有效位+（可能的脏位）+1个数据块容量）* 块数</p>
+<p>命中率 * Cache访问时间+（1-命中率）* （装入Cache+Cache访问时间）</p>
+<p>写回（Write Back）：写操作只更新Cache中的数据，直到Block替换时才将整个Block写回主存，一般使用“脏位”（dirty bit）来表示Block在替换回主存之前是否被修改过；</p>
+<h2 id="要点？">要点？</h2>
+<p>内存地址格式：  组内块地址(多少b) + 组地址(多少b) + 块内偏移地址(多少b)1</p>
+<h1>7 虚拟存储</h1>
+<p>把主存当做辅助存储器的高速缓存技术，称为虚拟存储技术，程序中可以使用较大的存储空间称为虚拟存储器</p>
+<p>固定长（简单）分区，浪费空间</p>
+<p>可变长分区，开始好，后面会产生空块</p>
+<h2 id="页式虚拟存储器">页式虚拟存储器</h2>
+<p>内存分成定长小块（页），进程也分成定长小块。</p>
+<p>虚存页称为虚页，主存页称为实页</p>
+<p>一个进程用很多小块，可以不连续</p>
+<p>操作系统为进程生成页表</p>
+<p>通过页表实现逻辑地址向物理地址的转换。</p>
+<p>页表基址寄存器：保存页表在内存中的首地址</p>
+<h3 id="虚实地址的转换">虚实地址的转换</h3>
+<ol>
+<li>
+<p>根据虚地址，访问主存中的页表</p>
+</li>
+<li>
+<p>根据实地址，访问主存中的物理页</p>
+</li>
+</ol>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107151029798.png" alt="image-20240107151029798" style="zoom:50%;" />
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107151913428.png" alt="image-20240107151913428" style="zoom:50%;" />
+<h2 id="多级页表">多级页表</h2>
+<p>二级页表页面大小为4KB的2GB虚拟存储器，每个页表项占4个字节：2^19 * 2^2=2MB</p>
+<p>一级页表2^9项（每项占4个字节），二级页表2^10项（每项占4个字节），整个一级页表常驻内存，常用的两个活跃二级页表装载到内存：  512 * 4+2 * 1K * 4 = 10KB （假定2个活跃页表换入内存时，实际占用的内存）</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107151055751.png" alt="image-20240107151055751" style="zoom:50%;" />
+<h2 id="例题">例题</h2>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704611716703.png" alt="1704611716703" style="zoom: 67%;" />
+<h2 id="快表TLB">快表TLB</h2>
+<p>使用Cache存储部分活跃的页表项，称为TLB（快表），它包含了最近使用的那些页表项。</p>
+<p>TLB内容：标记（虚页号）、数据块（实页号）、有效位、修改位。</p>
+<p>TLB一般采用全相联或者组相联</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107151819430.png" alt="image-20240107151819430"></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107152739212.png" alt="image-20240107152739212" style="zoom:50%;" />
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20240107153422198.png" alt="image-20240107153422198" style="zoom:50%;" />TLB命中与否 与Cache是否命中 <strong>无关</strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704613616027.png" alt="1704613616027" style="zoom:50%;" />
+<h1>8 链接</h1>
+<h2 id="目标文件的三种格式">目标文件的三种格式</h2>
+<ul>
+<li><strong>可重定位目标文件（relocatable object file:  .o ）</strong></li>
+</ul>
+<p>包含二进制代码和数据</p>
+<p>其形式可以在编译时与其他可重定位目标文件合并起来，创建一个可执行目标文件</p>
+<p>每一个 .c 源文件产生一个对应的 .o 文件</p>
+<ul>
+<li><strong>可执行目标文件（executable object file）</strong></li>
+</ul>
+<p>可以没有扩展名（Linux）或者 a.out ;    .exe(Windows)</p>
+<p>包含二进制代码和数据</p>
+<p>其形式可以被直接复制到内存并执行</p>
+<ul>
+<li><strong>共享目标文件（shared object file）</strong></li>
+</ul>
+<p>一种特殊类型的可重定位目标文件</p>
+<p>可以在加载或者运行时被动态地加载进内存并链接</p>
+<p>windows：.lib (静态链接库)  .dll （动态链接库）；Linux：.a(静态链接) .so(动态链接)</p>
+<h2 id="Elf格式">Elf格式</h2>
+<p>.text: 已编译程序的机器代码（Code）</p>
+<p>.rodata: 只读数据</p>
+<p>.data: 已初始化的全局和静态 C 变量</p>
+<p>.bss:  Block Started by Symbol</p>
+<p>.symtab:   符号表</p>
+<p>.rel.text:  .text 节的重定位信息</p>
+<p>.rel.data（.rel.data.rel）:   .data节的重定位信息</p>
+<h2 id="链接器符号">链接器符号</h2>
+<ul>
+<li><strong>全局符号</strong></li>
+</ul>
+<p>由模块 m 定义并能被其他模块引用的符号：非静态的 C 函数和全局变量</p>
+<ul>
+<li><strong>外部符号</strong></li>
+</ul>
+<p>由其他模块定义并被模块 m 引用的全局符号：在其他模块中定义的非静态 C 函数和全局变量</p>
+<ul>
+<li><strong>局部符号</strong></li>
+</ul>
+<p>只被模块 m 定义和引用的符号：带 static 属性的 C 函数和全局变量</p>
+<p>**局部链接器符号和局部变量不同 **连接器不知道局部变量</p>
+<p>局部非静态C变量：保存在栈上或寄存器中</p>
+<p>局部静态C变量：保存在 .data 或 .bss</p>
+<h2 id="符号解析">符号解析</h2>
+<h3 id="局部符号">局部符号</h3>
+<p>在相同模块中定义和引用</p>
+<p>编译器只允许每个模块中每个局部符号有一个定义</p>
+<p>其解析简单明了</p>
+<h3 id="全局符号">全局符号</h3>
+<p>符号在当前模块中无定义：编译器会假设该符号是在其他某个模块中定义的，生成一个链接器符号表条目，并把它交给链接器处理</p>
+<p>如果链接器在它的任何输入模块中都找不到这个被引用符号的定义：输出一条错误信息并终止</p>
+<p>还有一种情况：多个目标文件可能会定义相同名字的全局符号</p>
+<ul>
+<li><strong>全局符号分为强符号和弱符号</strong></li>
+</ul>
+<p>强符号：函数和已初始化的全局变量</p>
+<p>弱符号：未初始化的全局变量和外部符号</p>
+<ul>
+<li>
+<p>不允许有多个同名的强符号：每个强符号只能定义一次，否则链接错误</p>
+</li>
+<li>
+<p>如果有一个强符号和多个弱符号同名，那么选择强符号</p>
+</li>
+<li>
+<p>如果有多个弱符号同名，那么从这些弱符号中任意选择一个</p>
+</li>
+</ul>
+<h2 id="静态库">静态库</h2>
+<p>ar rcs name.a name1.o name2.o ：创建静态库</p>
+<p>gcc -static -o test test.o ./name.a ：链接静态库</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704617901075.png" alt="1704617901075" style="zoom:50%;" />
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1704617936261.png" alt="1704617936261" style="zoom:50%;" />
+<h2 id="链接去年好像没考😅">链接去年好像没考😅</h2>
+<h1>9 总线和IO</h1>
+<h2 id="总线仲裁">总线仲裁</h2>
+<h3 id="链式查询方式">链式查询方式</h3>
+<p>总线控制器（仲裁器）收到总线申请BR，BG（总线同意信号）逐个往下传；</p>
+<p>到某接口有总线申请（BR：总线申请信号），BG停止往下传；</p>
+<p>该接口获得总线使用权，并建立总线忙信号BS。</p>
+<h3 id="计数器定时查询方式">计数器定时查询方式</h3>
+<p>总线控制器（仲裁器）收到总线申请BR，仲裁器上的计数器开始计数；</p>
+<p>当某个有总线申请的设备地址与计数器一致，便获得总线使用权，并建立总线忙信号BS</p>
+<h3 id="独立请求方式">独立请求方式</h3>
+<p>每个设备有独立的请求信号和总线同意信号；</p>
+<p>总线控制器根据设备的优先级决定将总线的使用权交给哪个设备。</p>
+<h2 id="IO">IO</h2>
+<p>I/O地址（I/O接口地址, I/O端口地址）：实际上是I/O接口电路中寄存器的地址（外设寄存器）</p>
+<p>？？</p>
+<h2 id="程序查询IO">程序查询IO</h2>
+<p>编程式I/O</p>
+<p>控制命令：激活外设完成动作。如指示磁带机快进或快退，控制命令与设备类型相关；</p>
+<p>测试命令：测试与I/O接口及其外部设备的各种状态条件；</p>
+<p>读命令：使I/O接口从外设获得一个数据项，存入内部缓冲区；</p>
+<p>写命令：使I/O接口从数据总线获得一个数据项，然后传送到外设。</p>
+<ul>
+<li>I/O操作由CPU直接完成（通过执行I/O指令完成）</li>
+<li>外设速度慢，CPU速度快，在外设准备过程中，CPU处在不断的查询之中，CPU的效率浪费严重</li>
+<li>外设与CPU完全串行工作</li>
+</ul>
+<h2 id="中断IO">中断IO</h2>
+<p>顾名思义</p>
+<h2 id="DMA">DMA</h2>
+<p>DMA控制器接到DMA应答信号后，通过控制逻辑向系统总线发送存储器地址信号、存储器读写控制信号、I/O接口读写控制信号等，完成一次数据传送。</p>
+<p>若是单字传输，一般仅需要一个总线周期，所以这种方式称为周期窃取（cycle-stealing，或者叫周期挪用）方式。若是成组传输，需要多个总线周期来完成。所有数据传送结束后，通过中断方式告知CPU进行善后处理。</p>
+<p>CPU仅在开始DMA操作之前和完成DMA操作之后参与I/O处理，在DMA过程中，CPU可以运行原来的程序</p>
+<p><strong>停止CPU访问内存（成组传送方式）</strong></p>
+<p>一次DMA请求得到响应后，DMA控制器完全占用总线，进行块数据（多字）传送，直到所有数据传送完毕才释放总线，这段时间完全停止CPU访问内存。</p>
+<p>适应高速外设与存储器交换数据的情况。</p>
+<p><strong>周期窃取方式（单字传送方式，DMA和CPU交替使用总线）</strong></p>
+<p>每次DMA请求得到响应后，DMA控制器窃取一个总线周期完成一次数据传送，然后释放总线，CPU接着使用一个总线周期，然后DMA再窃取一个周期，这样持续循环下去，直到数据传输结束。</p>
+<p>一般情况下，CPU 不访问存储器时释放总线</p>
+<p>一般适应存储器速度远高于I/O设备速度的情况。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Sixiang-Wang">Sixiang Wang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.unfinished.top/2024/01/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/">https://blog.unfinished.top/2024/01/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.unfinished.top" target="_blank">机煲的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%A7%E5%AD%A6/">大学</a><a class="post-meta__tags" href="/tags/%E6%80%BB%E7%BB%93/">总结</a><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%BB%84/">计组</a></div><div class="post-share"><div class="social-share" data-image="/img/cover/cover1.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/12/19/Compiler/" title="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-19</div><div class="info-item-2">【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器</div></div><div class="info-2"><div class="info-item-1">使用Java实现的C语言子集SysY-MIPS编译器,基于多个编译器进行改进,代码较易读,无自定义泛型,但没有进行优化</div></div></div></a><a class="pagination-related" href="/2024/01/05/JavaReview/" title="Java期末考试复习提纲"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-05</div><div class="info-item-2">Java期末考试复习提纲</div></div><div class="info-2"><div class="info-item-1">我在Java期末考前为了防止自己刚复习完就忘光总结的资料,我菜,仅供参考</div></div></div></a><a class="pagination-related" href="/2024/12/17/%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA%E7%BC%96%E8%AF%91%E9%AB%98%E6%89%8B/" title="我要成为编译高手"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover6.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-17</div><div class="info-item-2">我要成为编译高手</div></div><div class="info-2"><div class="info-item-1">我要成为编译高手!这是期末复习笔记</div></div></div></a><a class="pagination-related" href="/2024/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统复习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-06</div><div class="info-item-2">操作系统复习</div></div><div class="info-2"><div class="info-item-1">我要成为OS高手!这是期末复习笔记</div></div></div></a><a class="pagination-related" href="/2024/11/28/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/" title="数字电路"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover7.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-28</div><div class="info-item-2">数字电路</div></div><div class="info-2"><div class="info-item-1">北航软院的【简易版数字电路】的考前复习</div></div></div></a><a class="pagination-related" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-03</div><div class="info-item-2">计算机网络复习</div></div><div class="info-2"><div class="info-item-1">我要成为计网高手！计算机网络期末复习</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">-1 蛤？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">0 绪论</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%AF%E8%AF%BA%E4%BE%9D%E6%9B%BC%E6%9E%B6%E6%9E%84"><span class="toc-number">2.0.1.</span> <span class="toc-text">冯诺依曼架构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1"><span class="toc-number">2.0.2.</span> <span class="toc-text">抽象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%B6%E5%8F%91%E5%B9%B6%E8%A1%8C"><span class="toc-number">2.0.3.</span> <span class="toc-text">并发并行</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">1 数制与运算</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E5%88%B6"><span class="toc-number">3.1.</span> <span class="toc-text">进制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="toc-number">3.1.1.</span> <span class="toc-text">进制转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81"><span class="toc-number">3.1.2.</span> <span class="toc-text">补码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A5%E7%A0%81%E8%BF%90%E7%AE%97"><span class="toc-number">3.1.3.</span> <span class="toc-text">补码运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="toc-number">3.1.4.</span> <span class="toc-text">浮点数表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A7%84%E6%A0%BC%E5%8C%96"><span class="toc-number">3.1.5.</span> <span class="toc-text">浮点数规格化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A7%E7%AB%AF%E5%B0%8F%E7%AB%AF"><span class="toc-number">3.1.6.</span> <span class="toc-text">大端小端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E7%BC%96%E7%A0%81%E8%A1%A8%E7%A4%BA10%E8%BF%9B%E5%88%B6"><span class="toc-number">3.1.7.</span> <span class="toc-text">各种编码表示10进制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E4%BB%A3%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">逻辑代数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8C%96%E5%85%AC%E5%BC%8F"><span class="toc-number">3.2.1.</span> <span class="toc-text">简化公式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">2 数字逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E9%80%BB%E8%BE%91"><span class="toc-number">4.1.</span> <span class="toc-text">组合逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%8A%E5%8A%A0%E5%99%A8"><span class="toc-number">4.1.1.</span> <span class="toc-text">半加器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%8A%A0%E5%99%A8"><span class="toc-number">4.1.2.</span> <span class="toc-text">全加器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BA%A2%E5%87%BA"><span class="toc-number">4.1.2.1.</span> <span class="toc-text">溢出</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E6%AF%94%E8%BE%83%E5%99%A8"><span class="toc-number">4.1.3.</span> <span class="toc-text">数值比较器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ALU"><span class="toc-number">4.1.4.</span> <span class="toc-text">ALU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E7%A0%81%E5%99%A8"><span class="toc-number">4.1.5.</span> <span class="toc-text">编码器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%91%E7%A0%81%E5%99%A8"><span class="toc-number">4.1.6.</span> <span class="toc-text">译码器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%9A%E8%B7%AF%E9%80%89%E6%8B%A9%E5%99%A8"><span class="toc-number">4.1.7.</span> <span class="toc-text">多路选择器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%9E%E4%BA%89%E5%86%92%E9%99%A9"><span class="toc-number">4.1.8.</span> <span class="toc-text">竞争冒险</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AB%9E%E4%BA%89"><span class="toc-number">4.1.8.1.</span> <span class="toc-text">竞争</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%86%92%E9%99%A9"><span class="toc-number">4.1.8.2.</span> <span class="toc-text">冒险</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%A1%E8%AF%BA%E5%9B%BE%E6%B3%95%E5%88%A4%E6%96%AD"><span class="toc-number">4.1.8.3.</span> <span class="toc-text">卡诺图法判断</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E5%BA%8F%E9%80%BB%E8%BE%91"><span class="toc-number">4.2.</span> <span class="toc-text">时序逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%81%E5%AD%98%E5%99%A8%E5%92%8C%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">4.2.1.</span> <span class="toc-text">锁存器和触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#D%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">4.2.1.1.</span> <span class="toc-text">D触发器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JK%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-number">4.2.1.2.</span> <span class="toc-text">JK触发器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA"><span class="toc-number">4.2.2.</span> <span class="toc-text">状态机</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Moore"><span class="toc-number">4.2.2.1.</span> <span class="toc-text">Moore</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mealy"><span class="toc-number">4.2.2.2.</span> <span class="toc-text">Mealy</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%BB%E4%BD%8D%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">4.2.3.</span> <span class="toc-text">移位寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E5%99%A8"><span class="toc-number">4.2.4.</span> <span class="toc-text">计数器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5"><span class="toc-number">4.2.4.1.</span> <span class="toc-text">同步</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5"><span class="toc-number">4.2.4.2.</span> <span class="toc-text">异步</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%B6%E9%92%9F%E5%90%8C%E6%AD%A5%EF%BC%9F"><span class="toc-number">4.2.5.</span> <span class="toc-text">时钟同步？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">3 汇编</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%BB%E5%9D%80"><span class="toc-number">5.1.</span> <span class="toc-text">寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4"><span class="toc-number">5.2.</span> <span class="toc-text">指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%B1%BB%E5%9E%8B-R-I-J"><span class="toc-number">5.2.1.</span> <span class="toc-text">指令类型 R&#x2F;I&#x2F;J</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E6%A0%BC%E5%BC%8F"><span class="toc-number">5.2.2.</span> <span class="toc-text">指令格式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#R-Type"><span class="toc-number">5.2.2.1.</span> <span class="toc-text">R-Type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#I-Type"><span class="toc-number">5.2.2.2.</span> <span class="toc-text">I-Type</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#J-Type"><span class="toc-number">5.2.2.3.</span> <span class="toc-text">J-Type</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E6%8C%87%E4%BB%A4"><span class="toc-number">5.2.3.</span> <span class="toc-text">各种指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">4 MIPS处理器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#MIPS%E6%A8%A1%E5%9E%8B%E6%9C%BA"><span class="toc-number">6.1.</span> <span class="toc-text">MIPS模型机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%91%A8%E6%9C%9F%E5%A4%84%E7%90%86%E5%99%A8"><span class="toc-number">6.2.</span> <span class="toc-text">单周期处理器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7"><span class="toc-number">6.2.1.</span> <span class="toc-text">控制信号</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ALU%E6%8E%A7%E5%88%B6%E4%BF%A1%E5%8F%B7"><span class="toc-number">6.2.1.1.</span> <span class="toc-text">ALU控制信号</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%91%A8%E6%9C%9F%E8%BF%87%E7%A8%8B"><span class="toc-number">6.2.2.</span> <span class="toc-text">单周期过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E5%91%A8%E6%9C%9F%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-number">6.3.</span> <span class="toc-text">多周期流水线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%94%E4%B8%AA%E9%98%B6%E6%AE%B5"><span class="toc-number">6.3.1.</span> <span class="toc-text">五个阶段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E8%B7%AF"><span class="toc-number">6.3.2.</span> <span class="toc-text">线路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%9B%B8%E5%85%B3"><span class="toc-number">6.4.</span> <span class="toc-text">指令相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E5%86%B2%E7%AA%81"><span class="toc-number">6.4.1.</span> <span class="toc-text">指令冲突</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%86%92%E9%99%A9"><span class="toc-number">6.5.</span> <span class="toc-text">流水线冒险</span></a></li><li class="toc-item toc-level-2"><a class="toc-link"><span class="toc-number">6.6.</span> <span class="toc-text"></span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E5%86%92%E9%99%A9"><span class="toc-number">6.6.1.</span> <span class="toc-text">结构冒险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%86%92%E9%99%A9"><span class="toc-number">6.6.2.</span> <span class="toc-text">数据冒险</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%97%81%E5%8F%91"><span class="toc-number">6.6.2.1.</span> <span class="toc-text">旁发</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%98%BB%E5%A1%9E"><span class="toc-number">6.6.2.2.</span> <span class="toc-text">阻塞</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%89%E8%BD%AC%E5%8F%91%E7%9A%84%E5%AE%8C%E6%95%B4%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-number">6.6.2.3.</span> <span class="toc-text">有转发的完整流水线</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A7%E5%88%B6%E5%86%92%E9%99%A9"><span class="toc-number">6.6.3.</span> <span class="toc-text">控制冒险</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%80%A7%E8%83%BD"><span class="toc-number">6.6.4.</span> <span class="toc-text">计算机性能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">7.</span> <span class="toc-text">5 主存</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">7.1.</span> <span class="toc-text">工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RAM"><span class="toc-number">7.1.1.</span> <span class="toc-text">RAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ROM"><span class="toc-number">7.1.2.</span> <span class="toc-text">ROM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E7%BB%93%E6%9E%84"><span class="toc-number">7.2.</span> <span class="toc-text">内部结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E5%99%A8%E6%89%A9%E5%B1%95"><span class="toc-number">7.3.</span> <span class="toc-text">存储器扩展</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%8D%E6%89%A9%E5%B1%95"><span class="toc-number">7.3.1.</span> <span class="toc-text">位扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E6%89%A9%E5%B1%95"><span class="toc-number">7.3.2.</span> <span class="toc-text">字扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B7%B7%E5%90%88%E6%89%A9%E5%B1%95"><span class="toc-number">7.3.3.</span> <span class="toc-text">混合扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ROM%E3%80%81RAM%E6%89%A9%E5%B1%95"><span class="toc-number">7.3.4.</span> <span class="toc-text">ROM、RAM扩展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DRAM%E5%88%B7%E6%96%B0%E6%96%B9%E5%BC%8F"><span class="toc-number">7.3.5.</span> <span class="toc-text">DRAM刷新方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">8.</span> <span class="toc-text">6 高速缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%A0%E5%B0%84"><span class="toc-number">8.1.</span> <span class="toc-text">映射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E7%9B%B8%E8%81%94"><span class="toc-number">8.1.1.</span> <span class="toc-text">全相联</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E6%98%A0%E5%B0%84"><span class="toc-number">8.1.2.</span> <span class="toc-text">直接映射</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%84%E7%9B%B8%E8%81%94"><span class="toc-number">8.1.3.</span> <span class="toc-text">组相联</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E7%AD%96%E7%95%A5"><span class="toc-number">8.2.</span> <span class="toc-text">替换策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">8.2.1.</span> <span class="toc-text">替换方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90"><span class="toc-number">8.3.</span> <span class="toc-text">性能分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A6%81%E7%82%B9%EF%BC%9F"><span class="toc-number">8.4.</span> <span class="toc-text">要点？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">9.</span> <span class="toc-text">7 虚拟存储</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B5%E5%BC%8F%E8%99%9A%E6%8B%9F%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">9.1.</span> <span class="toc-text">页式虚拟存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E5%AE%9E%E5%9C%B0%E5%9D%80%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="toc-number">9.1.1.</span> <span class="toc-text">虚实地址的转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%A7%E9%A1%B5%E8%A1%A8"><span class="toc-number">9.2.</span> <span class="toc-text">多级页表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">9.3.</span> <span class="toc-text">例题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E8%A1%A8TLB"><span class="toc-number">9.4.</span> <span class="toc-text">快表TLB</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">10.</span> <span class="toc-text">8 链接</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%89%E7%A7%8D%E6%A0%BC%E5%BC%8F"><span class="toc-number">10.1.</span> <span class="toc-text">目标文件的三种格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Elf%E6%A0%BC%E5%BC%8F"><span class="toc-number">10.2.</span> <span class="toc-text">Elf格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%99%A8%E7%AC%A6%E5%8F%B7"><span class="toc-number">10.3.</span> <span class="toc-text">链接器符号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E8%A7%A3%E6%9E%90"><span class="toc-number">10.4.</span> <span class="toc-text">符号解析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E7%AC%A6%E5%8F%B7"><span class="toc-number">10.4.1.</span> <span class="toc-text">局部符号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E7%AC%A6%E5%8F%B7"><span class="toc-number">10.4.2.</span> <span class="toc-text">全局符号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%BA%93"><span class="toc-number">10.5.</span> <span class="toc-text">静态库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E6%8E%A5%E5%8E%BB%E5%B9%B4%E5%A5%BD%E5%83%8F%E6%B2%A1%E8%80%83%F0%9F%98%85"><span class="toc-number">10.6.</span> <span class="toc-text">链接去年好像没考😅</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">11.</span> <span class="toc-text">9 总线和IO</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BA%BF%E4%BB%B2%E8%A3%81"><span class="toc-number">11.1.</span> <span class="toc-text">总线仲裁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%93%BE%E5%BC%8F%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">11.1.1.</span> <span class="toc-text">链式查询方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E6%95%B0%E5%99%A8%E5%AE%9A%E6%97%B6%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">11.1.2.</span> <span class="toc-text">计数器定时查询方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8B%AC%E7%AB%8B%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F"><span class="toc-number">11.1.3.</span> <span class="toc-text">独立请求方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO"><span class="toc-number">11.2.</span> <span class="toc-text">IO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A8%8B%E5%BA%8F%E6%9F%A5%E8%AF%A2IO"><span class="toc-number">11.3.</span> <span class="toc-text">程序查询IO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E6%96%ADIO"><span class="toc-number">11.4.</span> <span class="toc-text">中断IO</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DMA"><span class="toc-number">11.5.</span> <span class="toc-text">DMA</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/28/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%92%8C%E5%81%8F%E5%AF%BC/" title="多元函数微分和偏导的关系"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="多元函数微分和偏导的关系"/></a><div class="content"><a class="title" href="/2025/03/28/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%92%8C%E5%81%8F%E5%AF%BC/" title="多元函数微分和偏导的关系">多元函数微分和偏导的关系</a><time datetime="2025-03-28T08:58:42.000Z" title="发表于 2025-03-28 16:58:42">2025-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/14/hello-world/" title="Hexo文章格式测试"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Hexo文章格式测试"/></a><div class="content"><a class="title" href="/2025/01/14/hello-world/" title="Hexo文章格式测试">Hexo文章格式测试</a><time datetime="2025-01-14T11:42:37.000Z" title="发表于 2025-01-14 19:42:37">2025-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/14/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/" title="Hexo博客搭建、魔改与修bug"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Hexo博客搭建、魔改与修bug"/></a><div class="content"><a class="title" href="/2025/01/14/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/" title="Hexo博客搭建、魔改与修bug">Hexo博客搭建、魔改与修bug</a><time datetime="2025-01-14T11:42:37.000Z" title="发表于 2025-01-14 19:42:37">2025-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="计算机网络复习"/></a><div class="content"><a class="title" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习">计算机网络复习</a><time datetime="2025-01-03T09:57:49.000Z" title="发表于 2025-01-03 17:57:49">2025-01-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/19/Compiler/" title="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器"/></a><div class="content"><a class="title" href="/2024/12/19/Compiler/" title="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器">【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器</a><time datetime="2024-12-19T10:21:31.000Z" title="发表于 2024-12-19 18:21:31">2024-12-19</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Sixiang Wang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'IQK0R20J7jOefrvo0uETD48k-gzGzoHsz',
+      appKey: 'UxntKBFSRPJBvJ5JhRGyMJd6',
+      avatar: 'mp',
+      serverURLs: '',
+      emojiMaps: "",
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !true) {
+    if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script defer data-pjax src="/js/readPercent.js"></script><script async src="/js/title.js"></script><script id="canvas_nest" defer="defer" color="0,255,234" opacity="0.7" zIndex="-1" count="50" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax src="/live2d/index.min.js"></script><script>const oml2d = OML2D.loadOml2d({libraryUrls:{"complete":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/complete.js","cubism2":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism2.js","cubism5":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism5.js"},menus:{items:(defaultItems)=>{
+ return []
+}
+},mobileDisplay:true,models:[{"path":"/live2d/泉此方/泉此方.model3.json","mobilePosition":[-10,23],"mobileScale":0.1,"mobileStageStyle":{"width":180,"height":166},"motionPreloadStrategy":"NONE","position":[20,55],"scale":0.15,"stageStyle":{"width":250,"height":250}}],parentElement:document.body,primaryColor:"var(--btn-bg)",sayHello:false,tips:{style: {"width":200,"height":120,"left":"calc(50% - 5px)","top":"-80px"},mobileStyle: {"width":180,"height":70,"left":"calc(50% - 30px)","top":"-100px"},idleTips:{interval:15000,message:function(){
+  return axios.get('https://v1.hitokoto.cn?c=i')
+    .then(function (response) {
+      return response.data.hitokoto ;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}
+}}});</script><!-- hexo injector body_end end --></body></html>

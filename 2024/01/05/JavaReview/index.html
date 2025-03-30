@@ -1,0 +1,544 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Java期末考试复习提纲 | 机煲的小窝</title><meta name="author" content="Sixiang Wang,2562187628@qq.com"><meta name="copyright" content="Sixiang Wang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="我在Java期末考前为了防止自己刚复习完就忘光总结的资料,我菜,仅供参考">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java期末考试复习提纲">
+<meta property="og:url" content="https://blog.unfinished.top/2024/01/05/JavaReview/index.html">
+<meta property="og:site_name" content="机煲的小窝">
+<meta property="og:description" content="我在Java期末考前为了防止自己刚复习完就忘光总结的资料,我菜,仅供参考">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.unfinished.top/img/cover/cover2.jpg">
+<meta property="article:published_time" content="2024-01-05T06:53:13.000Z">
+<meta property="article:modified_time" content="2025-03-30T06:09:06.817Z">
+<meta property="article:author" content="Sixiang Wang">
+<meta property="article:tag" content="大学">
+<meta property="article:tag" content="总结">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.unfinished.top/img/cover/cover2.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Java期末考试复习提纲",
+  "url": "https://blog.unfinished.top/2024/01/05/JavaReview/",
+  "image": "https://blog.unfinished.top/img/cover/cover2.jpg",
+  "datePublished": "2024-01-05T06:53:13.000Z",
+  "dateModified": "2025-03-30T06:09:06.817Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sixiang Wang",
+      "url": "https://github.com/Sixiang-Wang"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.unfinished.top/2024/01/05/JavaReview/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: Sixiang Wang","link":"链接: ","source":"来源: 机煲的小窝","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"linear-gradient(to top right, #0000FF, #800080)","bgDark":"#1f1f1f","position":"bottom-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java期末考试复习提纲',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/readPercent.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/waveDivider.css"><link rel="stylesheet" href="/css/scrollbar.css"><link rel="stylesheet" href="/css/windmill.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  const loadingTimeout = setTimeout(preloader.endLoading, 2000);
+
+  // 如果页面在 3 秒内加载完成，清除超时并结束加载状态
+  window.addEventListener('load', () => {
+    clearTimeout(loadingTimeout);
+    preloader.endLoading();
+  });
+
+  //window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/img/background_new.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Ritsu.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 网站推荐</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/cover/cover2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/robot.png" alt="Logo"><span class="site-name">机煲的小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">Java期末考试复习提纲</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 网站推荐</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Java期末考试复习提纲</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-01-05T06:53:13.000Z" title="发表于 2024-01-05 14:53:13">2024-01-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-30T06:09:06.817Z" title="更新于 2025-03-30 14:09:06">2025-03-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/">大学课程期末复习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>16分钟</span></span><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><em>仅供参考,如有错误请联系作者指正</em></p>
+<ul>
+<li>方法头: 包括方法的修饰符、返回值类型、方法名、形式参数(最后两项是方法签名)</li>
+<li>方法体: 在Java语言中方法体一个方法中用大括号{}括起来的部分</li>
+<li>重载(Overload): 一个类中，定义的多个参数名相同但是参数列表不同的方法（签名不同）</li>
+<li>重写(Override): 子父类中，子类定义的和其从父类继承而来的方法中方法签名完全相同的方法。</li>
+</ul>
+<p>实例方法 = 普通方法</p>
+<p>类方法 = 静态方法</p>
+<p>上转型对象可以访问子类继承或隐藏的成员变量</p>
+<h3 id="匿名对象">匿名对象</h3>
+<p>new Student();//这个也是一个对象，但是没有名字，称为匿名对象</p>
+<h3 id="局部和成员变量">局部和成员变量</h3>
+<p>成员变量存储在堆内存的对象中</p>
+<p>局部变量存储在栈内存的方法中</p>
+<p>成员变量随着对象的出现而出现在堆中，随着对象的消失而从堆中消失</p>
+<p>局部变量随着方法的运行而出现在栈中，随着方法的弹栈而消失</p>
+<p>成员变量因为在堆内存中，所有成员变量具有默认的初始化值</p>
+<p>局部变量没有默认的初始化值，必须手动的给其赋值才可以使用。</p>
+<h3 id="先后顺序">先后顺序</h3>
+<p>第一次：静态代码块-非静态代码块-默认构造方法-普通方法</p>
+<p>之后：非静态代码块-默认构造方法-普通方法</p>
+<h3 id="protected">protected</h3>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1703938349037.png" alt="1703938349037"></p>
+<p>不同包下，在子类中通过父类引用不可以访问其 protected 方法</p>
+<p>不同包下，在子类中通过该子类引用可以访问其 protected 方法还可以通过 super 关键字调用父类中的该方法。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//print是Parent中的protected方法，并且不在同一个包中</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Child</span> <span class="variable">c1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        c1.print(); <span class="comment">//可以</span></span><br><span class="line">        <span class="built_in">super</span>.print(); <span class="comment">//可以</span></span><br><span class="line">        <span class="type">Parent</span> <span class="variable">c2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        <span class="type">Parent</span> <span class="variable">c3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        c2.print(); <span class="comment">//达咩</span></span><br><span class="line">        c3.print(); <span class="comment">//达咩</span></span><br><span class="line">        <span class="type">Child2</span> <span class="variable">c4</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child2</span>();</span><br><span class="line">        c4.print();<span class="comment">//no</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child2</span> <span class="keyword">extends</span> <span class="title class_">Parent</span>&#123;...&#125;</span><br></pre></td></tr></table></figure>
+<p>不同包下，在子类中不能通过另一个子类引用访问共同基类的 protected 方法</p>
+<p>对于protected修饰的静态成员，无论是否同一个包，在子类中均可直接访问</p>
+<p>在不同包的非子类中则不可访问</p>
+<h2 id="继承">继承</h2>
+<h3 id="构造方法">构造方法</h3>
+<p>创建子类对象时，子类总是按层次结构从上到下的顺序调用所有超类的构造函数。如果继承和组合联用，要先构造基类的构造函数，然后调用组合对象的构造函数（组合按照声明的顺序调用）</p>
+<p>如果父类没有不带参数的构造方法，则在子类的构造方法中必须明确的告诉调用父类的某个带参数的构造方法，通过super关键字，这条语句还必须出现在构造方法的第一句</p>
+<h3 id="变量隐藏">变量隐藏</h3>
+<p>变量隐藏：在子类对父类的继承中，如果子类的成员变量和父类的成员变量同名，此时称为子类隐藏（override）了父类的成员变量。</p>
+<p>子类若要引用父类的同名变量：super.变量名</p>
+<p>final可以被隐藏，static也能被隐藏，都能被隐藏。</p>
+<h3 id="方法覆盖隐藏">方法覆盖隐藏</h3>
+<p>覆盖就是子类的方法跟父类的方法具有完全一样的签名和参数</p>
+<p><u><strong>私有方法、静态方法不能被覆盖，如果在子类出现了同签名的方法，就是方法隐藏</strong></u></p>
+<p><u><strong>用final声明的成员方法是最终方法，最终方法不能被子类覆盖</strong></u>（试图在子类写同名会直接报错）</p>
+<h3 id="继承的好处都有啥？">继承的好处都有啥？</h3>
+<p>提高代码维护性，可重用性，可扩展性</p>
+<p>继承是类实现可重用性和可扩充性的关键持征</p>
+<p>减少模块间的接口和界面</p>
+<p><strong>但是继承破坏了封装性，导致耦合性变高</strong>，但是问题不大</p>
+<h2 id="多态">多态</h2>
+<h3 id="静多态">静多态</h3>
+<p>即在编译时决定调用哪个方法，也称为编译时多态</p>
+<p>一般是指方法重载，方法隐藏</p>
+<h4 id="方法重载">方法重载</h4>
+<p>方法名相同，参数个数、参数类型及参数顺序至少有一个不同</p>
+<p>构造方法和静态成员方法都是可以重载，静态成员方法重载后的方法也可以是非静态成员方法。</p>
+<h4 id="方法隐藏">方法隐藏</h4>
+<p>傻逼父类静态方法，不会被子类静态方法覆盖，只会被隐藏</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Parent</span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span>&#123;System.out.print(<span class="string">&quot;Parent&quot;</span>)&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Child</span> <span class="keyword">extends</span> <span class="title class_">Parent</span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">print</span><span class="params">()</span>&#123;System.out.print(<span class="string">&quot;Child&quot;</span>)&#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Test</span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    	<span class="type">Parent</span> <span class="variable">child1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        <span class="type">Child</span> <span class="variable">child2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Child</span>();</span><br><span class="line">        child1.print(); <span class="comment">//Parent</span></span><br><span class="line">        child2.print(); <span class="comment">//Child</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="comment">//傻逼方法隐藏</span></span><br></pre></td></tr></table></figure>
+<h3 id="动多态">动多态</h3>
+<p>运行时才能确定调用哪个方法，也称为运行时多态，也称为动态联编，也称为动绑定</p>
+<p>“覆盖方法、抽象方法和接口” 和动态联编关系紧密</p>
+<h4 id="方法覆盖">方法覆盖</h4>
+<p>继承，方法覆盖，父类的引用指向派生类的实例且通过父类的引用调用被覆盖的方法</p>
+<p>final方法没法被覆盖</p>
+<p><em><strong>但是他妈的final变量又可以被子类的隐藏，傻逼 Java有病是不是</strong></em></p>
+<p>私有方法、静态方法不能被覆盖，如果在子类出现了同签名的方法，那是方法隐藏；</p>
+<p><strong><u>继承是子类使用父类的方法，而多态则是父类使用子类的方法</u></strong></p>
+<h2 id="抽象类">抽象类</h2>
+<p>不能实例化，但可以创建它的引用</p>
+<p>抽象方法不能被private、final或static修饰</p>
+<p>当类实现了一个接口/继承抽象类，但并没有实现该接口/抽象类的所有方法时，该类必须声明为抽象类，否则出错</p>
+<p>抽象类里可以有变量</p>
+<p>可以有构造方法</p>
+<p>可以有非抽象方法</p>
+<p>抽象方法必须在抽象类里</p>
+<h2 id="接口">接口</h2>
+<p>public interface 名字{…}</p>
+<p>interface extents interface</p>
+<p>class implements interface</p>
+<h4 id="定义">定义</h4>
+<p>接口是一种特殊的抽象类，这种抽象类中只包含常量和方法的定义，而没有方法的实现。接口是抽象方法和常量值的定义的集合</p>
+<p>接口是用来实现类间（不相关类）多重继承功能的结构</p>
+<h4 id="接口要点">接口要点</h4>
+<p>所有的变量都默认是<strong>public static final</strong>，并且没法改</p>
+<p>接口中所有的方法都默认是<strong>public abstract</strong>的</p>
+<p>没有构造方法</p>
+<p>一个类可以实现多个接口</p>
+<p>接口中的方法体可以由 java 语言书写，也可以由其他语言书写，用其他语言书写时，接口方法需要用 native关键字修饰（牛逼）</p>
+<p>类在实现抽象方法时必须显式的使用 <strong>public</strong> 修饰符</p>
+<h4 id="接口回调">接口回调</h4>
+<p>把实现某一接口的类创建的对象引用赋给该接口声明的接口变量</p>
+<p>该接口变量就可以调用被类实现的接口中的方法。</p>
+<h4 id="接口的进化">接口的进化</h4>
+<p>其实就是一个接口继承了多接口…</p>
+<h2 id="抽象类和接口的区别">抽象类和接口的区别</h2>
+<ul>
+<li>
+<p>接口中的成员变量和方法只能是public类型的，而抽象类中的成员变量和方法可以处于各种访问级别。</p>
+</li>
+<li>
+<p>接口中的成员变量只能是public、static和final类型的，而在抽象类中可以定义各种类型的实例变量和静态变量。</p>
+</li>
+<li>
+<p>接口中没有构造方法，抽象类中有构造方法。接口中所有方法都是抽象方法，抽象类中可以有非抽象方法，可以没有抽象方法。抽象类比接口包含了更多的实现细节。</p>
+</li>
+</ul>
+<h2 id="转型">转型</h2>
+<h4 id="向上转型">向上转型</h4>
+<p>将子类转换成父类，在继承关系上面是向上移动的，所以一般称之为向上转型或者向上映射。</p>
+<p>只能调用父类中定义的属性和方法。</p>
+<p>用的变量是父类的，方法是父类被子类覆盖的</p>
+<p>没法用子类独有的变量/方法</p>
+<p>安全</p>
+<h4 id="向下转型">向下转型</h4>
+<p>一个已经向上转型的子类对象可以使用强制类型转换的格式，将父类引用转为子类引用，这个过程是向下转型</p>
+<p>能用子类独有的变量/方法</p>
+<p><strong>若直接创建父类对象，无法向下转型！</strong></p>
+<p>不安全</p>
+<p><strong>不可转会有运行时异常ClassCastException，<u>不是编译时异常！</u></strong></p>
+<h4 id="instanceof">instanceof</h4>
+<p><code>obj instanceof ClassName/InterfaceName</code></p>
+<p>判断是否是某类/接口的实例</p>
+<h2 id="设计原则">设计原则</h2>
+<ul>
+<li>
+<p>开闭原则：一个软件实体应当对扩展开放，对修改关闭——降低维护风险</p>
+</li>
+<li>
+<p>单一职责原则: 一个类只负责一个功能领域中的相应职责——提高可读性</p>
+</li>
+<li>
+<p>里氏代换原则: 所有引用基类（父类）的地方必须能透明地使用其子类的对象——防止继承泛滥</p>
+</li>
+<li>
+<p>合成复用原则：尽量使用组合或者聚合关系实现代码复用，少使用继承。——降低耦合</p>
+</li>
+<li>
+<p>依赖倒转原则: 抽象不应该依赖于细节, 细节应当依赖于抽象。 换言之, 要针对接口编程, 而不是针对实现编程——利于升级拓展</p>
+</li>
+<li>
+<p>接口隔离原则: 使用多个专门的接口, 而不使用单一的总接口, 即客户端不应该依赖那些它不需要的接口——高聚合低耦合</p>
+</li>
+<li>
+<p>迪米特法则: 一个软件实体应当尽可能少地与其他实体发生相互作用——减少代码臃肿</p>
+</li>
+</ul>
+<h2 id="设计模式">设计模式</h2>
+<h3 id="单例">单例</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">饿汉 线程安全效率高，可能浪费空间</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//静态的,保留自身的引用,类加载时就初始化</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">Singleton</span> <span class="variable">test</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">    <span class="comment">//必须是私有的构造函数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="comment">//公共的静态的方法。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> test;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">懒汉 线程不安全，不浪费空间</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Singleton</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">//静态的。保留自身的引用。</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">Singleton</span> <span class="variable">test</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">    <span class="comment">//必须是私有的构造函数</span></span><br><span class="line">    <span class="keyword">private</span> <span class="title function_">Singleton</span><span class="params">()</span>&#123;&#125;</span><br><span class="line">    <span class="comment">//公共的静态的方法。</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title function_">getInstance</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(test == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            test = <span class="keyword">new</span> <span class="title class_">Singleton</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> test;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Object类">Object类</h2>
+<p>public final Class&lt;?&gt; getClass（）{ }</p>
+<p>public int hashCode() { }对地址或者String进行Hash</p>
+<p>自己的类：equal和==基本一样</p>
+<p>一些系统的类：String、File、Integer、Double，</p>
+<p>Equal判断值是否一样，==判断是否是一个实例</p>
+<h2 id="Final方法-类">Final方法/类</h2>
+<p>最终方法既不能被覆盖，也不能被重载</p>
+<p>final类中的方法都是隐式的final方法，private默认final</p>
+<p><strong>abstract和final不能同时使用</strong></p>
+<p>简单数据类型常量其值一旦确定，就不能被改变</p>
+<p><strong>复合数据类型常量指的是引用不能被改变，而其具体的值是可以改变的</strong></p>
+<p>final变量要么就直接赋值，要么就得在代码块或者构造函数中赋值</p>
+<h2 id="内部类">内部类</h2>
+<p>在创建实例内部类的实例时，外部类的实例必须已经存在</p>
+<p>静态内部类的实例不会自动持有外部类的特定实例的引用，在创建内部类的实例时，不必创建外部类的实例</p>
+<h4 id="局部内部类">局部内部类</h4>
+<p>只能在当前方法中使用</p>
+<p>可访问外部类的所有成员以及方法中用final修饰的内部成员</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">(<span class="keyword">final</span> x)</span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> y=<span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">z</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">class</span> <span class="title class_">B</span>&#123;</span><br><span class="line">            <span class="comment">//可访问a,x,y</span></span><br><span class="line">            <span class="comment">//不可访问z</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="匿名类">匿名类</h4>
+<p>匿名类就是没有名字的类，是将类和类的方法定义在一个表达式范围里</p>
+<p>匿名类本身没有构造方法，但是会调用父类的构造方法</p>
+<p>作用：封装类型、直接访问外部类的成员、回调外部类的方法</p>
+<h4 id="回调">回调</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">interface</span> <span class="title class_">Adjustable</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">adjust</span><span class="params">(<span class="type">int</span> temperature)</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Base</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> speed;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">adjust</span><span class="params">(<span class="type">int</span> speed)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.speed=speed;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Sub</span> <span class="keyword">extends</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> temperature;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">adjustTemperature</span><span class="params">(<span class="type">int</span> temperature)</span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.temperature=temperature;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Closure</span> <span class="keyword">implements</span> <span class="title class_">Adjustable</span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">adjust</span><span class="params">(<span class="type">int</span> temperature)</span>&#123;</span><br><span class="line">            adjustTemperature(temperature);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> Adjustable <span class="title function_">getCallBackReference</span><span class="params">()</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Closure</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">    <span class="type">Sub</span> <span class="variable">sub</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Sub</span>();</span><br><span class="line">	<span class="type">Adjustable</span> <span class="variable">a</span> <span class="operator">=</span> sub.getCallBackReference();</span><br><span class="line">	a.adjust(<span class="number">10</span>); <span class="comment">//温度</span></span><br><span class="line">	sub.adjust(<span class="number">114514</span>); <span class="comment">//速度</span></span><br></pre></td></tr></table></figure>
+<h2 id="异常">异常</h2>
+<p>方法中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">&#125;<span class="keyword">catch</span>&#123;</span><br><span class="line">&#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>方法声明处：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void method() throws xxx&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>自定义异常</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public class 名字 extends Exception &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="集合">集合</h2>
+<h3 id="Set">Set</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Set&lt;Integer&gt; set = <span class="keyword">new</span> <span class="title class_">TreeSet</span>&lt;&gt;(</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Integer&gt;() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer o1, Integer o2)</span> &#123;</span><br><span class="line">            <span class="keyword">if</span>(o1==<span class="literal">null</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(o2==<span class="literal">null</span>) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> o1&gt;o2?-<span class="number">1</span>:<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="keyword">for</span> (Integer integer : set) &#123;</span><br><span class="line">    System.out.println(integer);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Iterator&lt;Integer&gt; setIt = set.iterator();</span><br><span class="line"><span class="keyword">while</span>(setIt.hasNext())&#123;</span><br><span class="line">    System.out.println(setIt.next());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Object[] setArray = set.toArray();</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;setArray.length;i++)&#123;</span><br><span class="line">    System.out.println(setArray[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>SortedSet是一个按照升序排列元素的Set，狗都不用。</p>
+<h3 id="List">List</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> List&lt;Food&gt; list = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;Food&gt;();</span><br><span class="line"><span class="keyword">static</span> List&lt;Food&gt; list = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;Food&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="keyword">for</span>(Food f : list)&#123;</span><br><span class="line">    System.out.println(<span class="number">2</span>+<span class="string">&quot; &quot;</span>+f.type);</span><br><span class="line">    <span class="keyword">break</span>;<span class="comment">//can break</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">list.forEach(</span><br><span class="line">    x-&gt;&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;1 &quot;</span>+x.type);</span><br><span class="line">        <span class="comment">//can&#x27;t break</span></span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;i&lt;list.size();i++)&#123;</span><br><span class="line">    System.out.println(<span class="number">3</span>+<span class="string">&quot; &quot;</span>+list.get(i).type);<span class="comment">//can break</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Linked还能选择在头或者尾 加元素/获取元素/删除元素</span><br></pre></td></tr></table></figure>
+<h3 id="Map">Map</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer, String&gt; map = <span class="keyword">new</span> <span class="title class_">TreeMap</span>&lt;&gt;(</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Integer&gt;() &#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer obj1, Integer obj2)</span> &#123;</span><br><span class="line">            <span class="comment">// 降序排序</span></span><br><span class="line">            <span class="keyword">return</span> obj2.compareTo(obj1);</span><br><span class="line">            <span class="comment">//return obj1.compareTo(obj2);</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">map.keySet();<span class="comment">//返回Set</span></span><br><span class="line">map.values();<span class="comment">//返回Collection</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//遍历</span></span><br><span class="line"><span class="keyword">for</span>(Entry entry: map.entrySet())&#123;</span><br><span class="line">    System.out.println(entry.getKey()+<span class="string">&quot; &quot;</span>+entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="集合对比">集合对比</h3>
+<h4 id="Vector-ArrayList">Vector &amp; ArrayList</h4>
+<p>Vector线程安全</p>
+<p>ArrayList重速度轻安全，线程非安全</p>
+<p>长度需增长时，Vector默认增长一倍，ArrayList增长50%</p>
+<h4 id="Hashtable-HashMap">Hashtable &amp; HashMap</h4>
+<p>Hashtable线程安全，不允许null值，继承Dictionary类</p>
+<p>HashMap线程非安全，允许null值，实现Map接口</p>
+<h3 id="Iterator">Iterator</h3>
+<p>只能用来遍历喵</p>
+<h3 id="Arrays-sort">Arrays.sort</h3>
+<p>不会真有人用这玩意吧</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Integer[] a = &#123;<span class="number">9</span>, <span class="number">8</span>, <span class="number">7</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">6</span>, <span class="number">5</span>&#125;;</span><br><span class="line"></span><br><span class="line">Arrays.sort(a,<span class="keyword">new</span> <span class="title class_">Comparator</span>&lt;Integer&gt;() &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">compare</span><span class="params">(Integer obj1, Integer obj2)</span> &#123;</span><br><span class="line">        <span class="comment">// 降序排序</span></span><br><span class="line">        <span class="keyword">return</span> obj1.compareTo(obj2);</span><br><span class="line">        <span class="comment">//return obj1.compareTo(obj2);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="IO">IO</h2>
+<p>Input/OutputStream：字节流</p>
+<p>Reader/Writer：字符流</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Scanner</span> <span class="variable">scanner</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br></pre></td></tr></table></figure>
+<h3 id="各种流">各种流</h3>
+<p>过滤流类的主要功能是为输入/输出流提供一个通用的接口，提供将流连接在一起的能力，即将一个流连接到另一个流的尾部，这样可以得到满足应用程序要求的很长的输入和输出过滤器。</p>
+<p>带缓存的输入流和输出流对应的类是：BufferedInputStream，BufferedOutputStream：快得很呐</p>
+<p>回压流：类PushbackInputStream提供了几个unread()方法，把读过的一个或几个字节数据退回到输入流中，当然也可以回压别的字节数据到输入流中。</p>
+<p>unread(int b)   unread(byte[] b)</p>
+<p>打印流PrintStream是非常重要的输出流，在标准输出中经常用到的System.out就是指向PrintStream实例的一个引用</p>
+<p>对象流：读取文件中的对象或将对象写入文件中（看下面序列化）</p>
+<p>管道流：管道数据流主要用于线程间的通信</p>
+<h3 id="文件">文件</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//反正我大作业这么写能跑</span></span><br><span class="line"><span class="type">File</span> <span class="variable">chatFile</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;...&quot;</span>);</span><br><span class="line"><span class="type">BufferedReader</span> <span class="variable">Br</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">FileReader</span>(chatFile));</span><br><span class="line"><span class="keyword">while</span> ((Message = Br.readLine())!=<span class="literal">null</span>)&#123;</span><br><span class="line">    System.out.println(Message);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这么写也行</span></span><br><span class="line"><span class="type">FileInputStream</span> <span class="variable">fileInputStream</span> <span class="operator">=</span> .......;</span><br><span class="line"><span class="type">BufferedReader</span> <span class="variable">reader</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BufferedReader</span>(<span class="keyword">new</span> <span class="title class_">InputStreamReader</span>(fileInputStream));</span><br><span class="line">String str;</span><br><span class="line"><span class="keyword">while</span> ((str = reader.readLine())!=<span class="literal">null</span>)</span><br><span class="line">    System.out.println(str);</span><br></pre></td></tr></table></figure>
+<h3 id="序列化">序列化</h3>
+<p>简单</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> <span class="title function_">serializeBox</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="type">File</span> <span class="variable">f</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;./box.txt&quot;</span>);</span><br><span class="line">    <span class="type">ObjectOutputStream</span> <span class="variable">oos</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectOutputStream</span>(<span class="keyword">new</span> <span class="title class_">FileOutputStream</span>(f));</span><br><span class="line">    oos.writeObject(box);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Box <span class="title function_">deserializeBox</span><span class="params">()</span> <span class="keyword">throws</span> Exception&#123;</span><br><span class="line">    <span class="type">File</span> <span class="variable">f</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">File</span>(<span class="string">&quot;./box.txt&quot;</span>);</span><br><span class="line">    <span class="type">ObjectInputStream</span> <span class="variable">ois</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectInputStream</span>(<span class="keyword">new</span> <span class="title class_">FileInputStream</span>(f));</span><br><span class="line">    <span class="keyword">return</span> (Box)ois.readObject();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="多线程">多线程</h2>
+<h3 id="进程？线程？">进程？线程？</h3>
+<p>进程（process）是<strong>程序的一次执行过程</strong>，是系统运行程序的基本单位。程序是静态的，进程是动态的。系统运行一个程序即是一个进程从创建、运行到消亡的过程</p>
+<p>**线程：**比进程更小的执行单位，一个进程中可以包含多个线程</p>
+<p>线程优先级：范围 1~10 （10 级）。数值越大，级别越高 setPriority( )</p>
+<h3 id="线程方法">线程方法</h3>
+<p>start()：启动一个线程。</p>
+<p>run()：线程体,由start()方法调用，run()方法返回时当前线程结束</p>
+<p>sleep(int n)：使线程睡眠n毫秒</p>
+<p>yield()：将CPU控制权主动移交到下一个可运行线程</p>
+<p>join()：方法join()将引起现行线程等待</p>
+<p>sleep&amp;yield：都是静态的实例方法</p>
+<p>sleep()使线程转入阻塞状态，而yield()使线程转入runnable状态</p>
+<p>yield()给相同优先级或更高的线程运行机会，如果当前没有存在相同优先级的线程，则yield()什么都不做</p>
+<p>sleep()会有中断异常抛出，而yiled()不抛出任何异常</p>
+<p>sleep()方法具有更好的可移植性</p>
+<p>wait&amp;sleep</p>
+<p>sleep()方法不会释放对象的锁，而wait()\方法进入等待时，可以释放对象的锁</p>
+<p>wait,notify和notifyAll都是与同步相关联的方法,只有在synchronized方法中才可以用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Thread1</span> <span class="keyword">extends</span> <span class="title class_">Thread</span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">                Thread.sleep(<span class="number">1000</span>);</span><br><span class="line">                System.out.println(<span class="string">&quot;o.O&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestThread</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span>  <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//??</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="type">TestThread</span> <span class="variable">testThread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">TestThread</span>();</span><br><span class="line"><span class="type">Thread</span> <span class="variable">thread1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(testThread, <span class="string">&quot;Thread1&quot;</span>);</span><br><span class="line">thread1.start();</span><br></pre></td></tr></table></figure>
+<h3 id="synchronized">synchronized</h3>
+<p>用关synchronized为共享资源加锁，在任何时刻只有一个线程能用</p>
+<p>synchronized关键字可以使用在：</p>
+<p>①1.一个成员方法上</p>
+<p>②2.一个静态方法上</p>
+<p>③3.一个语句块上</p>
+<p>synchronized(obj)</p>
+<p>wait让本线程等待；别的线程notify可以让等待区一个线程准备开始（但是如果有线程用锁，该线程还是会处于BLOCKED状态）notifyAll唤醒所有</p>
+<p>wait(xx)可以传入时间，单位毫秒</p>
+<h3 id="守护进程">守护进程</h3>
+<p>当一个应用程序的所有非守护线程终止运行时，即使仍然有守护线程在运行，应用程序也将终止</p>
+<p>只要有一个非守护线程在运行，应用程序就不会终止</p>
+<p>用setDaemon() 来将一个线程设为守护线程</p>
+<h3 id="Timer">Timer</h3>
+<p>Timer类的schedule(TimerTask task, long delay, long period)方法用来设置定时器需要定时执行的任务</p>
+<p>定时器将在delay毫秒以后开始执行task任务（即执行TimerTask实例的run()方法），每隔period毫秒重复执行一次</p>
+<h2 id="网络">网络</h2>
+<p>最常用的传输层的网络通信协议是TCP和UDP.</p>
+<p>端口号的范围为0~65535之间，0~1023之间的端口数是用于一些知名的网络服务和应用</p>
+<p>利用TCP协议进行通信的两个应用程序是有主从之分的，一个称为服务器程序，一个称为客户机程序，两者的功能和编写方法不大一样</p>
+<p>Socket(String host,int port);</p>
+<p>socket.getOutputStream();</p>
+<p>利用UDP通信的两个程序是平等的，没有主次之分，两个程序的代码可以完全一样</p>
+<p>Public DatagramSocket(int port);</p>
+<p>Send(DatagramPacket p)方法</p>
+<p>Receive(DatagramPacket p)</p>
+<p>Public DatagramPacket(byte[] buf,int length);</p>
+<p>tcp能提供数据可靠性</p>
+<p>udp不能保证数据库可靠性</p>
+<p>tcp传输效率比udp低</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Sixiang-Wang">Sixiang Wang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.unfinished.top/2024/01/05/JavaReview/">https://blog.unfinished.top/2024/01/05/JavaReview/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.unfinished.top" target="_blank">机煲的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%A7%E5%AD%A6/">大学</a><a class="post-meta__tags" href="/tags/%E6%80%BB%E7%BB%93/">总结</a><a class="post-meta__tags" href="/tags/Java/">Java</a></div><div class="post-share"><div class="social-share" data-image="/img/cover/cover2.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/12/19/Compiler/" title="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-19</div><div class="info-item-2">【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器</div></div><div class="info-2"><div class="info-item-1">使用Java实现的C语言子集SysY-MIPS编译器,基于多个编译器进行改进,代码较易读,无自定义泛型,但没有进行优化</div></div></div></a><a class="pagination-related" href="/2024/12/17/%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA%E7%BC%96%E8%AF%91%E9%AB%98%E6%89%8B/" title="我要成为编译高手"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover6.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-17</div><div class="info-item-2">我要成为编译高手</div></div><div class="info-2"><div class="info-item-1">我要成为编译高手!这是期末复习笔记</div></div></div></a><a class="pagination-related" href="/2024/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统复习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-06</div><div class="info-item-2">操作系统复习</div></div><div class="info-2"><div class="info-item-1">我要成为OS高手!这是期末复习笔记</div></div></div></a><a class="pagination-related" href="/2024/11/28/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/" title="数字电路"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover7.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-28</div><div class="info-item-2">数字电路</div></div><div class="info-2"><div class="info-item-1">北航软院的【简易版数字电路】的考前复习</div></div></div></a><a class="pagination-related" href="/2024/01/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/" title="计算机组成"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-08</div><div class="info-item-2">计算机组成</div></div><div class="info-2"><div class="info-item-1">计组期末考前为了防止自己刚复习完就忘光总结的资料,我菜,仅供参考</div></div></div></a><a class="pagination-related" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-03</div><div class="info-item-2">计算机网络复习</div></div><div class="info-2"><div class="info-item-1">我要成为计网高手！计算机网络期末复习</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.</span> <span class="toc-text">匿名对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E5%92%8C%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F"><span class="toc-number">2.</span> <span class="toc-text">局部和成员变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%88%E5%90%8E%E9%A1%BA%E5%BA%8F"><span class="toc-number">3.</span> <span class="toc-text">先后顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#protected"><span class="toc-number">4.</span> <span class="toc-text">protected</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF"><span class="toc-number"></span> <span class="toc-text">继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E9%9A%90%E8%97%8F"><span class="toc-number">2.</span> <span class="toc-text">变量隐藏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%A6%86%E7%9B%96%E9%9A%90%E8%97%8F"><span class="toc-number">3.</span> <span class="toc-text">方法覆盖隐藏</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%A7%E6%89%BF%E7%9A%84%E5%A5%BD%E5%A4%84%E9%83%BD%E6%9C%89%E5%95%A5%EF%BC%9F"><span class="toc-number">4.</span> <span class="toc-text">继承的好处都有啥？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E6%80%81"><span class="toc-number"></span> <span class="toc-text">多态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E5%A4%9A%E6%80%81"><span class="toc-number">1.</span> <span class="toc-text">静多态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD"><span class="toc-number">1.1.</span> <span class="toc-text">方法重载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E9%9A%90%E8%97%8F"><span class="toc-number">1.2.</span> <span class="toc-text">方法隐藏</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E5%A4%9A%E6%80%81"><span class="toc-number">2.</span> <span class="toc-text">动多态</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E8%A6%86%E7%9B%96"><span class="toc-number">2.1.</span> <span class="toc-text">方法覆盖</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB"><span class="toc-number"></span> <span class="toc-text">抽象类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-number"></span> <span class="toc-text">接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">0.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E8%A6%81%E7%82%B9"><span class="toc-number">0.2.</span> <span class="toc-text">接口要点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%9B%9E%E8%B0%83"><span class="toc-number">0.3.</span> <span class="toc-text">接口回调</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E7%9A%84%E8%BF%9B%E5%8C%96"><span class="toc-number">0.4.</span> <span class="toc-text">接口的进化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%92%8C%E6%8E%A5%E5%8F%A3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number"></span> <span class="toc-text">抽象类和接口的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BD%AC%E5%9E%8B"><span class="toc-number"></span> <span class="toc-text">转型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E4%B8%8A%E8%BD%AC%E5%9E%8B"><span class="toc-number">0.1.</span> <span class="toc-text">向上转型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B"><span class="toc-number">0.2.</span> <span class="toc-text">向下转型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#instanceof"><span class="toc-number">0.3.</span> <span class="toc-text">instanceof</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number"></span> <span class="toc-text">设计原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number"></span> <span class="toc-text">设计模式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E4%BE%8B"><span class="toc-number">1.</span> <span class="toc-text">单例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Object%E7%B1%BB"><span class="toc-number"></span> <span class="toc-text">Object类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Final%E6%96%B9%E6%B3%95-%E7%B1%BB"><span class="toc-number"></span> <span class="toc-text">Final方法&#x2F;类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-number"></span> <span class="toc-text">内部类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B1%80%E9%83%A8%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-number">0.1.</span> <span class="toc-text">局部内部类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E7%B1%BB"><span class="toc-number">0.2.</span> <span class="toc-text">匿名类</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83"><span class="toc-number">0.3.</span> <span class="toc-text">回调</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8"><span class="toc-number"></span> <span class="toc-text">异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9B%86%E5%90%88"><span class="toc-number"></span> <span class="toc-text">集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Set"><span class="toc-number">1.</span> <span class="toc-text">Set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List"><span class="toc-number">2.</span> <span class="toc-text">List</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map"><span class="toc-number">3.</span> <span class="toc-text">Map</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E5%AF%B9%E6%AF%94"><span class="toc-number">4.</span> <span class="toc-text">集合对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Vector-ArrayList"><span class="toc-number">4.1.</span> <span class="toc-text">Vector &amp; ArrayList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hashtable-HashMap"><span class="toc-number">4.2.</span> <span class="toc-text">Hashtable &amp; HashMap</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Iterator"><span class="toc-number">5.</span> <span class="toc-text">Iterator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Arrays-sort"><span class="toc-number">6.</span> <span class="toc-text">Arrays.sort</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IO"><span class="toc-number"></span> <span class="toc-text">IO</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E6%B5%81"><span class="toc-number">1.</span> <span class="toc-text">各种流</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BA%8F%E5%88%97%E5%8C%96"><span class="toc-number">3.</span> <span class="toc-text">序列化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number"></span> <span class="toc-text">多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E7%A8%8B%EF%BC%9F%E7%BA%BF%E7%A8%8B%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">进程？线程？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%BF%E7%A8%8B%E6%96%B9%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">线程方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#synchronized"><span class="toc-number">3.</span> <span class="toc-text">synchronized</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B"><span class="toc-number">4.</span> <span class="toc-text">守护进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Timer"><span class="toc-number">5.</span> <span class="toc-text">Timer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%91%E7%BB%9C"><span class="toc-number"></span> <span class="toc-text">网络</span></a></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/28/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%92%8C%E5%81%8F%E5%AF%BC/" title="多元函数微分和偏导的关系"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="多元函数微分和偏导的关系"/></a><div class="content"><a class="title" href="/2025/03/28/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%92%8C%E5%81%8F%E5%AF%BC/" title="多元函数微分和偏导的关系">多元函数微分和偏导的关系</a><time datetime="2025-03-28T08:58:42.000Z" title="发表于 2025-03-28 16:58:42">2025-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/14/hello-world/" title="Hexo文章格式测试"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Hexo文章格式测试"/></a><div class="content"><a class="title" href="/2025/01/14/hello-world/" title="Hexo文章格式测试">Hexo文章格式测试</a><time datetime="2025-01-14T11:42:37.000Z" title="发表于 2025-01-14 19:42:37">2025-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/14/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/" title="Hexo博客搭建、魔改与修bug"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Hexo博客搭建、魔改与修bug"/></a><div class="content"><a class="title" href="/2025/01/14/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/" title="Hexo博客搭建、魔改与修bug">Hexo博客搭建、魔改与修bug</a><time datetime="2025-01-14T11:42:37.000Z" title="发表于 2025-01-14 19:42:37">2025-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="计算机网络复习"/></a><div class="content"><a class="title" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习">计算机网络复习</a><time datetime="2025-01-03T09:57:49.000Z" title="发表于 2025-01-03 17:57:49">2025-01-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/19/Compiler/" title="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器"/></a><div class="content"><a class="title" href="/2024/12/19/Compiler/" title="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器">【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器</a><time datetime="2024-12-19T10:21:31.000Z" title="发表于 2024-12-19 18:21:31">2024-12-19</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Sixiang Wang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'IQK0R20J7jOefrvo0uETD48k-gzGzoHsz',
+      appKey: 'UxntKBFSRPJBvJ5JhRGyMJd6',
+      avatar: 'mp',
+      serverURLs: '',
+      emojiMaps: "",
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !true) {
+    if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script defer data-pjax src="/js/readPercent.js"></script><script async src="/js/title.js"></script><script id="canvas_nest" defer="defer" color="0,255,234" opacity="0.7" zIndex="-1" count="50" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax src="/live2d/index.min.js"></script><script>const oml2d = OML2D.loadOml2d({libraryUrls:{"complete":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/complete.js","cubism2":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism2.js","cubism5":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism5.js"},menus:{items:(defaultItems)=>{
+ return []
+}
+},mobileDisplay:true,models:[{"path":"/live2d/泉此方/泉此方.model3.json","mobilePosition":[-10,23],"mobileScale":0.1,"mobileStageStyle":{"width":180,"height":166},"motionPreloadStrategy":"NONE","position":[20,55],"scale":0.15,"stageStyle":{"width":250,"height":250}}],parentElement:document.body,primaryColor:"var(--btn-bg)",sayHello:false,tips:{style: {"width":200,"height":120,"left":"calc(50% - 5px)","top":"-80px"},mobileStyle: {"width":180,"height":70,"left":"calc(50% - 30px)","top":"-100px"},idleTips:{interval:15000,message:function(){
+  return axios.get('https://v1.hitokoto.cn?c=i')
+    .then(function (response) {
+      return response.data.hitokoto ;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}
+}}});</script><!-- hexo injector body_end end --></body></html>

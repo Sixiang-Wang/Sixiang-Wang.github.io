@@ -1,0 +1,816 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>我要成为编译高手 | 机煲的小窝</title><meta name="author" content="Sixiang Wang,2562187628@qq.com"><meta name="copyright" content="Sixiang Wang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="我要成为编译高手!这是期末复习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我要成为编译高手">
+<meta property="og:url" content="https://blog.unfinished.top/2024/12/17/%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA%E7%BC%96%E8%AF%91%E9%AB%98%E6%89%8B/index.html">
+<meta property="og:site_name" content="机煲的小窝">
+<meta property="og:description" content="我要成为编译高手!这是期末复习笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.unfinished.top/img/cover/cover6.jpg">
+<meta property="article:published_time" content="2024-12-17T15:17:09.000Z">
+<meta property="article:modified_time" content="2025-03-30T06:09:06.824Z">
+<meta property="article:author" content="Sixiang Wang">
+<meta property="article:tag" content="大学">
+<meta property="article:tag" content="总结">
+<meta property="article:tag" content="编译原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.unfinished.top/img/cover/cover6.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "我要成为编译高手",
+  "url": "https://blog.unfinished.top/2024/12/17/%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA%E7%BC%96%E8%AF%91%E9%AB%98%E6%89%8B/",
+  "image": "https://blog.unfinished.top/img/cover/cover6.jpg",
+  "datePublished": "2024-12-17T15:17:09.000Z",
+  "dateModified": "2025-03-30T06:09:06.824Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sixiang Wang",
+      "url": "https://github.com/Sixiang-Wang"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.unfinished.top/2024/12/17/%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA%E7%BC%96%E8%AF%91%E9%AB%98%E6%89%8B/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: Sixiang Wang","link":"链接: ","source":"来源: 机煲的小窝","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"linear-gradient(to top right, #0000FF, #800080)","bgDark":"#1f1f1f","position":"bottom-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '我要成为编译高手',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/readPercent.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/waveDivider.css"><link rel="stylesheet" href="/css/scrollbar.css"><link rel="stylesheet" href="/css/windmill.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  const loadingTimeout = setTimeout(preloader.endLoading, 2000);
+
+  // 如果页面在 3 秒内加载完成，清除超时并结束加载状态
+  window.addEventListener('load', () => {
+    clearTimeout(loadingTimeout);
+    preloader.endLoading();
+  });
+
+  //window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/img/background_new.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Ritsu.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 网站推荐</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/cover/cover6.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/robot.png" alt="Logo"><span class="site-name">机煲的小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">我要成为编译高手</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 网站推荐</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">我要成为编译高手</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-17T15:17:09.000Z" title="发表于 2024-12-17 23:17:09">2024-12-17</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-30T06:09:06.824Z" title="更新于 2025-03-30 14:09:06">2025-03-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%A4%A7%E5%AD%A6%E8%AF%BE%E7%A8%8B%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/">大学课程期末复习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">4.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>15分钟</span></span><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA%E9%AB%98%E6%89%8B.jpg" alt="我要成为高手"></p>
+<h1>文法</h1>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>符号串乘积</mtext><mo stretchy="false">{</mo><mi>a</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">}</mo><mo>∗</mo><mo stretchy="false">{</mo><mi>c</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">}</mo><mo>=</mo><mo stretchy="false">{</mo><mi>a</mi><mi>c</mi><mtext>，</mtext><mi>a</mi><mi>d</mi><mtext>，</mtext><mi>b</mi><mi>c</mi><mtext>，</mtext><mi>b</mi><mi>d</mi><mo stretchy="false">}</mo><mspace linebreak="newline"></mspace><mtext>幂运算</mtext><mspace linebreak="newline"></mspace><msup><mi>A</mi><mn>0</mn></msup><mo>=</mo><mi>ε</mi><mo separator="true">,</mo><msup><mi>A</mi><mn>1</mn></msup><mo>=</mo><mi>A</mi><mo separator="true">,</mo><msup><mi>A</mi><mn>2</mn></msup><mo>=</mo><mi>A</mi><mi>A</mi><mspace linebreak="newline"></mspace><mtext>正闭包</mtext><mo>:</mo><msup><mi>A</mi><mo>+</mo></msup><mo>=</mo><msup><mi>A</mi><mn>1</mn></msup><mo>∪</mo><msup><mi>A</mi><mn>2</mn></msup><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>∪</mo><msup><mi>A</mi><mi>n</mi></msup><mspace linebreak="newline"></mspace><mtext>闭包</mtext><mo>:</mo><msup><mi>A</mi><mo>∗</mo></msup><mo>=</mo><msup><mi>A</mi><mn>0</mn></msup><mo>∪</mo><msup><mi>A</mi><mn>1</mn></msup><mo>∪</mo><msup><mi>A</mi><mn>2</mn></msup><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>∪</mo><msup><mi>A</mi><mi>n</mi></msup></mrow><annotation encoding="application/x-tex">符号串乘积\{a,b\} * \{c,d\} = \{ac，ad，bc，bd\}\\
+幂运算\\
+A^0={ε},A^1 = A ,A^2 = AA\\
+正闭包:
+A^+=A^1∪A^2...∪A^n\\
+闭包:
+A^*=A^0∪A^1∪A^2...∪A^n
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">符</span><span class="mord cjk_fallback">号</span><span class="mord cjk_fallback">串</span><span class="mord cjk_fallback">乘</span><span class="mord cjk_fallback">积</span><span class="mopen">{</span><span class="mord mathnormal">a</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">b</span><span class="mclose">}</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">c</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathnormal">d</span><span class="mclose">}</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span><span class="mord cjk_fallback">，</span><span class="mord mathnormal">a</span><span class="mord mathnormal">d</span><span class="mord cjk_fallback">，</span><span class="mord mathnormal">b</span><span class="mord mathnormal">c</span><span class="mord cjk_fallback">，</span><span class="mord mathnormal">b</span><span class="mord mathnormal">d</span><span class="mclose">}</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">幂</span><span class="mord cjk_fallback">运</span><span class="mord cjk_fallback">算</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0585479999999998em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathnormal">ε</span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0585479999999998em;vertical-align:-0.19444em;"></span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal">A</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">正</span><span class="mord cjk_fallback">闭</span><span class="mord cjk_fallback">包</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.821331em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.821331em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">+</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7143919999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">闭</span><span class="mord cjk_fallback">包</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">:</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.738696em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.738696em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8641079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∪</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.7143919999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathnormal">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>Vn：非终结符号集</p>
+<p>Vt：终结符号集</p>
+<p>P：产生式或规则的集合</p>
+<p>Z：开始符号（识别符号） Z∈Vn</p>
+<h3 id="基本概念">基本概念</h3>
+<h4 id="推导">推导</h4>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241210135553750.png" alt="image-20241210135553750" style="zoom:67%;" /> 一步或多步</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733810193966(1).png" alt="1733810193966(1)" style="zoom: 67%;" /> 零步一步或多步</p>
+<p><strong>最右推导</strong>：规范</p>
+<h4 id="句子句型">句子句型</h4>
+<p>句型：Z零步一步或多步推导到x</p>
+<p>句子：Z一步或多步推导到x，且x内符号都是终结符</p>
+<p>语言：所有句子的集合 L(G[Z])</p>
+<p>若两个文法语言相同，则文法等价。</p>
+<h4 id="短语、句柄">短语、句柄</h4>
+<p>短语是相对于一个<strong>句型</strong>的</p>
+<p>简单短语要求只有一步推导</p>
+<p>句柄是最左简单短语</p>
+<h4 id="规约">规约</h4>
+<p>按照最左简单短语进行规约为规范规约。</p>
+<p>规范：<strong>最左规约</strong>，<strong>最右推导</strong></p>
+<h3 id="递归文法">递归文法</h3>
+<p>U::= Uy，左递归</p>
+<p>U::= xU，右递归</p>
+<p><strong>左递归不能用自顶向下</strong></p>
+<h3 id="二义性">二义性</h3>
+<ol>
+<li>一个文法的某一句子存在两棵不同的语法树，则该文法是二义性的</li>
+<li>若一个文法的某句子存在两个不同的规范推导，则该文法是二义性的</li>
+<li>若一个文法的某规范句型的句柄不唯一，则该文法是二义性的</li>
+</ol>
+<h3 id="压缩文法">压缩文法</h3>
+<p><strong>U::=U</strong>的文法是有害的</p>
+<p><strong>规则的左部非终结符不出现在任何句型中</strong>的文法是无用的</p>
+<p><strong>无有害规则或多余规则</strong>的文法是<strong>压缩过的</strong></p>
+<h3 id="文法类型">文法类型</h3>
+<p>0型：左部和右部都可以是符号串；一个短语可以产生另一个短语；可以被<strong>图灵机</strong>接受</p>
+<p>1型：上下文有关文法，<strong>xUy::= xuy</strong> ; 可以被<strong>线性界限自动机接受</strong></p>
+<p>2型：上下文无关文法，<strong>U::= u</strong>，U∈Vn ,  n∈V* ； 可以被<strong>下推自动机</strong>接受</p>
+<p>3型：正则文法，<strong>U::=t</strong>，U::=Wt（左线性）或U::=tW（右线性） <strong>其中U、W∈Vn，t∈Vt</strong>，可以被<strong>有穷自动机</strong>接受</p>
+<h1>词法分析</h1>
+<h3 id="状态图">状态图</h3>
+<p><strong>左线性文法</strong>状态图：</p>
+<p>设置开始状态S，若Q::=t, <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733812726285.png" alt="1733812726285" style="zoom: 50%;" /></p>
+<p>若Q::=Rt，<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733812771271.png" alt="1733812771271" style="zoom:50%;" /></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733813469367.png" alt="1733813469367" style="zoom:50%;" /> 
+<h3 id="正则表达式">正则表达式</h3>
+<p>运算符</p>
+<p>|：或</p>
+<p>*或{ }：重复</p>
+<h3 id="DFA">DFA</h3>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733814606183.png" alt="1733814606183" style="zoom:50%;" /> 
+<h3 id="NFA（非确定）">NFA（非确定）</h3>
+<p>一个状态经过一个终结符可以到多个状态，可以输入空值</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733814412975.png" alt="1733814412975" style="zoom: 67%;" /> 
+<h3 id="生成NFA（和状态图不一样）">生成NFA（和状态图不一样）</h3>
+<p>用右线性文法，因为左线性会死循环</p>
+<p><strong>A→tB</strong>：<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733815716718.png" alt="1733815716718" style="zoom:50%;" /></p>
+<p>A→t：则A经过t到终结状态</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733816009576.png" alt="1733816009576" style="zoom:50%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733816058396.png" alt="1733816058396" style="zoom:50%;" /> 
+<p>或</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733816105599.png" alt="1733816105599" style="zoom:50%;" /> 
+<h3 id="NFA的确定化">NFA的确定化</h3>
+<p>1.确定集合I的<strong>ε-闭包</strong>：I以及从I经过ε弧能到的所有状态集合</p>
+<p>2.确定闭包的Ia、Ib、…</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733815278257.png" alt="1733815278257" style="zoom:50%;" /> 
+<p>3.得到新的状态图</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733815410213.png" alt="1733815410213" style="zoom:50%;" /> 
+<h3 id="最小化">最小化</h3>
+<p>消除多余状态：肉眼看，删除不会到达的状态</p>
+<p>划分等价状态：</p>
+<ol>
+<li>将状态先分为终结状态和非终结状态</li>
+<li>在每个区域中看哪些状态经过符号后到达的状态等价</li>
+</ol>
+<h1>语法分析</h1>
+<h2 id="自顶向下分析">自顶向下分析</h2>
+<p>不能有左递归！</p>
+<p>要消除左递归：</p>
+<ul>
+<li>使用BNF改写：
+<ol>
+<li>U::= xy|xw → U::=x(y|w)</li>
+<li>T∷= T * F | T / F | F  → T∷= F { * F | / F }</li>
+</ol>
+</li>
+<li>左递归改成右递归：
+<ol>
+<li>P::= Pa|b  →  P ::= bP’     P’ ::=aP’ | ε</li>
+</ol>
+</li>
+</ul>
+<p>消除一般左递归：</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733819340540.png" alt="1733819340540" style="zoom: 67%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733819367290(1).png" alt="1733819367290(1)" style="zoom: 67%;" /> 
+<p>消除回溯问题，将xV|xU改成 x(V|U)，并尽力保证FIRST(V)和FIRST(U)不相交。</p>
+<p>无法消除回溯的话，可以超前扫描几个符号</p>
+<h3 id="递归下降子程序">递归下降子程序</h3>
+<p>简单</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733819654619.png" alt="1733819654619" style="zoom:50%;" /> 
+<h3 id="LL-1-分析法">LL(1)分析法</h3>
+<p><strong>自左向右扫描</strong>符号串</p>
+<h4 id="First、Follow集">First、Follow集</h4>
+<p><strong>First</strong></p>
+<p>若Xi∈Vt，则First(Xi)={Xi}</p>
+<p>若Xi∈Vn，Xi::= a…| ε, First(Xi) = {a, ε}</p>
+<p>若Xi∈Vn ，</p>
+<ul>
+<li>Xi::= y1y2…yk，将FIRST(y1 ) – {ε} 加入First（Xi）</li>
+<li>若ε ∈ FIRST( y1 ) ，则将FIRST(y2 ) – {ε} 加入</li>
+<li>…</li>
+<li>若全都有ε，First集加入ε</li>
+</ul>
+<p><strong>Follow</strong></p>
+<p>若S为识别符号，则 # 加入Follow（S）</p>
+<p>若 A ::= αBβ 则把 <strong>FIRST(β)-{ε}</strong> 加入到 Follow（B）</p>
+<p>若 A ::= αBβ β能推出ε  或 A::= αB ，则把**Follow(A)**加入到Follow(B)</p>
+<h4 id="构造分析表">构造分析表</h4>
+<ul>
+<li>S ::= A是某规则，a为终结符或#,  把所有 a∈ FIRST( A ) ，M[S, a] 放入该条规则</li>
+<li>若A=ε或 A能推出ε，则把所有 a∈ FOLLOW( S )的 M[S,a]放 S::=ε</li>
+<li>剩下的全是error</li>
+</ul>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214144657328.png" alt="image-20241214144657328" style="zoom:67%;" /> 
+<p>如果没有<strong>多重定义</strong>入口，则是LL(1)文法</p>
+<p><strong>LL(1)判断方法</strong></p>
+<p>如果是LL（1），那么当 S::= A1|A2</p>
+<ul>
+<li>
+<p>First(A1) <strong>∩</strong> First(A2) = Ф</p>
+</li>
+<li>
+<p>若A2 是 <strong>ε</strong>或可推出 <strong>ε</strong>，那么 First(A1) <strong>∩</strong> First(S) = Ф</p>
+</li>
+</ul>
+<h4 id="执行过程">执行过程</h4>
+<p>假设E是识别符号</p>
+<p>符号栈开始状态 #E，读入输入串第一个符号</p>
+<p>根据栈顶符号X和输入符号a</p>
+<ul>
+<li>若 X ∈ Vt，X=a=#，停止</li>
+<li>若 X ∈ Vt，X=a不等于#，将X退出栈</li>
+<li>若 X ∈ Vt，X不等于a，出错</li>
+<li>若 X ∈ Vn，查表
+<ol>
+<li>若M[X,a] 为   X∷= U V W，则X弹出，先后将W、V、U入栈（注意顺序，U在栈顶）</li>
+<li>若M[X,a] 为 <strong>X::=ε</strong> 则把X弹出栈</li>
+</ol>
+</li>
+</ul>
+<h2 id="自底向上分析">自底向上分析</h2>
+<h3 id="算符优先分析">算符优先分析</h3>
+<p><strong>算符文法不允许两个非终结符相邻</strong>！</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214161251107.png" alt="image-20241214161251107" style="zoom:50%;" /> 
+<h4 id="FirstVT、LastVT">FirstVT、LastVT</h4>
+<p>… 可以代表任意或为空</p>
+<p>FirstVT( U ) = {b | U→b… 或 U→Vb… ,  b ∈ Vt,  V ∈ Vn}</p>
+<p>LastVT( U ) = {a | U→…a 或 U→…aV ,  a ∈ Vt,  V ∈ Vn}</p>
+<p>构造FirstVT：</p>
+<ul>
+<li>如果有U::= b… 或 U::= Vb… 则 b∈FIRSTVT( U )</li>
+<li>如果有U::= V…，则所有 b∈FIRSTVT( V )，都有b∈FIRSTVT( U )</li>
+</ul>
+<p>构造LastVT：</p>
+<ul>
+<li>如果有U::= …a 或 U::= …aV 则 a∈LASTVT( U )</li>
+<li>如果有U::= …V，则所有 a∈LASTVT( V )，都有a∈LASTVT( U )</li>
+</ul>
+<h4 id="构造优先关系矩阵">构造优先关系矩阵</h4>
+<p>打不出来，所以下面</p>
+<p>= 代表<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214164544651.png" alt="image-20241214164544651" style="zoom:50%;" /></p>
+<p>&lt; 代表 <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214164608414.png" alt="image-20241214164608414" style="zoom:50%;" /></p>
+<p>&gt; 代表<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214164640513.png" alt="image-20241214164640513" style="zoom:50%;" /></p>
+<p>对于每条规则进行处理，</p>
+<p>假设规则为U::=X1 X2 … Xn</p>
+<p>for（i = 1；i&lt;=n-1 ;  i++）</p>
+<ul>
+<li>如果Xi 和 Xi+1都是Vt，则 Xi = Xi+1</li>
+<li>如果i&lt;=n-2 且 Xi 和 Xi+2都是Vt，但Xi+1是Vn，则Xi = Xi+2</li>
+<li>如果 Xi 是Vt     Xi+1是Vn ，则 Xi&lt; FIRSTVT(Xi+1)中每个符号</li>
+<li>如果 Xi 是Vn     Xi+1是Vt ，则  LASTVT(Xi)中每个符号 &gt; Xi+1</li>
+</ul>
+<h4 id="素短语">素短语</h4>
+<p>素短语是一个 至少包含一个终结符号，且除了它自身不含更小的素短语的 短语</p>
+<p><strong>句柄是最左短语</strong></p>
+<p><strong>最左素短语不一定是句柄！</strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214171149086.png" alt="image-20241214171149086" style="zoom:50%;" /> 
+<h4 id="执行过程-2">执行过程</h4>
+<p>算符优先文法对最左素短语规约</p>
+<ul>
+<li><strong>&lt;：移进</strong></li>
+<li><strong>=：移进</strong></li>
+<li><strong>&gt;：规约</strong></li>
+</ul>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214155739805.png" alt="image-20241214155739805"></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214160049496.png" alt="image-20241214160049496" style="zoom:67%;" /> 
+<h3 id="LR分析法">LR分析法</h3>
+<p>哦我的老天</p>
+<p>LR分析法规约的是句柄，算符优先归约的是最左素短语</p>
+<h4 id="活前缀">活前缀</h4>
+<p>规范句型是通过规范规约（最左）得到的句型</p>
+<p>对于 αβt ，β表示句柄 ，若αβ = u1u2…ur，那么符号串u1…ui（1&lt;=i&lt;=r）是活前缀</p>
+<h4 id="构造LR-0">构造LR(0)</h4>
+<p>1.让文法开始符号的规则只有一条</p>
+<p>2.构造闭包项目集</p>
+<p>3.构造goto</p>
+<p>action构造：</p>
+<p>A→a. 规约</p>
+<p>E’→a. 接受</p>
+<p>A→a.b （b∈ Vt）移进</p>
+<p>A→a.b （b∈ Vn）待约（无动作）</p>
+<p>会有 移进-规约 冲突</p>
+<h4 id="SLR（0）">SLR（0）</h4>
+<p>改为看Follow集</p>
+<p>当A→α.     B→α.    X→α.b</p>
+<p>读入符号当 a = b，移进</p>
+<p>a∈Follow（A），A→α</p>
+<p>a∈Follow（B），B→α</p>
+<h1>符号表管理</h1>
+<p>符号表结构：</p>
+<p>名字、特性（类型、值、种类等）</p>
+<p>组织方式：</p>
+<p>统一符号表（不管什么都填入到一个格式的符号表），结构简单</p>
+<p>不同种类建立不同的，节省空间但是不方便</p>
+<p>折中办法：共有信息总结成统一格式，特殊信息用指针连接到附表</p>
+<h3 id="非分程序结构和符号表">非分程序结构和符号表</h3>
+<p>可独立进行编译的程序单元是不包含有子模块的单一模块</p>
+<p>作用域：</p>
+<p>子程序名、函数名、公共区域名 —— 全局</p>
+<p>程序单元内变量 —— 局部</p>
+<p>组织方式：</p>
+<table>
+<thead>
+<tr>
+<th>全局符号表</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>局部符号表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="分程序结构语言和符号表">分程序结构语言和符号表</h3>
+<p><strong>模块内可嵌入子模块</strong></p>
+<p>作用域：标识符定义时所处于的模块</p>
+<p><strong>过程或函数说明中定义的标识符（包括形参）其作用域为本过程体。</strong></p>
+<p><strong>循环语句中定义的标识符，其作用域为该循环语句</strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241210170904106.png" alt="image-20241210170904106" style="zoom:50%;" /> 
+<h4 id="分程序符号表结构">分程序符号表结构</h4>
+<table>
+<thead>
+<tr>
+<th>Outern</th>
+<th>Ecount</th>
+<th>Pointer</th>
+</tr>
+</thead>
+</table>
+<p>Outern：直接外层编号</p>
+<p>Ecount：符号表项个数</p>
+<p>Pointer：该符号表起始位置</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241210171349194.png" alt="image-20241210171349194" style="zoom:50%;" />
+<p>出块后删除块符号表</p>
+<p><strong><u>红框内删了</u></strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241210171359418.png" alt="image-20241210171359418" style="zoom:50%;" /> 
+<h1>运行时存储管理</h1>
+<p>栈地址寄存器，该空间位于<strong>高地址</strong></p>
+<h3 id="静态存储分配">静态存储分配</h3>
+<p><strong>每个变量所需空间的大小在编译时已知</strong></p>
+<p>在<strong>编译阶段</strong>由编译程序实现对<strong>存储空间的管理</strong>，为源程序中的变量分配存储</p>
+<p><strong>条件：<strong>在</strong>编译时</strong>能够确定源程序中变量在运行时的数据空间大小</p>
+<ul>
+<li><strong>不允许指针或动态分配</strong></li>
+<li><strong>不允许递归调用过程</strong></li>
+</ul>
+<p>开辟一数据区，目标地址填入变量的符号表中</p>
+<p>没鸟用，我觉得不考🤓👆</p>
+<h3 id="动态存储分配">动态存储分配</h3>
+<p>这个必考🤓👆</p>
+<table>
+<thead>
+<tr>
+<th>局部数据区</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>参数区</td>
+</tr>
+<tr>
+<td>display区</td>
+</tr>
+</tbody>
+</table>
+<p><strong>局部数据区</strong>：存放局部变量</p>
+<p><strong>参数区</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>形参数据区：<strong>显式参数区</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prev adb：<strong>存放调用模块记录基地址</strong></td>
+</tr>
+<tr>
+<td>ret addr：<strong>返回地址</strong></td>
+</tr>
+<tr>
+<td>ret value：<strong>函数返回值</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>display</strong>区：存放<strong>各外层模块活动记录的基地址</strong></p>
+<p>1{    2{  }      3{      4{  }    }    } 中，4应当存放AR1和AR3的基地址</p>
+<h4 id="例题">例题</h4>
+<p><strong>重点：看call 了谁再加入活动记录</strong></p>
+ <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241210175114576.png" alt="image-20241210175114576" style="zoom:67%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241210175135976.png" alt="image-20241210175135976" style="zoom:50%;" /> 
+<p>易错点：<strong>局部变量在参数上面</strong>，因为其实是从下往上构建的</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241210175147431.png" alt="image-20241210175147431" style="zoom: 40%;" /> <img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241210175347035.png" alt="image-20241210175347035" style="zoom:40%;" /></p>
+<p>数组需要加一个“数组的模块”</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241210175451927.png" alt="image-20241210175451927" style="zoom:50%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733825146873.png" alt="1733825146873" style="zoom:50%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="1733825169171.png" alt="1733825169171" style="zoom:50%;" /> 
+<p><strong>运行时地址计算</strong>：考鸡毛，PPT就一页</p>
+<h1>错误处理？</h1>
+<p>就几页PPT，肯定只考小题</p>
+<p>语法错误：不符合语法、词法的错误</p>
+<p>语义错误：不符合语义规则或超越具体计算机系统限制（数据溢出、常数太大；符号表、静态存储溢出；动态存储溢出）</p>
+<p><strong>分析以后再报告</strong>：保存错误，全分析完了再打印</p>
+<p><strong>边分析边报告</strong>：顾名思义</p>
+<ul>
+<li>一般原则：诊断到错误并记录后，跳过当前语法成分继续分析</li>
+</ul>
+<p>运行时错误：下标变量、下标值越界；计算结果溢出；动态存储分配数据区溢出</p>
+<p><strong>错误局部化处理</strong>:   发现错误后，尽可能将把错误的影响限制在一个局部的范围避免错误扩散和影响程序其它部分的分析</p>
+<h1>翻译文法</h1>
+<h3 id="翻译文法概念-、-活动序列">翻译文法概念 、 活动序列</h3>
+<p><strong>输入文法：</strong></p>
+<ul>
+<li>没插入动作符号的文法。</li>
+<li>推导产生<strong>输入序列</strong></li>
+</ul>
+<p><strong>翻译文法：</strong></p>
+<ul>
+<li>插入了动作符号的文法</li>
+<li>推导产生<strong>活动序列</strong></li>
+</ul>
+<p>**活动序列：**包含 <em>输入序列</em>、<em>动作序列</em></p>
+<ul>
+<li>输入序列：由终结符组成</li>
+<li>动作序列：由动作符号组成</li>
+</ul>
+<p>翻译文法是<strong>上下文无关文法</strong></p>
+<p>**符号串翻译文法：**输出@后的字符串的文法</p>
+<p>中缀表达式文法→逆波兰表示</p>
+<p>加入动作<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241212201947561.png" alt="image-20241212201947561" style="zoom:50%;" /></p>
+<h3 id="属性翻译文法">属性翻译文法</h3>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214212518649.png" alt="image-20241214212518649" style="zoom:50%;" /> 
+<p>L-属性翻译：</p>
+<ul>
+<li>继承属性
+<ol>
+<li>产生式左部非终结符号的继承属性，取前面表达式的右部该符号 的继承属性值</li>
+<li>产生式右侧符号的继承属性，使用当前式左侧符号的<strong>继承属性</strong>或在该符号左边的符号<strong>属性</strong>计算</li>
+</ol>
+</li>
+<li>综合属性
+<ol>
+<li>产生式右部非终结符号的综合属性值，取其<strong>推导产生式</strong>左部同名非终结符号的综合属性值</li>
+<li>产生式左侧非终结符号的综合属性值，使用当前产生式左侧<strong>继承属性</strong>或右侧符号的<strong>属性</strong>计算</li>
+<li>动作符号的综合属性，使用该符号的继承属性或右侧符号的属性计算</li>
+</ol>
+</li>
+</ul>
+<p>简单赋值L-属性翻译要求：</p>
+<p>产生式右侧符号继承属性<strong>等于左部符号的继承属性值</strong>，或等于出现在所给符号左部某个符号的<strong>综合属性值</strong></p>
+<p>产生式左部非终结符号的<strong>综合属性</strong>，等于<strong>自身的继承属性</strong>，或<strong>右部</strong>某个符号的<strong>综合属性</strong></p>
+<p>变换：</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241213140210680.png" alt="image-20241213140210680" style="zoom:50%;" /> 
+<p>不符合规则，因为需要对f求值，修改为</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241213140250766.png" alt="image-20241213140250766" style="zoom:50%;" /> 
+<h1>数组变量的声明处理</h1>
+<p>n维数组元素地址的计算</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>i</mi><mtext>维的下界</mtext><mi>L</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mtext>，</mtext><mi>i</mi><mtext>维的上界</mtext><mi>U</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi>i</mi><mtext>维元素当前数组的下标</mtext><mi>V</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi>E</mi><mtext>：数组元素大小</mtext><mspace linebreak="newline"></mspace><mi>A</mi><mi>D</mi><mi>R</mi><mo>=</mo><mi>L</mi><mi>O</mi><mi>C</mi><mo>+</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo stretchy="false">[</mo><mi>V</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>−</mo><mi>L</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>×</mo><mi>P</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>×</mo><mi>E</mi><mspace linebreak="newline"></mspace><mtext>当</mtext><mi>i</mi><mo>=</mo><mi>n</mi><mtext>时，</mtext><mi>P</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mspace linebreak="newline"></mspace><mtext>当</mtext><mn>1</mn><mo>&lt;</mo><mo>=</mo><mi>i</mi><mo>&lt;</mo><mi>n</mi><mtext>时，</mtext><mi>P</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mi mathvariant="normal">Π</mi><mrow><mi>j</mi><mo>=</mo><mi>i</mi><mo>+</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mo stretchy="false">[</mo><mi>U</mi><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo><mo>−</mo><mi>L</mi><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo><mo>+</mo><mn>1</mn><mo stretchy="false">]</mo><mspace linebreak="newline"></mspace></mrow><annotation encoding="application/x-tex">i维的下界L(i)，i维的上界U(i)\\
+i维元素当前数组的 下标V(i) \\
+E：数组元素大小\\
+ADR=LOC+\Sigma_{i=1}^{n}[V(i)-L(i)]\times P(i) \times E \\
+当i=n时，P(i) = 1\\
+当1&lt;=i&lt;n时，P(i) = \Pi_{j=i+1}^n [U(j)-L(j)+1] \\
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mord cjk_fallback">维</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">下</span><span class="mord cjk_fallback">界</span><span class="mord mathnormal">L</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mord cjk_fallback">，</span><span class="mord mathnormal">i</span><span class="mord cjk_fallback">维</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">上</span><span class="mord cjk_fallback">界</span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">i</span><span class="mord cjk_fallback">维</span><span class="mord cjk_fallback">元</span><span class="mord cjk_fallback">素</span><span class="mord cjk_fallback">当</span><span class="mord cjk_fallback">前</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">下</span><span class="mord cjk_fallback">标</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord cjk_fallback">：</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">元</span><span class="mord cjk_fallback">素</span><span class="mord cjk_fallback">大</span><span class="mord cjk_fallback">小</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal">A</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathnormal">L</span><span class="mord mathnormal" style="margin-right:0.02778em;">O</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord">Σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7143919999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">L</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">当</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">，</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.72243em;vertical-align:-0.0391em;"></span><span class="mord cjk_fallback">当</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span></span><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.69862em;vertical-align:-0.0391em;"></span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">n</span><span class="mord cjk_fallback">时</span><span class="mord cjk_fallback">，</span><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.133108em;vertical-align:-0.383108em;"></span><span class="mord"><span class="mord">Π</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.714392em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">=</span><span class="mord mathnormal mtight">i</span><span class="mbin mtight">+</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.10903em;">U</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">L</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span></span><span class="mspace newline"></span></span></span></span></p>
+<h3 id="其他内容">其他内容</h3>
+<p>常量：识别类型，识别名字，赋值</p>
+<p>简单变量：要alloc</p>
+<p>记录变量：是用来引用几个不同名字所组成的实体</p>
+<p>过程声明：调用前需要确定参数、返回值</p>
+<p>马勒戈壁看不懂</p>
+<h1>中间代码</h1>
+<h3 id="波兰表示">波兰表示</h3>
+<p><strong>算术表达式：</strong> F * 3.1416 * R * ( H + R )</p>
+<p><strong>波兰表示：</strong> * F 3.1416 * R * + H R</p>
+<p>**逆波兰表达式：**F 3.1416 * R * H R + *</p>
+<p>赋值语句 <strong>:=</strong> 符号优先级最低</p>
+<p>if语句：if &lt; expr &gt; then &lt; stmt1 &gt; else &lt; stmt2 &gt;</p>
+<p>&lt; expr &gt;  &lt; label1 &gt; BZ &lt; stmt1 &gt; &lt; label2 &gt; BR &lt; stmt2 &gt;</p>
+<p>BZ:如果&lt; expr &gt;结果为0，则跳转到label1，</p>
+<p>BR：跳转到label2</p>
+<p>label1再BR头，label2在BR尾</p>
+<h3 id="N元表示">N元表示</h3>
+<p><strong>三元式</strong>：</p>
+<p>直接三元式</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241212190228341.png" alt="image-20241212190228341" style="zoom:50%;" /> 
+<p>间接三元式：</p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241212190358243.png" alt="image-20241212190358243" style="zoom:50%;" /> 
+<p>四元式：</p>
+<p>(op, 操作数1, 操作数2, 结果)</p>
+<h3 id="Pcode？">Pcode？</h3>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241212190619099.png" alt="image-20241212190619099" style="zoom:50%;" /> 
+<h3 id="DAG图">DAG图</h3>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241212190646297.png" alt="image-20241212190646297" style="zoom:50%;" /> 
+<h1>代码优化</h1>
+<h3 id="优化分类">优化分类</h3>
+<ul>
+<li>局部优化：指在<strong>基本块内</strong>进行的优化</li>
+<li>全局优化：跨越基本块，在<strong>函数/过程内</strong>进行的优化，进行全局控制流和数据流分析</li>
+<li>循环优化：对<strong>循环语句</strong>所生成的中间代码序列上所进行的优化</li>
+<li>跨函数优化：整个程序，<strong>跨函数</strong>别名分析，逃逸分析</li>
+</ul>
+<h3 id="划分基本快">划分基本快</h3>
+<ol>
+<li>整个语句第一条语句属于入口语句</li>
+<li>任何 条件/无条件 跳转语句转移到的提一条是入口</li>
+<li>紧跟在跳转语句后 第一条是入口</li>
+</ol>
+<h2 id="DAG图-2">DAG图</h2>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214220958305.png" alt="image-20241214220958305" style="zoom:50%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214221015196.png" alt="image-20241214221015196" style="zoom:50%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214221033065.png" alt="image-20241214221033065" style="zoom:50%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214221051582.png" alt="image-20241214221051582" style="zoom:50%;" /> 
+<h3 id="中间代码构造DAG">中间代码构造DAG</h3>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214223201319.png" alt="image-20241214223201319" style="zoom: 67%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214223238300.png" alt="image-20241214223238300" style="zoom:67%;" /> 
+<p>**特殊注意：**如果出现 op A或 A op B；其中A、B为常数，需要合并常数</p>
+<p>**省流：**找左右操作数，找不到就新建，找到了就记录→找op，找不到就新建，找到了就记录节点号→找结果对应的变量，找不到就添加到op节点，找到了就把变量改到op节点</p>
+<h3 id="DAG转中间代码">DAG转中间代码</h3>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214223321143.png" alt="image-20241214223321143" style="zoom:67%;" /> 
+<p>**省流：**从左向右，把没有父节点且不是叶节点的节点扔进队列，最后逆序输出。</p>
+<h2 id="数据流分析">数据流分析</h2>
+<h3 id="到达定义分析">到达定义分析</h3>
+<p>分析的是数据流信息 d1、d2、…</p>
+<p>gen[S]：S本身<strong>产生</strong>的数据流信息</p>
+<p>kill[S]：S<strong>注销</strong>的数据流信息</p>
+<p>in[S]：<strong>进入</strong>S时的数据流信息</p>
+<p>in[B] = out[P1] ∪ out[P2] ∪ … （所有B的前驱块）</p>
+<p>out[S]：S末尾<strong>得到</strong>的数据流信息</p>
+<p>out = gen ∪ ( in - kill )</p>
+<p><strong>步骤</strong></p>
+<ol>
+<li>先写出gen和kill，能瞪眼看出来</li>
+<li><strong>从上往下</strong>，<u><strong>迭代</strong></u>执行计算每个基本块的in和out</li>
+</ol>
+<p><strong>例题</strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214230235300.png" alt="image-20241214230235300" style="zoom:67%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241214231149157.png" alt="image-20241214231149157" style="zoom: 67%;" /> 
+<h3 id="活跃变量分析">活跃变量分析</h3>
+<p>分析的是<strong>变量</strong>x、y、i、…</p>
+<p>在use里出现的不可能在def出现，反之亦然</p>
+<p>def[B] :  在B中被<strong>定义</strong>先于任何<strong>使用</strong>的变量</p>
+<p>use[B] :  在B中被<strong>使用</strong>先于任何<strong>定义</strong>的变量</p>
+<p>in[B] :  use ∪ (out - def)</p>
+<p>out[B] :  in[P1] ∪ in[P2] ∪ … （所有B的后继块）</p>
+<p>**注意：**形如 x = x + 1的语句中，<strong>x先被使用</strong> 再被定义</p>
+<p><strong>步骤</strong>：</p>
+<ol>
+<li>瞪眼法瞪出来每个块的use和def</li>
+<li>把所有块的in初始化为空</li>
+<li><strong>从下往上</strong>，**<u>迭代</u>**执行：计算每个块的out和in</li>
+</ol>
+<p><strong>例题</strong></p>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241215131533120.png" alt="image-20241215131533120" style="zoom: 67%;" /> 
+<h2 id="冲突图-和-定义-使用链">冲突图 和 定义-使用链</h2>
+<p>两个变量中一个变量在另一个变量定义处是活跃的，那么他们之间有边连接。</p>
+<h3 id="定义-使用链">定义-使用链</h3>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241215133105332.png" alt="image-20241215133105332" style="zoom:50%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241215133322831.png" alt="image-20241215133322831" style="zoom:67%;" /> 
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="image-20241215134615561.png" alt="image-20241215134615561" style="zoom:67%;" /> 
+<h2 id="全局寄存器分配">全局寄存器分配</h2>
+<ul>
+<li>寄存器分为<strong>全局寄存器</strong>和<strong>临时寄存器</strong></li>
+</ul>
+<h3 id="引用计数法">引用计数法</h3>
+<p>访问次数越多越可能获得全局寄存器，循环内变量获得加权</p>
+<h3 id="图着色法">图着色法</h3>
+<p>假设寄存器数目为K，假设K=3</p>
+<ol>
+<li>不断移去所有连接边小于K的点，直到不能移去</li>
+<li>选一个适当的点，记录为“不分配全局寄存器”，然后移走</li>
+<li>重复1、2，直到只剩一个点</li>
+<li>给最后一个点着色，按照节点移除顺序，把边和节点放回，并着色。“不分配全局寄存器”的节点不着色</li>
+</ol>
+<h2 id="循环优化？">循环优化？</h2>
+<p><strong>归纳变量</strong></p>
+<p>比如for（i=1；i&lt;=10;i++）a[i] = b[i] + c[i]</p>
+<p>生成代码里</p>
+<p>t1=4*i （为了获取地址）</p>
+<p>t2 = b[t1]</p>
+<p>…</p>
+<p>i=i+1</p>
+<p>可把4*优化掉，直接i = i+4</p>
+<p>**代码外提：**不需要在循环中的放出去</p>
+<p>**循环展开：**原本for循环把a[10]全变成0，现在不用for，一条一条置0</p>
+<h2 id="基本块内优化类型">基本块内优化类型</h2>
+<p>常数合并：2+3直接用5</p>
+<p>运算强度削弱：乘法改成左移、x/5改成x*0.5等</p>
+<p>复写传播优化：如x:=y语句，某些时候可以删去。</p>
+<p>删除死代码</p>
+<p>消除局部公共子表达式</p>
+<p>窥孔优化：<strong>化关注在目标指令的一个较短的序列</strong>，<strong>删除其中的冗余代码</strong></p>
+<h2 id="指令集架构">指令集架构</h2>
+<p>C = A + B</p>
+<p><strong>栈式：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Push A</span><br><span class="line">Push B</span><br><span class="line">Add</span><br><span class="line">Pop C</span><br></pre></td></tr></table></figure>
+<p><strong>累加器式：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LOAD A</span><br><span class="line">ADD B</span><br><span class="line">STORE C</span><br></pre></td></tr></table></figure>
+<p><strong>寄存器-内存式：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LOAD R1, A</span><br><span class="line">ADD R2, R1, B</span><br><span class="line">STORE R2,C</span><br></pre></td></tr></table></figure>
+<p><strong>寄存器-寄存器式：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LOAD R1, A</span><br><span class="line">LOAD R2, B</span><br><span class="line">ADD R3, R1, R2</span><br><span class="line">STORE R3, C</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Sixiang-Wang">Sixiang Wang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.unfinished.top/2024/12/17/%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA%E7%BC%96%E8%AF%91%E9%AB%98%E6%89%8B/">https://blog.unfinished.top/2024/12/17/%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA%E7%BC%96%E8%AF%91%E9%AB%98%E6%89%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.unfinished.top" target="_blank">机煲的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%A7%E5%AD%A6/">大学</a><a class="post-meta__tags" href="/tags/%E6%80%BB%E7%BB%93/">总结</a><a class="post-meta__tags" href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a></div><div class="post-share"><div class="social-share" data-image="/img/cover/cover6.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/12/19/Compiler/" title="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover5.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-19</div><div class="info-item-2">【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器</div></div><div class="info-2"><div class="info-item-1">使用Java实现的C语言子集SysY-MIPS编译器,基于多个编译器进行改进,代码较易读,无自定义泛型,但没有进行优化</div></div></div></a><a class="pagination-related" href="/2024/01/05/JavaReview/" title="Java期末考试复习提纲"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-05</div><div class="info-item-2">Java期末考试复习提纲</div></div><div class="info-2"><div class="info-item-1">我在Java期末考前为了防止自己刚复习完就忘光总结的资料,我菜,仅供参考</div></div></div></a><a class="pagination-related" href="/2024/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统复习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-06</div><div class="info-item-2">操作系统复习</div></div><div class="info-2"><div class="info-item-1">我要成为OS高手!这是期末复习笔记</div></div></div></a><a class="pagination-related" href="/2024/11/28/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/" title="数字电路"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover7.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-28</div><div class="info-item-2">数字电路</div></div><div class="info-2"><div class="info-item-1">北航软院的【简易版数字电路】的考前复习</div></div></div></a><a class="pagination-related" href="/2024/01/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/" title="计算机组成"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-08</div><div class="info-item-2">计算机组成</div></div><div class="info-2"><div class="info-item-1">计组期末考前为了防止自己刚复习完就忘光总结的资料,我菜,仅供参考</div></div></div></a><a class="pagination-related" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-03</div><div class="info-item-2">计算机网络复习</div></div><div class="info-2"><div class="info-item-1">我要成为计网高手！计算机网络期末复习</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">文法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-number">1.0.1.</span> <span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.0.1.1.</span> <span class="toc-text">推导</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%A5%E5%AD%90%E5%8F%A5%E5%9E%8B"><span class="toc-number">1.0.1.2.</span> <span class="toc-text">句子句型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9F%AD%E8%AF%AD%E3%80%81%E5%8F%A5%E6%9F%84"><span class="toc-number">1.0.1.3.</span> <span class="toc-text">短语、句柄</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%A7%84%E7%BA%A6"><span class="toc-number">1.0.1.4.</span> <span class="toc-text">规约</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E6%96%87%E6%B3%95"><span class="toc-number">1.0.2.</span> <span class="toc-text">递归文法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E4%B9%89%E6%80%A7"><span class="toc-number">1.0.3.</span> <span class="toc-text">二义性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E6%96%87%E6%B3%95"><span class="toc-number">1.0.4.</span> <span class="toc-text">压缩文法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E6%B3%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.0.5.</span> <span class="toc-text">文法类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">词法分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E5%9B%BE"><span class="toc-number">2.0.1.</span> <span class="toc-text">状态图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-number">2.0.2.</span> <span class="toc-text">正则表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DFA"><span class="toc-number">2.0.3.</span> <span class="toc-text">DFA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NFA%EF%BC%88%E9%9D%9E%E7%A1%AE%E5%AE%9A%EF%BC%89"><span class="toc-number">2.0.4.</span> <span class="toc-text">NFA（非确定）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E6%88%90NFA%EF%BC%88%E5%92%8C%E7%8A%B6%E6%80%81%E5%9B%BE%E4%B8%8D%E4%B8%80%E6%A0%B7%EF%BC%89"><span class="toc-number">2.0.5.</span> <span class="toc-text">生成NFA（和状态图不一样）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NFA%E7%9A%84%E7%A1%AE%E5%AE%9A%E5%8C%96"><span class="toc-number">2.0.6.</span> <span class="toc-text">NFA的确定化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="toc-number">2.0.7.</span> <span class="toc-text">最小化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">语法分析</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E5%88%86%E6%9E%90"><span class="toc-number">3.1.</span> <span class="toc-text">自顶向下分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E4%B8%8B%E9%99%8D%E5%AD%90%E7%A8%8B%E5%BA%8F"><span class="toc-number">3.1.1.</span> <span class="toc-text">递归下降子程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LL-1-%E5%88%86%E6%9E%90%E6%B3%95"><span class="toc-number">3.1.2.</span> <span class="toc-text">LL(1)分析法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#First%E3%80%81Follow%E9%9B%86"><span class="toc-number">3.1.2.1.</span> <span class="toc-text">First、Follow集</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%88%86%E6%9E%90%E8%A1%A8"><span class="toc-number">3.1.2.2.</span> <span class="toc-text">构造分析表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B"><span class="toc-number">3.1.2.3.</span> <span class="toc-text">执行过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E5%88%86%E6%9E%90"><span class="toc-number">3.2.</span> <span class="toc-text">自底向上分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%97%E7%AC%A6%E4%BC%98%E5%85%88%E5%88%86%E6%9E%90"><span class="toc-number">3.2.1.</span> <span class="toc-text">算符优先分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#FirstVT%E3%80%81LastVT"><span class="toc-number">3.2.1.1.</span> <span class="toc-text">FirstVT、LastVT</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E4%BC%98%E5%85%88%E5%85%B3%E7%B3%BB%E7%9F%A9%E9%98%B5"><span class="toc-number">3.2.1.2.</span> <span class="toc-text">构造优先关系矩阵</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A0%E7%9F%AD%E8%AF%AD"><span class="toc-number">3.2.1.3.</span> <span class="toc-text">素短语</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E8%BF%87%E7%A8%8B-2"><span class="toc-number">3.2.1.4.</span> <span class="toc-text">执行过程</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LR%E5%88%86%E6%9E%90%E6%B3%95"><span class="toc-number">3.2.2.</span> <span class="toc-text">LR分析法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B4%BB%E5%89%8D%E7%BC%80"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">活前缀</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0LR-0"><span class="toc-number">3.2.2.2.</span> <span class="toc-text">构造LR(0)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SLR%EF%BC%880%EF%BC%89"><span class="toc-number">3.2.2.3.</span> <span class="toc-text">SLR（0）</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">符号表管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E5%88%86%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84%E5%92%8C%E7%AC%A6%E5%8F%B7%E8%A1%A8"><span class="toc-number">4.0.1.</span> <span class="toc-text">非分程序结构和符号表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84%E8%AF%AD%E8%A8%80%E5%92%8C%E7%AC%A6%E5%8F%B7%E8%A1%A8"><span class="toc-number">4.0.2.</span> <span class="toc-text">分程序结构语言和符号表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%86%E7%A8%8B%E5%BA%8F%E7%AC%A6%E5%8F%B7%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">4.0.2.1.</span> <span class="toc-text">分程序符号表结构</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">运行时存储管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%99%E6%80%81%E5%AD%98%E5%82%A8%E5%88%86%E9%85%8D"><span class="toc-number">5.0.1.</span> <span class="toc-text">静态存储分配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E5%AD%98%E5%82%A8%E5%88%86%E9%85%8D"><span class="toc-number">5.0.2.</span> <span class="toc-text">动态存储分配</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">5.0.2.1.</span> <span class="toc-text">例题</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">6.</span> <span class="toc-text">错误处理？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">7.</span> <span class="toc-text">翻译文法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BF%BB%E8%AF%91%E6%96%87%E6%B3%95%E6%A6%82%E5%BF%B5-%E3%80%81-%E6%B4%BB%E5%8A%A8%E5%BA%8F%E5%88%97"><span class="toc-number">7.0.1.</span> <span class="toc-text">翻译文法概念 、 活动序列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B1%9E%E6%80%A7%E7%BF%BB%E8%AF%91%E6%96%87%E6%B3%95"><span class="toc-number">7.0.2.</span> <span class="toc-text">属性翻译文法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">8.</span> <span class="toc-text">数组变量的声明处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%86%85%E5%AE%B9"><span class="toc-number">8.0.1.</span> <span class="toc-text">其他内容</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">9.</span> <span class="toc-text">中间代码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%A2%E5%85%B0%E8%A1%A8%E7%A4%BA"><span class="toc-number">9.0.1.</span> <span class="toc-text">波兰表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#N%E5%85%83%E8%A1%A8%E7%A4%BA"><span class="toc-number">9.0.2.</span> <span class="toc-text">N元表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pcode%EF%BC%9F"><span class="toc-number">9.0.3.</span> <span class="toc-text">Pcode？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DAG%E5%9B%BE"><span class="toc-number">9.0.4.</span> <span class="toc-text">DAG图</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">10.</span> <span class="toc-text">代码优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%98%E5%8C%96%E5%88%86%E7%B1%BB"><span class="toc-number">10.0.1.</span> <span class="toc-text">优化分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%92%E5%88%86%E5%9F%BA%E6%9C%AC%E5%BF%AB"><span class="toc-number">10.0.2.</span> <span class="toc-text">划分基本快</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAG%E5%9B%BE-2"><span class="toc-number">10.1.</span> <span class="toc-text">DAG图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%A3%E7%A0%81%E6%9E%84%E9%80%A0DAG"><span class="toc-number">10.1.1.</span> <span class="toc-text">中间代码构造DAG</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DAG%E8%BD%AC%E4%B8%AD%E9%97%B4%E4%BB%A3%E7%A0%81"><span class="toc-number">10.1.2.</span> <span class="toc-text">DAG转中间代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E5%88%86%E6%9E%90"><span class="toc-number">10.2.</span> <span class="toc-text">数据流分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%B0%E8%BE%BE%E5%AE%9A%E4%B9%89%E5%88%86%E6%9E%90"><span class="toc-number">10.2.1.</span> <span class="toc-text">到达定义分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B4%BB%E8%B7%83%E5%8F%98%E9%87%8F%E5%88%86%E6%9E%90"><span class="toc-number">10.2.2.</span> <span class="toc-text">活跃变量分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%B2%E7%AA%81%E5%9B%BE-%E5%92%8C-%E5%AE%9A%E4%B9%89-%E4%BD%BF%E7%94%A8%E9%93%BE"><span class="toc-number">10.3.</span> <span class="toc-text">冲突图 和 定义-使用链</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89-%E4%BD%BF%E7%94%A8%E9%93%BE"><span class="toc-number">10.3.1.</span> <span class="toc-text">定义-使用链</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E5%B1%80%E5%AF%84%E5%AD%98%E5%99%A8%E5%88%86%E9%85%8D"><span class="toc-number">10.4.</span> <span class="toc-text">全局寄存器分配</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E7%94%A8%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="toc-number">10.4.1.</span> <span class="toc-text">引用计数法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E7%9D%80%E8%89%B2%E6%B3%95"><span class="toc-number">10.4.2.</span> <span class="toc-text">图着色法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E4%BC%98%E5%8C%96%EF%BC%9F"><span class="toc-number">10.5.</span> <span class="toc-text">循环优化？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E5%9D%97%E5%86%85%E4%BC%98%E5%8C%96%E7%B1%BB%E5%9E%8B"><span class="toc-number">10.6.</span> <span class="toc-text">基本块内优化类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E9%9B%86%E6%9E%B6%E6%9E%84"><span class="toc-number">10.7.</span> <span class="toc-text">指令集架构</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/28/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%92%8C%E5%81%8F%E5%AF%BC/" title="多元函数微分和偏导的关系"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="多元函数微分和偏导的关系"/></a><div class="content"><a class="title" href="/2025/03/28/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%92%8C%E5%81%8F%E5%AF%BC/" title="多元函数微分和偏导的关系">多元函数微分和偏导的关系</a><time datetime="2025-03-28T08:58:42.000Z" title="发表于 2025-03-28 16:58:42">2025-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/14/hello-world/" title="Hexo文章格式测试"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Hexo文章格式测试"/></a><div class="content"><a class="title" href="/2025/01/14/hello-world/" title="Hexo文章格式测试">Hexo文章格式测试</a><time datetime="2025-01-14T11:42:37.000Z" title="发表于 2025-01-14 19:42:37">2025-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/14/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/" title="Hexo博客搭建、魔改与修bug"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Hexo博客搭建、魔改与修bug"/></a><div class="content"><a class="title" href="/2025/01/14/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/" title="Hexo博客搭建、魔改与修bug">Hexo博客搭建、魔改与修bug</a><time datetime="2025-01-14T11:42:37.000Z" title="发表于 2025-01-14 19:42:37">2025-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="计算机网络复习"/></a><div class="content"><a class="title" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习">计算机网络复习</a><time datetime="2025-01-03T09:57:49.000Z" title="发表于 2025-01-03 17:57:49">2025-01-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/19/Compiler/" title="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器"/></a><div class="content"><a class="title" href="/2024/12/19/Compiler/" title="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器">【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器</a><time datetime="2024-12-19T10:21:31.000Z" title="发表于 2024-12-19 18:21:31">2024-12-19</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Sixiang Wang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'IQK0R20J7jOefrvo0uETD48k-gzGzoHsz',
+      appKey: 'UxntKBFSRPJBvJ5JhRGyMJd6',
+      avatar: 'mp',
+      serverURLs: '',
+      emojiMaps: "",
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !true) {
+    if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script defer data-pjax src="/js/readPercent.js"></script><script async src="/js/title.js"></script><script id="canvas_nest" defer="defer" color="0,255,234" opacity="0.7" zIndex="-1" count="50" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax src="/live2d/index.min.js"></script><script>const oml2d = OML2D.loadOml2d({libraryUrls:{"complete":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/complete.js","cubism2":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism2.js","cubism5":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism5.js"},menus:{items:(defaultItems)=>{
+ return []
+}
+},mobileDisplay:true,models:[{"path":"/live2d/泉此方/泉此方.model3.json","mobilePosition":[-10,23],"mobileScale":0.1,"mobileStageStyle":{"width":180,"height":166},"motionPreloadStrategy":"NONE","position":[20,55],"scale":0.15,"stageStyle":{"width":250,"height":250}}],parentElement:document.body,primaryColor:"var(--btn-bg)",sayHello:false,tips:{style: {"width":200,"height":120,"left":"calc(50% - 5px)","top":"-80px"},mobileStyle: {"width":180,"height":70,"left":"calc(50% - 30px)","top":"-100px"},idleTips:{interval:15000,message:function(){
+  return axios.get('https://v1.hitokoto.cn?c=i')
+    .then(function (response) {
+      return response.data.hitokoto ;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}
+}}});</script><!-- hexo injector body_end end --></body></html>

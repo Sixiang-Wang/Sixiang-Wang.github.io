@@ -1,0 +1,562 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器 | 机煲的小窝</title><meta name="author" content="Sixiang Wang,2562187628@qq.com"><meta name="copyright" content="Sixiang Wang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="使用Java实现的C语言子集SysY-MIPS编译器,基于多个编译器进行改进,代码较易读,无自定义泛型,但没有进行优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器">
+<meta property="og:url" content="https://blog.unfinished.top/2024/12/19/Compiler/index.html">
+<meta property="og:site_name" content="机煲的小窝">
+<meta property="og:description" content="使用Java实现的C语言子集SysY-MIPS编译器,基于多个编译器进行改进,代码较易读,无自定义泛型,但没有进行优化">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.unfinished.top/img/cover/cover5.jpg">
+<meta property="article:published_time" content="2024-12-19T10:21:31.000Z">
+<meta property="article:modified_time" content="2025-03-30T06:09:06.812Z">
+<meta property="article:author" content="Sixiang Wang">
+<meta property="article:tag" content="大学">
+<meta property="article:tag" content="总结">
+<meta property="article:tag" content="编译">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.unfinished.top/img/cover/cover5.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器",
+  "url": "https://blog.unfinished.top/2024/12/19/Compiler/",
+  "image": "https://blog.unfinished.top/img/cover/cover5.jpg",
+  "datePublished": "2024-12-19T10:21:31.000Z",
+  "dateModified": "2025-03-30T06:09:06.812Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Sixiang Wang",
+      "url": "https://github.com/Sixiang-Wang"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.unfinished.top/2024/12/19/Compiler/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":100,"languages":{"author":"作者: Sixiang Wang","link":"链接: ","source":"来源: 机煲的小窝","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"linear-gradient(to top right, #0000FF, #800080)","bgDark":"#1f1f1f","position":"bottom-center"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: true,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><link rel="stylesheet" href="/css/readPercent.css"><link rel="stylesheet" href="/css/custom.css"><link rel="stylesheet" href="/css/waveDivider.css"><link rel="stylesheet" href="/css/scrollbar.css"><link rel="stylesheet" href="/css/windmill.css"><meta name="generator" content="Hexo 7.3.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><script>(()=>{
+  const $loadingBox = document.getElementById('loading-box')
+  const $body = document.body
+  const preloader = {
+    endLoading: () => {
+      $body.style.overflow = ''
+      $loadingBox.classList.add('loaded')
+    },
+    initLoading: () => {
+      $body.style.overflow = 'hidden'
+      $loadingBox.classList.remove('loaded')
+    }
+  }
+
+  preloader.initLoading()
+  const loadingTimeout = setTimeout(preloader.endLoading, 2000);
+
+  // 如果页面在 3 秒内加载完成，清除超时并结束加载状态
+  window.addEventListener('load', () => {
+    clearTimeout(loadingTimeout);
+    preloader.endLoading();
+  });
+
+  //window.addEventListener('load', preloader.endLoading)
+
+  if (false) {
+    btf.addGlobalFn('pjaxSend', preloader.initLoading, 'preloader_init')
+    btf.addGlobalFn('pjaxComplete', preloader.endLoading, 'preloader_end')
+  }
+})()</script><div id="web_bg" style="background-image: url(/img/background_new.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/Ritsu.gif" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">5</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 网站推荐</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg fixed" id="page-header" style="background-image: url(/img/cover/cover5.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><img class="site-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/robot.png" alt="Logo"><span class="site-name">机煲的小窝</span></a><a class="nav-page-title" href="/"><span class="site-name">【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-heart"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-thumbs-up"></i><span> 网站推荐</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-12-19T10:21:31.000Z" title="发表于 2024-12-19 18:21:31">2024-12-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-03-30T06:09:06.812Z" title="更新于 2025-03-30 14:09:06">2025-03-30</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%BC%96%E8%AF%91%E5%99%A8/">编译器</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">总字数:</span><span class="word-count">5.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>17分钟</span></span><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>编译器设计文档</h1>
+<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="Compiler.png" alt="我要成为编译高手" style="zoom: 25%;" />  
+<h2 id="编译器总体设计">编译器总体设计</h2>
+<h3 id="结构">结构</h3>
+<p>Block模块：创建语法模块，模块作为语法树节点</p>
+<p>Token模块：创建token</p>
+<p>Symbol模块：为语义分析创建符号和符号表</p>
+<p>Error模块：负责处理错误，打印错误</p>
+<p>Frontend模块：负责词法分析和语法分析，包含<code>Lexer</code>、<code>Parser</code>和<code>Visitor</code></p>
+<p>Middle模块：负责生成中间代码LLVM，存储了LLVM的数据结构</p>
+<p>Backend模块：负责将LLVM结构翻译成mips并最终输出。</p>
+<p>Tool模块：负责文件输入输出等杂项</p>
+<p>Compiler：作为主程序入口，启动后自动调用前后端接口等进行词法分析、语法分析、语义分析、LLVM代码生成。</p>
+<h3 id="接口设计">接口设计</h3>
+<h4 id="前端接口">前端接口</h4>
+<ul>
+<li>
+<p>预处理：</p>
+<ul>
+<li>输入文件</li>
+<li>读取后将所有换行（如\r\n）统一换成\n</li>
+<li>输出字符串</li>
+</ul>
+</li>
+<li>
+<p><code>Lexer</code></p>
+<ul>
+<li>输入字符串</li>
+<li>读取字符串，经过判断和操作，生成token，判断是否有词法错误</li>
+<li>输出token串、若出错输出错误</li>
+</ul>
+</li>
+<li>
+<p>Parser：</p>
+<ul>
+<li>输入token串</li>
+<li>把token串分析后，经过一系列判断生成语法树，判断是否有语法错误</li>
+<li>输出语法树、若出错输出错误</li>
+</ul>
+</li>
+<li>
+<p>Visitor：</p>
+<ul>
+<li>输入语法树根节点CompUnitBlock</li>
+<li>从CompUnitBlock开始分析整个语法树，并建立符号表，判断是否有语义错误</li>
+<li>输出符号表、若出错输出错误</li>
+</ul>
+</li>
+<li>
+<p>IrBuilder:</p>
+<ul>
+<li>输入语法树根节点CompUnitBlock</li>
+<li>从CompUnitBlock开始分析整个语法树，将语法树转换为LLVM，并存储在IrModule中。其中为了分析也会建立符号表。将语法翻译为LLVMValue</li>
+<li>输出IrModule，并打印到文件</li>
+</ul>
+</li>
+<li>
+<p>MipsBuilder：</p>
+<ul>
+<li>输入LLVM根节点IrModule</li>
+<li>将LLVM语言翻译成mips语言，其中利用Reg记录寄存器</li>
+<li>输出String，内容为mips代码，并将mips打印到文件</li>
+</ul>
+</li>
+</ul>
+<h4 id="错误接口">错误接口</h4>
+<ul>
+<li><code>ErrorHandler</code>
+<ul>
+<li>输入错误的位置和类型</li>
+<li>输出到错误文件中</li>
+<li>错误处理在后面词法、语法和语义分析中详细说明</li>
+</ul>
+</li>
+</ul>
+<h3 id="文件组织">文件组织</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line">Compiler</span><br><span class="line">│</span><br><span class="line">└── src</span><br><span class="line">	├── Block</span><br><span class="line">	│	├── AddExpBlock.java</span><br><span class="line">	│	├── ...</span><br><span class="line">	│	├── ...</span><br><span class="line">	│	├── VarDeclBlock.java</span><br><span class="line">	│	└── VarDefBlock.java</span><br><span class="line">	│</span><br><span class="line">	├── Backend</span><br><span class="line">	│	├── MipsBuilder.java</span><br><span class="line">	│	├── Reg.java</span><br><span class="line">	│	└── Translator.java</span><br><span class="line">	|</span><br><span class="line">	├── Error</span><br><span class="line">	│	├── Err.java</span><br><span class="line">	│	├── ErrType.java</span><br><span class="line">	│	└── ErrorHandler.java</span><br><span class="line">	│</span><br><span class="line">	├── Frontend</span><br><span class="line">	│	├── Lexer.java</span><br><span class="line">	│	├── Parser.java</span><br><span class="line">	│	└── Visitor.java</span><br><span class="line">	│</span><br><span class="line">	├── Middle</span><br><span class="line">	│	├── Types</span><br><span class="line">	|	|	├── ArrayType.java</span><br><span class="line">	|	|	├── FunctionType.java</span><br><span class="line">	|	|	├── IntegerType.java</span><br><span class="line">	|	|	├── LabelType.java</span><br><span class="line">	|	|	├── PointerType.java</span><br><span class="line">	|	|	├── VoidType.java</span><br><span class="line">	|	|	└── Type.java</span><br><span class="line">	|	|</span><br><span class="line">	│	├── Values</span><br><span class="line">	|	|	├── Instructions</span><br><span class="line">	|	|	|	├──	Mem</span><br><span class="line">	|	|	|	|	├──	AllovaInst</span><br><span class="line">	|	|	|	|	├──	GEPInst</span><br><span class="line">	|	|	|	|	├──	LoadInst</span><br><span class="line">	|	|	|	|	├──	MemInst</span><br><span class="line">	|	|	|	|	└──	StoreInst</span><br><span class="line">	|	|	|	|</span><br><span class="line">	|	|	|	├──	Terminator</span><br><span class="line">	|	|	|	|	├──	BrInst</span><br><span class="line">	|	|	|	|	├──	CallInst</span><br><span class="line">	|	|	|	|	├──	RetInst</span><br><span class="line">	|	|	|	|	└──	TerminatorInst</span><br><span class="line">	|	|	|	|</span><br><span class="line">	|	|	|	├──	BinaryInst</span><br><span class="line">	|	|	|	├──	ConvInst</span><br><span class="line">	|	|	|	├──	Instruction</span><br><span class="line">	|	|	|	└── Operator</span><br><span class="line">	|	|	|</span><br><span class="line">	|	|	├── BuildFactory.java</span><br><span class="line">	|	|	├── BasicBlock.java</span><br><span class="line">	|	|	├── Const.java</span><br><span class="line">	|	|	├── ConstArray.java</span><br><span class="line">	|	|	├── ConstInt.java</span><br><span class="line">	|	|	├── Function.java</span><br><span class="line">	|	|	├── GlobalVar.java</span><br><span class="line">	|	|	├── IdBuilder.java</span><br><span class="line">	|	|	├── NullValue.java</span><br><span class="line">	|	|	├── Use.java</span><br><span class="line">	|	|	├── User.java</span><br><span class="line">	|	|	└── Value.java</span><br><span class="line">	|	|</span><br><span class="line">	|	├── IrModule</span><br><span class="line">	│	└── IrBuilder</span><br><span class="line">	|</span><br><span class="line">	├── Symbol</span><br><span class="line">	│	├── BTpye.java</span><br><span class="line">	│	├── Symbol.java</span><br><span class="line">	|	├── SymbolTable.java</span><br><span class="line">	│	└── SymbolTableList.java</span><br><span class="line">	│</span><br><span class="line">	├── Token</span><br><span class="line">	│	├── Token.java</span><br><span class="line">	│	└── TokenType.java</span><br><span class="line">	│</span><br><span class="line">	├── Tool</span><br><span class="line">	│	└── FileControler.java</span><br><span class="line">	│</span><br><span class="line">	└── Compiler.java</span><br></pre></td></tr></table></figure>
+<h2 id="词法分析设计">词法分析设计</h2>
+<h3 id="Token设计">Token设计</h3>
+<p>Token单元将会记录下面内容：</p>
+<ul>
+<li>类型：<code>TokenType</code></li>
+<li>具体内容：String</li>
+<li>所在文件行数：Integer</li>
+</ul>
+<p><code>TokenType</code>是一个枚举类，包含了所有类型的Token名称，如IDENFR、INTCON、STRCON等</p>
+<h3 id="分析程序设计">分析程序设计</h3>
+<p>使用now记录当前所在字符串位置，<code>lineNum</code>记录行号。</p>
+<p>每当读取到\n，行数+1</p>
+<p>自动机会判断读取的字符，分别进入</p>
+<ul>
+<li>单词分析：读取一个完整的以字母开头可包含数字的词汇，并判断是否是保留字，输出Token</li>
+<li>数字分析：读取一个整数。</li>
+<li>注释分析：综合判断是注释还是乘除法，如果是注释则中间内容全部不记录，乘除法会输出Token</li>
+<li>符号分析：综合分析各种单双符号，输出Token</li>
+</ul>
+<h3 id="错误处理">错误处理</h3>
+<p>如果遇到<code>&amp;</code>或者<code>|</code>以单字符形式出现，则调用错误处理器，输出所在行号，错误类型为：<strong>a</strong></p>
+<h2 id="语法分析设计">语法分析设计</h2>
+<h3 id="Block设计">Block设计</h3>
+<p>Block是语法树的基本组成单元。</p>
+<p>Block根据编译文法所撰写，包含从<code>AddExp</code>到<code>VarDefBlock</code> 总共35个语法单元</p>
+<p>每个Block中记录的数据各不相同，</p>
+<p>都拥有构造方法用于记录数据，</p>
+<p>还拥有一个print方法，用于根据记录的数据，打印语法树到文件，并递归调用子模块。</p>
+<h3 id="分析程序设计-2">分析程序设计</h3>
+<p>分析程序会接受到词法分析中产生的<code>tokenList</code>进行语法分析。</p>
+<p>语法分析根据文法总共有从 <code>ComplieUnit</code> 到 <code>ConstExp</code> 34个分析单元，</p>
+<p>语法分析将会从<code>CompUnit</code>开始分析，每个分析单元都会根据自身文法，递归调用子分析单元。</p>
+<p>当出现需要分析的单元为<code>Token</code>时候，调用<code>getToken</code>方法。</p>
+<p><code>getToken</code>会根据文法对应位置的token类型，判断是否有误，有误则输出错误，没有则输出Token。</p>
+<p>分析完毕后，会得到一颗以<code>CompileUnitBlock</code>为根的语法树，Parser会输出这个语法树给Compiler主程序，打印到对应文件，并给后续进一步操作。</p>
+<h3 id="错误处理-2">错误处理</h3>
+<p><code>public Token getToken(TokenType tokenType)</code>：</p>
+<p>在该方法中，会自动处理错误，如果<code>tokenType</code>是语法期望的token类型，如果与当前对应token的类型相同则没有问题，正常输出；如果不同，说明缺失了对应符号，根据缺失的符号类型，返回对应错误：</p>
+<ul>
+<li>缺失<code>;</code>错误类型为 <strong>i</strong></li>
+<li>缺失<code>)</code>错误类型为 <strong>j</strong></li>
+<li>缺失<code>]</code>错误类型为 <strong>k</strong></li>
+</ul>
+<h2 id="语义分析设计">语义分析设计</h2>
+<h3 id="符号表结构">符号表结构</h3>
+<p>为了放置符号，设计了符号表SymbolTable</p>
+<p>其中Symbol作为符号，记录单个符号，可以通过</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="variable">tableId</span> <span class="operator">=</span> <span class="number">0</span>;<span class="comment">//记录符号位置</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> isFunc;</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> dimension;</span><br><span class="line"><span class="keyword">public</span> BType bType;</span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> isConst;</span><br><span class="line"></span><br><span class="line"><span class="comment">//为了记录函数中的参数，还需要</span></span><br><span class="line"><span class="keyword">public</span> List&lt;Symbol&gt; funcParams = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br></pre></td></tr></table></figure>
+<p>四个值来定义符号类型。</p>
+<p>SymbolTable类作为一层的符号表，用以存储当前层下的所有符号。符号表将会按照顺序存储在LinkedHashMap中，其中键是Token，值是Symbol。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> id; <span class="comment">//符号表id</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> fatherId;  <span class="comment">//符号表父层id</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> LinkedHashMap&lt;String,Symbol&gt; directory = <span class="keyword">new</span> <span class="title class_">LinkedHashMap</span>&lt;&gt;(); <span class="comment">//存储符号</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> isFunc;<span class="comment">//是否是因为函数声明而建立的一层符号表</span></span><br><span class="line"><span class="keyword">public</span> BType bType;<span class="comment">//如果是因为函数声明而建立的一层符号表，记录函数返回类型</span></span><br><span class="line"><span class="comment">//虽然函数声明的符号也会被上一层符号表记录，但是这样重复记录在此处可以方便后续分析程序调用。</span></span><br></pre></td></tr></table></figure>
+<h3 id="语义分析程序">语义分析程序</h3>
+<p>语义分析程序使用<code>List&lt;SymbolTable&gt;</code>用于存储符号表，其中程序的每一层都是一张符号表。</p>
+<p>变量tableId用于记录当前位于的符号表。</p>
+<p>当分析程序运行到新的一层时，会调用addSymbolTable，新建一层符号表，并将刚才的符号表Id作为父层记录，随后更新Id为当前List总表数量+1。</p>
+<p>当分析程序退出一层时，调用removeSymbolTable，此方法并不会删除符号表，而是将tableId改为当前符号表的父层Id。</p>
+<p>这样经过分析后，可以按照顺序输出符号表的内容。</p>
+<p>分析会从语义分析中得到的compUnit开始按照树状分析，当运行至需要修改符号表内容时，修改符号表。</p>
+<h3 id="错误处理-3">错误处理</h3>
+<p>错误处理是语义分析的关键。</p>
+<ul>
+<li>
+<p>b-名字重定义</p>
+<ul>
+<li>在所有def处进行判断，从当前符号表向父级递归查询是否有重复定义</li>
+</ul>
+</li>
+<li>
+<p>c-未定义的名字</p>
+<ul>
+<li>在非定义语句出现Ident时，需要从当前符号表向父级递归查询是否有定义</li>
+</ul>
+</li>
+<li>
+<p>d-函数参数个数不匹配</p>
+<ul>
+<li><code>Ident '(' [FuncRParams] ')'</code>文法中，查询ident对应函数的变量个数，与<code>FuncRParams</code>中变量个数对比</li>
+</ul>
+</li>
+<li>
+<p>e-函数参数类型不匹配</p>
+<ul>
+<li><code>Ident '(' [FuncRParams] ')'</code>文法中，查询ident对应函数的变量类型，与<code>FuncRParams</code>中变量类型对比</li>
+</ul>
+</li>
+<li>
+<p>f-无返回值的函数存在不匹配的return语句</p>
+<ul>
+<li>在Stmt语句的return类型中，从当前符号表向父级递归查询距离自身最近的一层函数位置，判断该函数类型。如果是void且return语句后跟了exp，则报错</li>
+</ul>
+</li>
+<li>
+<p>g-有返回值的函数缺少return语句</p>
+<ul>
+<li>在Block文法中，判断Block末尾最后一个BlockItem是否是Stmt中的return类型</li>
+</ul>
+</li>
+<li>
+<p>h-不能改变常量的值</p>
+<ul>
+<li>出现形如<code>LVal '=' Exp</code>的语句时，判断<code>Lval</code>是否时常量，如果是常量则有误</li>
+</ul>
+</li>
+<li>
+<p>l-printf中格式字符与表达式个数不匹配</p>
+<ul>
+<li>根据%d、%c来判断格式字符与<code>expBlockList</code>表达式个数是否相等</li>
+</ul>
+</li>
+<li>
+<p>m-在非循环块中使用break和continue语句</p>
+<ul>
+<li>为语义分析程序设置一个全局变量int类型的forLoop，用于记录当前在几层循环之下。当进入for语句，将forLoop+1，当运行完For语句中Stmt的分析后将forLoop-1。在Stmt语句出现Continue或Break后，如果forLoop==0，则说明有误。</li>
+</ul>
+</li>
+</ul>
+<h3 id="语义分析难点">语义分析难点</h3>
+<p>在语义分析的错误处理中<code>d-函数参数个数不匹配</code>和<code>e-函数参数类型不匹配</code>两种类型的错误分析最为复杂。</p>
+<p>当函数运行到<code>Ident '(' [FuncRParams] ')'</code>文法时，先从符号表里获取ident对应的符号，如果不是函数，则报错，类型为e。</p>
+<p>随后判断<code>symbol.funcParams</code>与<code>FuncRParams</code>中变量个数是否都为空或者相同，否则报错，类型为d。</p>
+<p>分析程序通过<code>getFuncParamInExp</code>方法，寻找<code>FuncRParams.ExpBlock</code>中的变量，并记录其在符号表中的对应Symbol。</p>
+<p>最后依次对比 函数符号Ident中的变量类型与 <code>FuncRParams</code>中对应的变量类型是否一致，判断是否有e类型错误。</p>
+<h2 id="中间代码生成设计">中间代码生成设计</h2>
+<h3 id="数据结构">数据结构</h3>
+<p>LLVM中，一切皆为Value，数据结构中的各种组件都继承自Value。</p>
+<p>其中Const继承自Value，继承了Const的ConstArray和ConstInt负责存储变量的值</p>
+<p>GlobalVar负责存储全局变量，局部变量只会通过AllocaInst表示</p>
+<p>Type负责记录变量的类型，</p>
+<p>Function负责记录函数，每一个Function中含有若干BasicBlock，每一BasicBlock含有若干Instruction。</p>
+<p>BasicBlock是函数中的基本块，记录了自己的父块和自己包含的指令集合</p>
+<p>Instruction记录基本块中的一条指令，Instruction继承自User。User包含了变量operandList，用于存储指令中使用的Value。Instruction则记录自己位于的基本块以及此指令的操作符。</p>
+<h3 id="Type设计">Type设计</h3>
+<p>IntergerType包含i1、i8和i32，表明自身是bool型、char型还是32位int型。</p>
+<p>ArrayType作为数组类型，会记录自身的IntergerType，以及数组长度。</p>
+<p>FunctionType是函数类型，记录返回值的类型、每个参数的类型。</p>
+<p>PointerType是指针类型，记录该指针指向的类型targetType。</p>
+<p>LabelType是给BasicBlock使用的，用于标识基本块跳转的标签。</p>
+<p>VoidType是空值，仅标明自身是void类型</p>
+<h3 id="Value设计">Value设计</h3>
+<p>Value作为LLVM数据结构的根基，包含了下面变量：</p>
+<p>name：记录value的名字，部分value比如instruction是没有名字的</p>
+<p>type：记录变量的类型</p>
+<p>REG_NUM：记录在当前函数中这条Value的寄存器编号</p>
+<p>id： Value对应的编号，每个Value的编号都不相同。作为Value的标识</p>
+<p>Value含有方法GetNameId，用于获取唯一编号，可以作为标识记录。</p>
+<h4 id="Const设计">Const设计</h4>
+<p>Const继承自Value，并作为ConstInt和ConstArray的主类。其中ConstInt负责记录变量中的数值，比如在非数组型的GlobalVar中，会有一个ConstInt记录数值。ConstInt只记录数值，不会记录类型，所以char型的会转化成对应ascii编码。比如’a’会被以97记录。</p>
+<p>ConstArray记录一个数组变量的值。ConstArray中包含了一个记录ConstInt的List，并记录了该Array的类型。在声明变量时，初始值若全为0，ConstArray会调用zeroinitializer，当该Array是i8类型，则会以字符串的形式声明。</p>
+<h4 id="GlobalVar设计">GlobalVar设计</h4>
+<p>GlobalVar是全局变量。包含了一个布尔值用于记录自身是否是常量，并含有一个value，记录自身的数值。GlobalVar本身的Type是一个指针类型，指向对应的Integer或者Array。GlobalVar只会在Function外声明。</p>
+<h4 id="Function设计">Function设计</h4>
+<p>function将会记录自身的所有basicBlock，自身的所有参数、以及记录自己是否是库函数。function在创建时，会自动将REG_NUMBER清零，重新在函数中记录新的reg。</p>
+<h4 id="BasicBlock设计">BasicBlock设计</h4>
+<p>basicBlock作为函数中的基本块，包含一个变量，记录自身的parentFunction，还包含一个LinkedList记录instruction列表。</p>
+<h3 id="Instruction设计">Instruction设计</h3>
+<p>instruction时基本块中的一条指令。Instruction继承自User，所以会包含一个列表，用于记录自身使用的所有Value。作为指令，将会记录指令自身的类型Operator，还会记录自己位于的基本块parentBlock。</p>
+<p>指令包含如下</p>
+<ul>
+<li>Alloca，用于在函数内建立局部变量</li>
+<li>GetElementPointer，用于获取数组中某个值</li>
+<li>LoadInst，用于获取全局变量对应的指针</li>
+<li>StoreInst，用于将临时寄存器存入全局变量</li>
+<li>BrInst，用于跳转到对应BasicBlock</li>
+<li>CallInst，用于调用函数，向函数传参。</li>
+<li>RetInst，作为函数的返回语句，返回空值void或一个IntergerType。</li>
+<li>BinaryInst，包含如加减乘除等运算的三元式，也包含icmp三元式用于关系运算。</li>
+<li>ConvInst，包含Zext和Trunc，其中Zext用于数位扩展，将会把i1和i8扩展为i32，Trunc用于数位截断，将会把i32截断为i8</li>
+</ul>
+<h3 id="工厂模式设计">工厂模式设计</h3>
+<p>由于此次任务中Value的种类非常多，如果将Value的建立不做封装，将会让代码变得非常冗余，所欲使用一个BuildFactory用于构造不同种类的Value，并进行一些基本的处理</p>
+<h3 id="中间代码生成程序">中间代码生成程序</h3>
+<p>在中间代码生成程序中，将会根据语法树进行进行遍历。IrBuilder中含有一个新的SymbolTableList，用于记录Value的符号表，在建立全局变量和局部变量时，将Value作为符号加入符号表中，方便后续使用。</p>
+<p>每当创建一个新的BasicBlock，符号表数组都会新建一个符号表，用于记录当前基本块中定义的符号。需要使用某个符号的时候，将会从当前符号表递归向父级符号表分析直到根节点。由于已经有过先前语义分析的错误处理的保证，所以一定能在符号表中找到相应符号。</p>
+<p>中间代码生成程序中，为了防止函数传参或需要返回的值过多，使用全局变量用于传递部分参数和记录返回值，比如tmpValue、tmpType等。</p>
+<p>对于全局变量的定义，定义时重点关注初始化部分，若有初始化需要将初始化的值计算出来，直接赋值给全局变量。</p>
+<p>而在函数内部的变量定义，只需要使用AllocaInst进行定义，初始化的过程使用普通的运算进行初始化。</p>
+<p>中间代码生成中，循环的设计比较容易出错，我这里采用这种放肆进行设计</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x27;for&#x27; &#x27;(&#x27; [ForStmt] &#x27;;&#x27; [Cond] &#x27;;&#x27; [ForStmt] &#x27;)&#x27; Stmt </span><br><span class="line"></span><br><span class="line">    forStmt1;     </span><br><span class="line">    br forBlock</span><br><span class="line">    condBlock1:                                       </span><br><span class="line">        cond ? br forBlock, br finalBlock;                </span><br><span class="line">    forBlock:</span><br><span class="line">    	Stmt</span><br><span class="line">    	br condBlock2;                                    </span><br><span class="line">    condBlock2:                                       </span><br><span class="line">        forStmt2;                                     </span><br><span class="line">        cond ? br forBlock, br finalBlock;                </span><br><span class="line">    finalBlock;                                       </span><br></pre></td></tr></table></figure>
+<p>需要注意，如果在Stmt中遇到continue语句，要跳转到condBlock2，如果遇到Break则跳转到finalBlock。</p>
+<p>类型转换相对较为容易，只需要在Store、向函数传参、函数返回值的时候判断类型并判断是否进行Trunc和Zext。Zext还有在BinaryInst中当条件判断左右类型不一致时使用，将条件两边都扩展为i32进行计算。</p>
+<p>函数内使用数组和数组定义也比较麻烦，因为需要使用GetElementPointer指令来调用数组，所以需要tmpOffset进行记录现在位于数组的位置，还需要注意到该条指令调用诸如a[n]时格式如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%<span class="number">1</span> = getelementptr [<span class="number">5</span> x i32], [<span class="number">5</span> x i32]* @a, i32 <span class="number">0</span>, i32 n</span><br></pre></td></tr></table></figure>
+<p>中间代码的程序会在程序中逐步建立以IrModule作为根节点，Value作为分支的中间代码树，方便后续目标代码的翻译。</p>
+<h2 id="目标代码生成设计">目标代码生成设计</h2>
+<h3 id="Reg设计">Reg设计</h3>
+<p>Reg作为mips的寄存器，包含一个String值记录是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mi>p</mi><mtext>寄存器还是</mtext></mrow><annotation encoding="application/x-tex">gp寄存器还是</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">p</span><span class="mord cjk_fallback">寄</span><span class="mord cjk_fallback">存</span><span class="mord cjk_fallback">器</span><span class="mord cjk_fallback">还</span><span class="mord cjk_fallback">是</span></span></span></span>sp寄存器。offset用于记录当前位于的sp寄存器偏移量。其中<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>g</mi><mi>p</mi><mtext>用于调用全局变量，</mtext></mrow><annotation encoding="application/x-tex">gp用于调用全局变量，</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8777699999999999em;vertical-align:-0.19444em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="mord mathnormal">p</span><span class="mord cjk_fallback">用</span><span class="mord cjk_fallback">于</span><span class="mord cjk_fallback">调</span><span class="mord cjk_fallback">用</span><span class="mord cjk_fallback">全</span><span class="mord cjk_fallback">局</span><span class="mord cjk_fallback">变</span><span class="mord cjk_fallback">量</span><span class="mord cjk_fallback">，</span></span></span></span>sp寄存器用于记录局部变量。$sp可以通过不同偏移量记录不同的数据。</p>
+<h3 id="目标代码翻译程序">目标代码翻译程序</h3>
+<p>在目标代码翻译开始后，先开始进行Data部分的翻译，Data部分包含全局变量和库函数定义。随后进入.text部分，在text最开头&quot;jal main&quot;指令，最后再进行函数定义。</p>
+<p>在data部分，我将i32和i8全都定义为.word进行记录，这样子比较方便后续调用（虽然会占用很多空间就是了）。如果是非数组变量仅需使用.word加上数值，如果是数组变量，需要计算数组的大小然后定义存储的空间，如果数组未初始化，可以直接使用.space，如果初始化了，则需要使用.word给每一个变量赋初始值。</p>
+<p>定义了全局变量后，下一步需要定义库函数。库函数仅包含GETINT()、GETCHAR()、PUTINT()、PUTCH()、PUTSTR()，其实只需要使用li给$v0赋上系统调用的值后，再进行syscall即可。</p>
+<p>接下来进如BuildFunction函数中。在这个函数中，会先读取参数，随后进行参数存入对应的sp寄存器偏移量位置处。在每次jal进入函数前，程序会将sp减去当前偏移量，这样在函数中就会从偏移量0开始使用sp寄存器，在出函数后，恢复寄存器偏移量。函数里调用产生的临时变量确实会消失不过也不需要那些，仅仅需要从$ra 中得到返回值即可。</p>
+<h3 id="Translator设计">Translator设计</h3>
+<p>translator包含了将中间代码翻译为mips的基本函数。</p>
+<p>其中含有一个Map mem用于记录一个变量（变量名可以通过中间代码中Value获取唯一的编号）以及变量对应的Reg。</p>
+<p>在translator中，为每一条中间代码的instruction撰写对应的翻译文法</p>
+<p>translator中包含几个基本函数：</p>
+<ul>
+<li>addGlobal，用于向mem中添加全局变量的记录，仅记录符号名字。</li>
+<li>addSp和addSpArray，负责像mem中添加符号栈sp的记录，记录对应符号的偏移量。其中是Array型的时候，需要要计算数组的偏移量。</li>
+<li>load，负责处理将变量或sp栈内内容临时存储在t0、t1寄存器中。</li>
+<li>store，负责将t0、t1等寄存器中的值，存入sp栈内或全局变量内。</li>
+<li>translate函数，负责根据当前所翻译的指令，调用不同的翻译方法。</li>
+</ul>
+<h2 id="总结感想">总结感想</h2>
+<p>经过了一学期的编译撰写，也是终于将编译器完成了。</p>
+<p>从最开始的不敢想象该怎么写，到一步步将编译器完成，也是收获颇丰。最开始的词法分析部分算是比较简单，只需要写一个简单的词法分析自动机就可以快速完成。</p>
+<p>从语法分析开始就逐步变得困难了…当时听说要建立四五十个类我还在想为什么要这么麻烦，只到在理论课上学习了如何使用递归下降子程序法建立语法树，才意识到语法树的确需要给每个语法模块都建立一个单独的类。经过理论课的学习，建立语法分析树变得比较简单，仅仅需要理解如何使用递归下降分析即可完成。</p>
+<p>语义分析中，我根据语法树建立了一个简单的符号表，也进行了错误的分析。通过错误分析，我逐步认识到了符号表的建立方式，同时还修复了在词法分析和语法分析中的部分小错误（当时没有发现但是居然能过测试点）</p>
+<p>中间代码生成乃是编译大作业的一大高山，写了我足足三周才写完。中间代码生成光是第一步理解LLVM的结构就耗时一星期才初步了解完全部结构，光是复杂的Value、User、Instruction继承关系让我汗流浃背了。经过一周的初步理解，我才发现真正的难点在于如何将语法树转化成中间代码。从全局变量的定义到函数内部的生成，每一步都不简单。尤其是使用数组时候的GEP还有for循环、if等条件判断中块与块间的跳转，搞得我晕头转向。不过经过不懈努力，也是在结束之前将LLVM成果拿下。LLVM生成出来，终于能在Linux虚拟机上配置的环境中成功运行了</p>
+<p>MIPS相对于LLVM的生成还是较为简单的。LLVM的结构与MIPS已经比较相近。在MIPS中，最大的困难是理解对$sp的使用。在经过一周的奋战后，MIPS也是拉下帷幕。生成出来的MIPS的确能在MARS上正确运行，让我感到十分有成就感。</p>
+<p>通过这次编译器的撰写，对编译原理课大大加深了理解，感觉这是大学最有成就感的一次迭代作业，感觉比上学期的操作系统实验有意思多了（主要是上学期操作系统太难了看不太懂），总的来说，编译原理是一门顶尖好课: )</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a target="_blank" rel="noopener" href="https://github.com/Sixiang-Wang">Sixiang Wang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.unfinished.top/2024/12/19/Compiler/">https://blog.unfinished.top/2024/12/19/Compiler/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://blog.unfinished.top" target="_blank">机煲的小窝</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%A4%A7%E5%AD%A6/">大学</a><a class="post-meta__tags" href="/tags/%E6%80%BB%E7%BB%93/">总结</a><a class="post-meta__tags" href="/tags/%E7%BC%96%E8%AF%91/">编译</a></div><div class="post-share"><div class="social-share" data-image="/img/cover/cover5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2024/01/05/JavaReview/" title="Java期末考试复习提纲"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover2.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-05</div><div class="info-item-2">Java期末考试复习提纲</div></div><div class="info-2"><div class="info-item-1">我在Java期末考前为了防止自己刚复习完就忘光总结的资料,我菜,仅供参考</div></div></div></a><a class="pagination-related" href="/2024/12/17/%E6%88%91%E8%A6%81%E6%88%90%E4%B8%BA%E7%BC%96%E8%AF%91%E9%AB%98%E6%89%8B/" title="我要成为编译高手"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover6.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-12-17</div><div class="info-item-2">我要成为编译高手</div></div><div class="info-2"><div class="info-item-1">我要成为编译高手!这是期末复习笔记</div></div></div></a><a class="pagination-related" href="/2024/06/06/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" title="操作系统复习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover4.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-06-06</div><div class="info-item-2">操作系统复习</div></div><div class="info-2"><div class="info-item-1">我要成为OS高手!这是期末复习笔记</div></div></div></a><a class="pagination-related" href="/2024/11/28/%E6%95%B0%E5%AD%97%E7%94%B5%E8%B7%AF/" title="数字电路"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover7.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-11-28</div><div class="info-item-2">数字电路</div></div><div class="info-2"><div class="info-item-1">北航软院的【简易版数字电路】的考前复习</div></div></div></a><a class="pagination-related" href="/2024/01/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90/" title="计算机组成"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover1.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2024-01-08</div><div class="info-item-2">计算机组成</div></div><div class="info-2"><div class="info-item-1">计组期末考前为了防止自己刚复习完就忘光总结的资料,我菜,仅供参考</div></div></div></a><a class="pagination-related" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover3.jpg" alt="cover"><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2025-01-03</div><div class="info-item-2">计算机网络复习</div></div><div class="info-2"><div class="info-item-1">我要成为计网高手！计算机网络期末复习</div></div></div></a></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">编译器设计文档</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%99%A8%E6%80%BB%E4%BD%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.</span> <span class="toc-text">编译器总体设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84"><span class="toc-number">1.1.1.</span> <span class="toc-text">结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.1.2.</span> <span class="toc-text">接口设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">前端接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">错误接口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%84%E7%BB%87"><span class="toc-number">1.1.3.</span> <span class="toc-text">文件组织</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">词法分析设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Token%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.1.</span> <span class="toc-text">Token设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.2.</span> <span class="toc-text">分析程序设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86"><span class="toc-number">1.2.3.</span> <span class="toc-text">错误处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.</span> <span class="toc-text">语法分析设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Block%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.3.1.</span> <span class="toc-text">Block设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1-2"><span class="toc-number">1.3.2.</span> <span class="toc-text">分析程序设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86-2"><span class="toc-number">1.3.3.</span> <span class="toc-text">错误处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.4.</span> <span class="toc-text">语义分析设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E8%A1%A8%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.1.</span> <span class="toc-text">符号表结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.4.2.</span> <span class="toc-text">语义分析程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86-3"><span class="toc-number">1.4.3.</span> <span class="toc-text">错误处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90%E9%9A%BE%E7%82%B9"><span class="toc-number">1.4.4.</span> <span class="toc-text">语义分析难点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.</span> <span class="toc-text">中间代码生成设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.5.1.</span> <span class="toc-text">数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Type%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.2.</span> <span class="toc-text">Type设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Value%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.3.</span> <span class="toc-text">Value设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Const%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.3.1.</span> <span class="toc-text">Const设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GlobalVar%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.3.2.</span> <span class="toc-text">GlobalVar设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Function%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.3.3.</span> <span class="toc-text">Function设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BasicBlock%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.3.4.</span> <span class="toc-text">BasicBlock设计</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Instruction%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.4.</span> <span class="toc-text">Instruction设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.5.5.</span> <span class="toc-text">工厂模式设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%AD%E9%97%B4%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.5.6.</span> <span class="toc-text">中间代码生成程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.6.</span> <span class="toc-text">目标代码生成设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Reg%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.6.1.</span> <span class="toc-text">Reg设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E4%BB%A3%E7%A0%81%E7%BF%BB%E8%AF%91%E7%A8%8B%E5%BA%8F"><span class="toc-number">1.6.2.</span> <span class="toc-text">目标代码翻译程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Translator%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.6.3.</span> <span class="toc-text">Translator设计</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%E6%84%9F%E6%83%B3"><span class="toc-number">1.7.</span> <span class="toc-text">总结感想</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/28/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%92%8C%E5%81%8F%E5%AF%BC/" title="多元函数微分和偏导的关系"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover1.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="多元函数微分和偏导的关系"/></a><div class="content"><a class="title" href="/2025/03/28/%E5%A4%9A%E5%85%83%E5%87%BD%E6%95%B0%E5%BE%AE%E5%88%86%E5%92%8C%E5%81%8F%E5%AF%BC/" title="多元函数微分和偏导的关系">多元函数微分和偏导的关系</a><time datetime="2025-03-28T08:58:42.000Z" title="发表于 2025-03-28 16:58:42">2025-03-28</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/14/hello-world/" title="Hexo文章格式测试"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover2.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Hexo文章格式测试"/></a><div class="content"><a class="title" href="/2025/01/14/hello-world/" title="Hexo文章格式测试">Hexo文章格式测试</a><time datetime="2025-01-14T11:42:37.000Z" title="发表于 2025-01-14 19:42:37">2025-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/14/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/" title="Hexo博客搭建、魔改与修bug"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover4.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="Hexo博客搭建、魔改与修bug"/></a><div class="content"><a class="title" href="/2025/01/14/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E6%80%BB%E7%BB%93/" title="Hexo博客搭建、魔改与修bug">Hexo博客搭建、魔改与修bug</a><time datetime="2025-01-14T11:42:37.000Z" title="发表于 2025-01-14 19:42:37">2025-01-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover3.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="计算机网络复习"/></a><div class="content"><a class="title" href="/2025/01/03/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%A4%8D%E4%B9%A0/" title="计算机网络复习">计算机网络复习</a><time datetime="2025-01-03T09:57:49.000Z" title="发表于 2025-01-03 17:57:49">2025-01-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2024/12/19/Compiler/" title="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/cover/cover5.jpg" onerror="this.onerror=null;this.src='/img/404.png'" alt="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器"/></a><div class="content"><a class="title" href="/2024/12/19/Compiler/" title="【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器">【2024北航编译器】使用Java实现的C语言子集SysY-MIPS编译器</a><time datetime="2024-12-19T10:21:31.000Z" title="发表于 2024-12-19 18:21:31">2024-12-19</time></div></div></div></div></div></div></main><footer id="footer" style="background: transparent;"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2025 By Sixiang Wang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="translateLink" type="button" title="简繁转换">繁</button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i><span id="percent">0<span>%</span></span></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(async () => {
+  const showKatex = () => {
+    document.querySelectorAll('#article-container .katex').forEach(el => el.classList.add('katex-show'))
+  }
+
+  if (!window.katex_js_css) {
+    window.katex_js_css = true
+    await btf.getCSS('https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css')
+    if (true) {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/katex/dist/contrib/copy-tex.min.js')
+    }
+  }
+
+  showKatex()
+})()</script><script>(() => {
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = null
+
+  const initValine = (el, path) => {
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyValine = () => {
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+
+    const valineConfig = {
+      el: '#vcomment',
+      appId: 'IQK0R20J7jOefrvo0uETD48k-gzGzoHsz',
+      appKey: 'UxntKBFSRPJBvJ5JhRGyMJd6',
+      avatar: 'mp',
+      serverURLs: '',
+      emojiMaps: "",
+      visitor: false,
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || window.location.pathname
+    }
+
+    new Valine(valineConfig)
+  }
+
+  const loadValine = async (el, path) => {
+    if (typeof Valine === 'function') {
+      initValine(el, path)
+    } else {
+      await btf.getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js')
+      initValine(el, path)
+    }
+  }
+
+  if (isShuoshuo) {
+    'Valine' === 'Valine'
+      ? window.shuoshuoComment = { loadComment: loadValine }
+      : window.loadOtherComment = loadValine
+    return
+  }
+
+  if ('Valine' === 'Valine' || !true) {
+    if (true) btf.loadComment(document.getElementById('vcomment'),loadValine)
+    else setTimeout(loadValine, 0)
+  } else {
+    window.loadOtherComment = loadValine
+  }
+})()</script></div><script defer data-pjax src="/js/readPercent.js"></script><script async src="/js/title.js"></script><script id="canvas_nest" defer="defer" color="0,255,234" opacity="0.7" zIndex="-1" count="50" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false;
+POWERMODE.mobile = true;
+document.body.addEventListener('input', POWERMODE);
+</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><!-- hexo injector body_end start --><script data-pjax src="/live2d/index.min.js"></script><script>const oml2d = OML2D.loadOml2d({libraryUrls:{"complete":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/complete.js","cubism2":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism2.js","cubism5":"https://registry.npmmirror.com/oh-my-live2d/latest/files/lib/cubism5.js"},menus:{items:(defaultItems)=>{
+ return []
+}
+},mobileDisplay:true,models:[{"path":"/live2d/泉此方/泉此方.model3.json","mobilePosition":[-10,23],"mobileScale":0.1,"mobileStageStyle":{"width":180,"height":166},"motionPreloadStrategy":"NONE","position":[20,55],"scale":0.15,"stageStyle":{"width":250,"height":250}}],parentElement:document.body,primaryColor:"var(--btn-bg)",sayHello:false,tips:{style: {"width":200,"height":120,"left":"calc(50% - 5px)","top":"-80px"},mobileStyle: {"width":180,"height":70,"left":"calc(50% - 30px)","top":"-100px"},idleTips:{interval:15000,message:function(){
+  return axios.get('https://v1.hitokoto.cn?c=i')
+    .then(function (response) {
+      return response.data.hitokoto ;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}
+}}});</script><!-- hexo injector body_end end --></body></html>
